@@ -1,4 +1,4 @@
-# sidebar
+# Vuecommerce
 
 ## Project setup
 ```
