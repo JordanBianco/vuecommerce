@@ -1,7 +1,7 @@
 <template>
     <aside
         :class="{ 'translate-x-full' : !isOpen }"
-        class="md:w-80 w-full overflow-x-hidden fixed transform duration-150 right-0 bottom-0 top-0 h-screen bg-gray-50 text-c-dark-gray z-50">
+        class="md:w-80 lg:w-96 w-full overflow-x-hidden fixed transform duration-150 right-0 bottom-0 top-0 h-screen bg-gray-50 text-c-dark-gray z-50">
             <!-- {{ items }} -->
             <header class="flex items-center justify-between p-4 pt-8">
                 <span

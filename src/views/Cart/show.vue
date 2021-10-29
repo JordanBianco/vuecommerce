@@ -25,11 +25,11 @@
                             <!-- Nome -->
                             <header class="flex flex-col justify-between md:block mb-4 md:mb-0 md:w-2/5">
                                 <h3 class="text-c-dark-gray leading-tight font-semibold mb-1">{{ item.product.name }}</h3>
-                                <p class="hidden lg:block text-c-light-gray text-xs">{{ item.product.description | truncate(100) }}</p>
+                                <p class="hidden lg:block text-c-light-gray text-xs">{{ item.product.description | truncate(200) }}</p>
                                 <div class="lg:hidden block">
                                     <div class="flex items-center space-x-3 text-xs text-c-light-gray">
-                                        <span class="underline" @click="saveForLater(index, item)">salva per dopo</span>
-                                        <span class="underline" @click="removeFromCart(index)">rimuovi</span>
+                                        <span class="cursor-pointer underline" @click="saveForLater(index, item)">salva per dopo</span>
+                                        <span class="cursor-pointer underline" @click="removeFromCart(index)">rimuovi</span>
                                     </div>
                                 </div>
                             </header>
@@ -59,15 +59,17 @@
                             <!-- Azioni -->
                             <div class="hidden lg:block md:w-1/5">
                                 <div class="flex flex-col space-y-1 text-xs text-c-light-gray">
-                                    <p class="underline text-right" @click="saveForLater(index, item)">salva per dopo</p>
-                                    <p class="underline text-right" @click="removeFromCart(index)">rimuovi</p>
+                                    <p class="underline cursor-pointer text-right" @click="saveForLater(index, item)">salva per dopo</p>
+                                    <p class="underline cursor-pointer text-right" @click="removeFromCart(index)">rimuovi</p>
                                 </div>
                             </div>
                         </div>
                 </div>
-                <div @click="emptyCart" class="flex items-center space-x-2 mb-1 justify-end text-c-light-gray text-sm mt-2">
-                    <p>svuota carta</p>
-                    <svg class="w-5 h-5  flex-none cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"/></svg>
+                <div class="flex justify-end my-2">
+                    <div @click="emptyCart" class="flex items-center space-x-2 max-w-max text-c-light-gray text-sm cursor-pointer">
+                        <span>svuota carta</span>
+                        <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"/></svg>
+                    </div>
                 </div>
 
                 <footer class="text-c-light-gray mt-8 pt-8 border-t border-gray-200">

@@ -10,9 +10,9 @@
                         @click="saveForLater()"
                         class="cursor-pointer"
                         title="Salva per dopo">
-                        <svg
-                            :class="{ 'text-c-orange' : isInSaved() }"
-                            class="text-c-light-gray w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M16,2H8A3,3,0,0,0,5,5V21a1,1,0,0,0,.5.87,1,1,0,0,0,1,0L12,18.69l5.5,3.18A1,1,0,0,0,18,22a1,1,0,0,0,.5-.13A1,1,0,0,0,19,21V5A3,3,0,0,0,16,2Zm1,17.27-4.5-2.6a1,1,0,0,0-1,0L7,19.27V5A1,1,0,0,1,8,4h8a1,1,0,0,1,1,1Z"/></svg>
+                            <svg
+                                :class="{ 'text-c-orange' : isInSaved() }"
+                                class="text-c-light-gray w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M16,2H8A3,3,0,0,0,5,5V21a1,1,0,0,0,.5.87,1,1,0,0,0,1,0L12,18.69l5.5,3.18A1,1,0,0,0,18,22a1,1,0,0,0,.5-.13A1,1,0,0,0,19,21V5A3,3,0,0,0,16,2Zm1,17.27-4.5-2.6a1,1,0,0,0-1,0L7,19.27V5A1,1,0,0,1,8,4h8a1,1,0,0,1,1,1Z"/></svg>
                     </div>
                     <!-- Add To Cart -->
                     <div
@@ -56,9 +56,24 @@
 
                 <p class="text-c-light-gray text-sm">{{ product.description }}</p>
 
-                <div @click="addToCart()" class="hidden cursor-pointer bg-c-red rounded-full p-1.5 md:flex items-center space-x-2 text-c-white text-sm px-4 max-w-max mt-8" title="Aggiungi il carrello">
-                    <span>Aggiungi al carrello</span>
-                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M8.5,19A1.5,1.5,0,1,0,10,20.5,1.5,1.5,0,0,0,8.5,19ZM19,16H7a1,1,0,0,1,0-2h8.49121A3.0132,3.0132,0,0,0,18.376,11.82422L19.96143,6.2749A1.00009,1.00009,0,0,0,19,5H6.73907A3.00666,3.00666,0,0,0,3.92139,3H3A1,1,0,0,0,3,5h.92139a1.00459,1.00459,0,0,1,.96142.7251l.15552.54474.00024.00506L6.6792,12.01709A3.00006,3.00006,0,0,0,7,18H19a1,1,0,0,0,0-2ZM17.67432,7l-1.2212,4.27441A1.00458,1.00458,0,0,1,15.49121,12H8.75439l-.25494-.89221L7.32642,7ZM16.5,19A1.5,1.5,0,1,0,18,20.5,1.5,1.5,0,0,0,16.5,19Z"/></svg>
+                <div class="md:flex md:items-center md:justify-between hidden mt-8">
+                    <!-- Add to cart -->
+                    <div
+                        @click="addToCart()"
+                        class="cursor-pointer bg-c-orange rounded-lg p-1.5 flex items-center space-x-2 text-c-white text-sm px-4 max-w-max"
+                        title="Aggiungi il carrello">
+                            <span>Aggiungi al carrello</span>
+                            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M8.5,19A1.5,1.5,0,1,0,10,20.5,1.5,1.5,0,0,0,8.5,19ZM19,16H7a1,1,0,0,1,0-2h8.49121A3.0132,3.0132,0,0,0,18.376,11.82422L19.96143,6.2749A1.00009,1.00009,0,0,0,19,5H6.73907A3.00666,3.00666,0,0,0,3.92139,3H3A1,1,0,0,0,3,5h.92139a1.00459,1.00459,0,0,1,.96142.7251l.15552.54474.00024.00506L6.6792,12.01709A3.00006,3.00006,0,0,0,7,18H19a1,1,0,0,0,0-2ZM17.67432,7l-1.2212,4.27441A1.00458,1.00458,0,0,1,15.49121,12H8.75439l-.25494-.89221L7.32642,7ZM16.5,19A1.5,1.5,0,1,0,18,20.5,1.5,1.5,0,0,0,16.5,19Z"/></svg>
+                    </div>
+                    <!-- Save Item -->
+                    <div
+                        @click="saveForLater()"
+                        class="cursor-pointer"
+                        title="Salva per dopo">
+                            <svg
+                                :class="{ 'text-c-orange' : isInSaved() }"
+                                class="text-c-light-gray w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M16,2H8A3,3,0,0,0,5,5V21a1,1,0,0,0,.5.87,1,1,0,0,0,1,0L12,18.69l5.5,3.18A1,1,0,0,0,18,22a1,1,0,0,0,.5-.13A1,1,0,0,0,19,21V5A3,3,0,0,0,16,2Zm1,17.27-4.5-2.6a1,1,0,0,0-1,0L7,19.27V5A1,1,0,0,1,8,4h8a1,1,0,0,1,1,1Z"/></svg>
+                    </div>
                 </div>
             </section>
         </div>
@@ -78,7 +93,6 @@ export default {
                 "description":"In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
                 "price":"15",
                 "image":"http://dummyimage.com/x.png/cc0000/ffffff",
-                "quantity":1
             }
         }
     },
@@ -103,7 +117,10 @@ export default {
                 return
             }
 			this.$store.dispatch('cart/saveForLater', {
-                item: this.product
+                item: {
+                    product: this.product,
+                    quantity: 1
+                }
 			})
 		},
         increment() {

@@ -1,7 +1,7 @@
 <template>
     <div class="relative mb-6 xs:mb-0">
         <router-link :to="{ name: 'product.show', params: { id: product.id }}">
-            <div class="bg-gray-200 w-full h-72 xs:h-48 xs:w-48 md:h-56 md:w-56 xl:w-full rounded-lg shadow-md"></div>
+            <div class="bg-gray-200 w-full h-72 xs:h-48 md:h-56 rounded-lg shadow-md"></div>
         </router-link>
 
         <div class="absolute left-4 top-4">
