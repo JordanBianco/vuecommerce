@@ -1,3 +1,7 @@
-export const GET_PRODUCT = (state, id) => {
-    console.log(state,id)
+export const GET_PRODUCTS = (state, products) => {
+    state.products = products
+}
+
+export const GET_PRODUCT = (state, product) => {
+    state.product = product
 }

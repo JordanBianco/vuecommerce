@@ -2,8 +2,7 @@
     <div>
         <div class="flex flex-col md:flex-row md:w-10/12 md:mx-auto md:space-x-6 p-4 md:pt-20">
             <div class="relative md:w-1/2">
-                <div class="bg-gray-200 w-full h-80 rounded-lg"></div>
-
+                <img :src="product.image_path" :alt="product.name + '_image'" class="w-full h-80 rounded-lg">
                 <div class="md:hidden absolute top-4 right-4 flex items-center space-x-2">
                     <!-- Save Item -->
                     <div
@@ -83,20 +82,18 @@
 <script>
 export default {
     name: 'product.show',
+    mounted() {
+        this.$store.dispatch('product/getProduct', { slug: this.$route.params.slug })
+    },
     data() {
         return {
             quantity: 1,
-            product: {
-                "id":2,
-                "brand_id":2,
-                "name":"Nike Air Jordan, Flight v. 1 (2021)",
-                "description":"In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.\n\nMaecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
-                "price":"15",
-                "image":"http://dummyimage.com/x.png/cc0000/ffffff",
-            }
         }
     },
     computed: {
+        product() {
+            return this.$store.state.product.product
+        },
         items() {
             return this.$store.state.cart.items
         },
@@ -112,10 +109,6 @@ export default {
 			})
 		},
         saveForLater() {
-            if (this.isInSaved()) {
-                alert('gia presente')
-                return
-            }
 			this.$store.dispatch('cart/saveForLater', {
                 item: {
                     product: this.product,
@@ -142,12 +135,3 @@ export default {
 	}
 }
 </script>
-
-<style>
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .3s;
-    }
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-        opacity: 0;
-    }
-</style>

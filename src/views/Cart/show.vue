@@ -18,6 +18,7 @@
                             @click.native="toggleCart"
                             :to="{ name: 'product.show', params: { id: item.product.id }}"
                         >
+                            <!-- <img :src="product.image_path" :alt="product.name + '_image'" class="w-full h-80 rounded-lg"> -->
                             <div class="flex-none bg-gray-200 h-20 w-20 rounded-lg"></div>
                         </router-link>
                         <!-- Right Side -->

@@ -1,11 +1,10 @@
 <template>
     <div class="relative mb-6 xs:mb-0">
-        <router-link :to="{ name: 'product.show', params: { id: product.id }}">
-            <div class="bg-gray-200 w-full h-72 xs:h-48 md:h-56 rounded-lg shadow-md"></div>
+        <router-link :to="{ name: 'product.show', params: { slug: product.slug }}">
+            <img :src="product.image_path" alt="" class="w-full h-72 xs:h-48 md:h-56 rounded-lg shadow-md">
         </router-link>
-
         <div class="absolute left-4 top-4">
-            <router-link :to="{ name: 'product.show', params: { id: product.id }}">
+            <router-link :to="{ name: 'product.show', params: { slug: product.slug }}">
                 <h3 class="text-c-dark-gray">{{ product.name }}</h3>
                 <p class="text-c-light-gray text-xs">Prezzo</p>
                 <p class="text-sm text-c-dark-gray font-semibold mt-1"><span class="text-c-orange">€</span>{{ product.price }}</p>
