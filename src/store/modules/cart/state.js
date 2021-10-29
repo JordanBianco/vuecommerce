@@ -1,4 +1,5 @@
 export default {
     isOpen: false,
-    products: []
+    items: [],
+    savedItems: []
 }

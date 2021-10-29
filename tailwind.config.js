@@ -16,17 +16,21 @@ module.exports = {
 				'c-light-gray' : '#94a1b2',
 				'c-dark-gray' : '#2a2a2a',
 				'c-blue' : '#232946',
+				'c-dark-blue' : '#272343',
 				'c-red' : '#d9376e',
 				'c-pink' : '#eebbc3',
-				'c-orange' : '#ff8e3c'
+				'c-orange' : '#ff8e3c',
 			},
 			spacing: {
 				'4.5' : '18px'
-			}
+			},
 		},
 	},
 	variants: {
-		extend: {},
+		extend: {
+			borderWidth: ['last'],
+			backgroundColor: ['odd', 'even'],
+		},
 	},
 	plugins: [],
 }

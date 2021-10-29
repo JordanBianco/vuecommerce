@@ -1,8 +1,11 @@
 <template>
 	<div style="font-family: 'Poppins', sans-serif;">
 		<TheNavbar class="hidden md:block" />
-		<router-view class="bg-c-gray-50 min-h-screen pb-24 md:pb-16"/>
+		<router-view class="bg-gray-50 min-h-screen pb-24 md:pb-16"/>
 		<MobileNavbar class="md:hidden block" />
+		<footer class="bg-c-blue py-44">
+			&copy;
+		</footer>
 	</div>
 </template>
 
