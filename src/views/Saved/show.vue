@@ -1,23 +1,20 @@
 <template>
     <div>
-        <header class="border-b p-4 md:px-0 md:w-10/12 md:mx-auto text-c-light-gray">
-            <div class="flex items-center justify-between">
-                <span>Prodotti salvati per dopo</span>
-                <span v-if="savedItems.length > 0" class="text-sm">{{ savedItems.length }} {{ savedItems.length == 1 ? ' prodotto' : ' prodotti' }}</span>
-            </div>
-        </header>
-
         <section class="p-4 md:px-0 md:w-10/12 md:mx-auto">
             <div v-if="savedItems.length > 0">
+                <header class="border-b p-4 md:px-0 text-c-light-gray">
+                    <div class="flex items-center justify-between">
+                        <span>Prodotti salvati per dopo</span>
+                        <span v-if="savedItems.length > 0" class="text-sm">{{ savedItems.length }} {{ savedItems.length == 1 ? ' prodotto' : ' prodotti' }}</span>
+                    </div>
+                </header>
+
                 <div
                     v-for="(item, index) in savedItems"
                     :key="index"
                     class="flex space-x-4 p-4 odd:bg-gray-100 rounded-lg">
                         <!-- Left Side -->
-                        <router-link
-                            @click.native="toggleCart"
-                            :to="{ name: 'product.show', params: { id: item.product.id }}"
-                        >
+                        <router-link :to="{ name: 'product.show', params: { slug: item.product.slug }}">
                             <div class="flex-none bg-gray-200 h-20 w-20 rounded-lg"></div>
                         </router-link>
                         <!-- Right Side -->
@@ -29,20 +26,20 @@
                                 <div class="lg:hidden block">
                                     <div class="flex flex-col space-y-1 text-xs text-c-light-gray">
                                         <span class="underline cursor-pointer" @click="moveToCart(index, item)">aggiungi al carrello</span>
-                                        <span class="underline cursor-pointer" @click="removeFromSaved(index)">rimuovi</span>
+                                        <span class="underline cursor-pointer" @click="removeFromSaved(index, item)">rimuovi</span>
                                     </div>
                                 </div>
                             </header>
                             <!-- Prezzo -->
                             <div class="flex flex-row justify-between items-center md:flex-col md:justify-start md:space-y-2 md:w-1/5">
                                 <p class="text-c-light-gray text-xs">Prezzo</p>
-                                <p class="text-sm text-c-orange font-semibold">€{{ item.product.price * item.quantity }}</p>
+                                <p class="text-sm text-c-dark-gray font-semibold">€{{ item.product.price }}</p>
                             </div>
                             <!-- Azioni -->
                             <div class="hidden lg:block md:w-1/5">
                                 <div class="flex flex-col space-y-1 text-xs text-c-light-gray">
                                     <p class="underline cursor-pointer text-right" @click="moveToCart(index, item)">aggiungi al carrello</p>
-                                    <p class="underline cursor-pointer text-right" @click="removeFromSaved(index)">rimuovi</p>
+                                    <p class="underline cursor-pointer text-right" @click="removeFromSaved(index, item)">rimuovi</p>
                                 </div>
                             </div>
                         </div>
@@ -55,10 +52,10 @@
                 </div>
 
             </div>
-            <div v-else class="flex justify-center pt-10">
+            <div v-else class="flex justify-center pt-10 text-sm">
                 <p class="text-c-light-gray">
                     Non hai prodotti salvati.
-                    <router-link class="text-blue-400" :to="{ name: 'Home' }">Continua lo shopping</router-link>
+                    <router-link class="text-c-green" :to="{ name: 'Home' }">Continua lo shopping</router-link>
                 </p>
             </div>
         </section>
@@ -68,22 +65,28 @@
 <script>
 export default {
     name: 'saved.show',
+    mounted() {
+        this.$store.dispatch('cart/getSavedItems')
+    },
     computed: {
         savedItems() {
             return this.$store.state.cart.savedItems
         }
     },
     methods: {
-        removeFromSaved(index) {
+        removeFromSaved(index, item) {
 			this.$store.dispatch('cart/removeFromSaved', {
-				index: index,
-			})
-		},
-        moveToCart(index, item) {
-			this.$store.dispatch('cart/moveToCart', {
 				index: index,
                 item: item
 			})
+		},
+        moveToCart(index, item) {
+            this.removeFromSaved(index, item)
+			this.$store.dispatch('cart/addToCart', { item: {
+                    product: item.product,
+                    quantity: 1
+                }
+            })
 		},
         emptySaved() {
             if (confirm('Vuoi rimuovere tutti i prodotti dalla lista "salvati per dopo"?')) {
@@ -93,10 +96,10 @@ export default {
     },
     filters: {
         truncate(text, value) {
-            if (text) {
-                if (text.length > value) {
-                    return text.substring(0, value) + '...'
-                }
+            if (text.length > value) {
+                return text.substring(0, value) + '...'
+            } else {
+                return text
             }
         }
     }

@@ -1,14 +1,13 @@
 <template>
     <div>
-        <header class="border-b p-4 md:px-0 md:w-10/12 md:mx-auto text-c-light-gray">
-            <div class="flex items-center justify-between">
-                <span>Carrello</span>
-                <span v-if="items.length > 0" class="text-sm">{{ items.length }} {{ items.length == 1 ? ' prodotto' : ' prodotti' }}</span>
-            </div>
-        </header>
-
         <section class="p-4 md:px-0 md:w-10/12 md:mx-auto">
             <div v-if="items.length > 0">
+                <header class="border-b p-4 md:px-0 text-c-light-gray">
+                    <div class="flex items-center justify-between">
+                        <span>Carrello</span>
+                        <span v-if="items.length > 0" class="text-sm">{{ items.length }} {{ items.length == 1 ? ' prodotto' : ' prodotti' }}</span>
+                    </div>
+                </header>
                 <div
                     v-for="(item, index) in items"
                     :key="index"
@@ -16,9 +15,8 @@
                         <!-- Left Side -->
                         <router-link
                             @click.native="toggleCart"
-                            :to="{ name: 'product.show', params: { id: item.product.id }}"
+                            :to="{ name: 'product.show', params: { slug: item.product.slug }}"
                         >
-                            <!-- <img :src="product.image_path" :alt="product.name + '_image'" class="w-full h-80 rounded-lg"> -->
                             <div class="flex-none bg-gray-200 h-20 w-20 rounded-lg"></div>
                         </router-link>
                         <!-- Right Side -->
@@ -55,13 +53,13 @@
                             <!-- Prezzo -->
                             <div class="flex flex-row justify-between items-center md:flex-col md:justify-start md:space-y-2 md:w-1/5">
                                 <p class="text-c-light-gray text-xs">Prezzo</p>
-                                <p class="text-sm text-c-orange font-semibold">€{{ item.product.price * item.quantity }}</p>
+                                <p class="text-sm text-c-dark-gray font-semibold">€{{ item.product.price * item.quantity }}</p>
                             </div>
                             <!-- Azioni -->
                             <div class="hidden lg:block md:w-1/5">
                                 <div class="flex flex-col space-y-1 text-xs text-c-light-gray">
                                     <p class="underline cursor-pointer text-right" @click="saveForLater(index, item)">salva per dopo</p>
-                                    <p class="underline cursor-pointer text-right" @click="removeFromCart(index)">rimuovi</p>
+                                    <p class="underline cursor-pointer text-right" @click="removeFromCart(index, item.product)">rimuovi</p>
                                 </div>
                             </div>
                         </div>
@@ -85,16 +83,16 @@
                         </div>
                     </div>
                     <div class="flex justify-end">
-                        <router-link to="" class="bg-c-orange text-center text-c-white rounded-lg text-sm w-full md:max-w-max p-4 py-3 mt-8 shadow-md">
+                        <router-link to="" class="bg-c-green text-center text-white rounded-lg text-sm w-full md:max-w-max px-4 py-2 mt-8">
                             Vai al pagamento
                         </router-link>
                     </div>
                 </footer>
             </div>
-            <div v-else class="flex justify-center pt-10">
+            <div v-else class="flex justify-center pt-10 text-sm">
                 <p class="text-c-light-gray">
                     Non hai prodotti nel carrello.
-                    <router-link class="text-blue-400" :to="{ name: 'Home' }">Continua lo shopping</router-link>
+                    <router-link class="text-c-green" :to="{ name: 'Home' }">Continua lo shopping</router-link>
                 </p>
             </div>
         </section>        
@@ -104,6 +102,9 @@
 <script>
 export default {
     name: 'cart.show',
+    mounted() {
+        this.$store.dispatch('cart/getItems', {user_id: 1})
+    },
     computed: {
         items() {
             return this.$store.state.cart.items
@@ -116,11 +117,14 @@ export default {
         incrementQty(item) {
             this.$store.dispatch('cart/incrementQty', { item: item })
         },
-        removeFromCart(index) {
-			this.$store.dispatch('cart/removeFromCart', { index: index })
+        removeFromCart(index, product) {
+			this.$store.dispatch('cart/removeFromCart', { 
+                index: index,
+                product_id: product.id
+            })
 		},
         saveForLater(index, item) {
-            this.$store.dispatch('cart/removeFromCart', { index: index })
+            this.removeFromCart(index, item.product)
 			this.$store.dispatch('cart/saveForLater', { item: item })
 		},
         emptyCart() {
@@ -149,10 +153,10 @@ export default {
     },
     filters: {
         truncate(text, value) {
-            if (text) {
-                if (text.length > value) {
-                    return text.substring(0, value) + '...'
-                }
+            if (text.length > value) {
+                return text.substring(0, value) + '...'
+            } else {
+                return text
             }
         }
     }

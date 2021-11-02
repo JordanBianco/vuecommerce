@@ -1,22 +1,22 @@
 <template>
 	<div style="font-family: 'Poppins', sans-serif;">
 		<TheNavbar class="hidden md:block" />
-		<router-view class="bg-gray-50 min-h-screen pb-24 md:pb-16"/>
-		<MobileNavbar class="md:hidden block" />
-		<footer class="bg-c-blue py-44">
+		<router-view class="bg-white min-h-screen pb-24 md:pb-16"/>
+		<!-- <MobileNavbar class="md:hidden block" /> -->
+		<!-- <footer class="bg-c-blue py-44">
 			&copy;
-		</footer>
+		</footer> -->
 	</div>
 </template>
 
 <script>
 import TheNavbar from '@/components/Layout/TheNavbar'
-import MobileNavbar from '@/components/Layout/MobileNavbar'
+// import MobileNavbar from '@/components/Layout/MobileNavbar'
 
 export default {
 	components: {
 		TheNavbar,
-		MobileNavbar
+		// MobileNavbar
 	},
 	computed: {
 		isOpen() {

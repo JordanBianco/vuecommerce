@@ -2,7 +2,7 @@
     <div class="flex space-x-4 p-4 mx-4 rounded-lg odd:bg-gray-100 text-sm">
         <router-link
             @click.native="toggleCart"
-            :to="{ name: 'product.show', params: { id: item.product.id }}"
+            :to="{ name: 'product.show', params: { slug: item.product.slug }}"
         >
             <div class="flex-none bg-gray-200 h-20 w-20 rounded-lg"></div>
         </router-link>
@@ -10,10 +10,10 @@
             <div>
                 <header class="flex justify-between">
                     <h3 class="text-c-dark leading-tight mb-1">{{ item.product.name }}</h3>
-                    <svg @click="removeFromCart" class="w-5 h-5 text-c-light-gray flex-none cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"/></svg>
+                    <svg @click="removeFromCart" class="w-5 h-5 text-gray-400 flex-none cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"/></svg>
                 </header>
-                <p class="text-c-light-gray text-xs">Prezzo</p>
-                <p class="text-sm text-c-orange font-semibold">€{{ item.product.price }}</p>
+                <p class="text-gray-400 text-xs">Price</p>
+                <p class="text-sm text-c-dark-gray font-semibold">€{{ item.product.price }}</p>
             </div>
 
             <p class="text-xs text-c-light-gray align-bottom">Quantità {{ item.quantity }}</p>
@@ -28,8 +28,9 @@ export default {
     methods: {
         removeFromCart() {
 			this.$store.dispatch('cart/removeFromCart', {
-				index: this.index,
-			})
+                index: this.index,
+                product_id: this.item.product.id
+            })
 		},
         toggleCart() {
             this.$store.dispatch('cart/toggleCart')

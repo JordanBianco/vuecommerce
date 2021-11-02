@@ -1,26 +1,41 @@
 <template>
-    <div class="relative mb-6 xs:mb-0">
-        <router-link :to="{ name: 'product.show', params: { slug: product.slug }}">
-            <img :src="product.image_path" alt="" class="w-full h-72 xs:h-48 md:h-56 rounded-lg shadow-md">
-        </router-link>
-        <div class="absolute left-4 top-4">
+    <div>
+        <div class="relative">
             <router-link :to="{ name: 'product.show', params: { slug: product.slug }}">
-                <h3 class="text-c-dark-gray">{{ product.name }}</h3>
-                <p class="text-c-light-gray text-xs">Prezzo</p>
-                <p class="text-sm text-c-dark-gray font-semibold mt-1"><span class="text-c-orange">€</span>{{ product.price }}</p>
+                <img src="@/assets/plant.jpg" alt="" class="w-full h-72 xs:h-48 md:h-56 rounded-t-3xl object-cover">
             </router-link>
+            <div
+                class="absolute cursor-pointer top-4 right-4 p-1"
+                :class="[ isInSaved(product) ? 'rounded-full bg-red-200 text-c-red' : 'text-gray-400' ]"
+                @click="saveForLater">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20.16,5A6.29,6.29,0,0,0,12,4.36a6.27,6.27,0,0,0-8.16,9.48l6.21,6.22a2.78,2.78,0,0,0,3.9,0l6.21-6.22A6.27,6.27,0,0,0,20.16,5Zm-1.41,7.46-6.21,6.21a.76.76,0,0,1-1.08,0L5.25,12.43a4.29,4.29,0,0,1,0-6,4.27,4.27,0,0,1,6,0,1,1,0,0,0,1.42,0,4.27,4.27,0,0,1,6,0A4.29,4.29,0,0,1,18.75,12.43Z"/></svg>
+            </div>
         </div>
 
-        <transition name="fade">
-            <div
-                v-if="isAdded(index)"
-                class="text-xs absolute bottom-12 right-4 text-indigo-500 bg-indigo-200 max-w-max p-1 px-2 rounded-lg">
-                    Aggiunto al carrello
-            </div>
-        </transition>
+        <div class="p-4 border border-t-0 border-gray-200 rounded-b-3xl">
+            <h3 class="text-c-dark-gray font-semibold">{{ product.name }}</h3>
 
-        <div @click="addToCart()" class="absolute bottom-4 right-4 cursor-pointer" title="Aggiungi il carrello">
-            <svg class="text-c-orange w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M8.5,19A1.5,1.5,0,1,0,10,20.5,1.5,1.5,0,0,0,8.5,19ZM19,16H7a1,1,0,0,1,0-2h8.49121A3.0132,3.0132,0,0,0,18.376,11.82422L19.96143,6.2749A1.00009,1.00009,0,0,0,19,5H6.73907A3.00666,3.00666,0,0,0,3.92139,3H3A1,1,0,0,0,3,5h.92139a1.00459,1.00459,0,0,1,.96142.7251l.15552.54474.00024.00506L6.6792,12.01709A3.00006,3.00006,0,0,0,7,18H19a1,1,0,0,0,0-2ZM17.67432,7l-1.2212,4.27441A1.00458,1.00458,0,0,1,15.49121,12H8.75439l-.25494-.89221L7.32642,7ZM16.5,19A1.5,1.5,0,1,0,18,20.5,1.5,1.5,0,0,0,16.5,19Z"/></svg>
+            <div class="flex items-center space-x-2 mb-3">
+                <div class="flex">
+                    <svg v-for="i in 4" :key="i" class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
+                    <svg class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
+                </div>
+                <div class="text-gray-300 text-sm mt-0.5">102 recensioni</div>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-300 text-xs">Price</p>
+                    <p class="text-c-dark-gray font-semibold">€{{ product.price }}</p>
+                </div>
+
+                <button
+                    @click="addToCart()"
+                    :class="[ isInCart(product) ? 'bg-c-green text-c-white' : '' ]"
+                    class="border border-gray-200 rounded-lg px-4 py-1 text-sm">
+                        {{ isInCart(product) ? 'Added' : 'Add to cart' }}
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -29,38 +44,42 @@
 export default {
     name: 'SingleProduct',
     props: ['product', 'index'],
-    data() {
-        return {
-            added: -1
-        }
+    computed: {
+        items() {
+            return this.$store.state.cart.items
+        },
+        savedItems() {
+            return this.$store.state.cart.savedItems
+        },
     },
     methods: {
 		addToCart() {
-            this.added = this.index
-
-			this.$store.dispatch('cart/addToCart', {
-				product: this.product,
-                quantity: 1
-			})
+			this.$store.dispatch('cart/addToCart', { item: {
+                    product: this.product,
+                    quantity: 1
+                }
+            })
 		},
-        isAdded(index) {
-            this.hideMessage();
-            return this.added == index
+        saveForLater() {
+            if (this.isInSaved()) {
+                alert('L\' articolo si trova già nella tua lista.')
+                return
+            }
+			this.$store.dispatch('cart/saveForLater', { item: {
+                    product: this.product
+                }
+            })
+		},
+        isInCart(product) {
+            return this.items.find(function(item) {
+                return item.product.id == product.id
+            })
         },
-        hideMessage() {
-            setTimeout(() => {
-                this.added = -1
-            }, 2200);
-        }
+        isInSaved() {
+            return this.savedItems.find(i => {
+                return i.product.id === this.product.id
+            })
+        },
 	}
 }
 </script>
-
-<style>
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity .3s;
-    }
-    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-        opacity: 0;
-    }
-</style>

@@ -37,20 +37,24 @@
             </div>
         </section>
 
-        <ShoppingCart
+        <!-- <ShoppingCart
             :items="items"
-        />
+        /> -->
+        {{ items }}
 
     </nav>
 </template>
 
 <script>
-import ShoppingCart from '@/components/ShoppingCart'
+// import ShoppingCart from '@/components/ShoppingCart'
 
 export default {
     name: 'MobileNavbar',
     components: {
-        ShoppingCart
+        // ShoppingCart
+    },
+    mounted() {
+        this.$store.dispatch('cart/getItems')
     },
     computed: {
         isOpen() {
