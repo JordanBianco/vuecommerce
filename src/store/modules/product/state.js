@@ -1,4 +1,8 @@
 export default {
-    products: [],
+    products: {},
+    similar: [],
+    reviews: [],
     product: {},
+    errors: [],
+    showFilters: false
 }

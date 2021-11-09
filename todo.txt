@@ -1,0 +1,8 @@
+guardare andre ecommerce
+dopo acquisto ritornare page thanks con ordine
+
+sanctum
+dopo sanctum pagina con i propri ordini
+
+--reviews
+post per submit una review -> solo se si è comprato l'articolo

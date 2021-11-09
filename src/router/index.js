@@ -7,28 +7,39 @@ const routes = [
 	{
 		path: '/',
 		name: 'Home',
-		component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
+		component: () => import('../views/Home.vue')
 	},
 	// Products
 	{
 		path: '/product/:slug',
 		name: 'product.show',
-		component: () => import(/* webpackChunkName: "productShow" */ '../views/Product/show.vue'),
+		component: () => import('../views/Product/show.vue'),
+		props: true
+	},
+	// Category
+	{
+		path: '/category/:slug',
+		name: 'category.show',
+		component: () => import('../views/Category/show.vue'),
 		props: true
 	},
 	// Cart
 	{
 		path: '/cart',
-		name: 'cart.show',
-		component: () => import(/* webpackChunkName: "cartShow" */ '../views/Cart/show.vue'),
-		props: true
+		name: 'Cart',
+		component: () => import('../views/Cart/show.vue'),
 	},
 	// Cart / Saved
 	{
 		path: '/saved',
-		name: 'saved.show',
-		component: () => import(/* webpackChunkName: "savedShow" */ '../views/Saved/show.vue'),
-		props: true
+		name: 'Saved',
+		component: () => import('../views/Saved/show.vue'),
+	},
+	// Checkout
+	{
+		path: '/checkout',
+		name: 'Checkout',
+		component: () => import('../views/Checkout/show.vue'),
 	},
 ]
 
@@ -47,6 +58,16 @@ const router = new VueRouter({
 	mode: 'hash',
 	routes,
 	base_path: 'vuecommerce'
+})
+
+
+router.beforeEach((to, from, next) => {
+	if (to.params.slug) {
+		document.title = process.env.VUE_APP_TITLE + ' | ' + to.params.slug
+	} else {
+		document.title = process.env.VUE_APP_TITLE + ' | ' + to.name
+	}
+	next()
 })
 
 export default router

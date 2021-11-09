@@ -5,6 +5,12 @@ import store from './store'
 
 import '@/css/tailwind.css'
 
+import moment from 'moment'
+
+Vue.prototype.$moment = moment;
+
+Vue.component('pagination', require('laravel-vue-pagination'));
+
 Vue.config.productionTip = false
 
 new Vue({

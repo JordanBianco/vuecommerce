@@ -1,31 +1,39 @@
 <template>
 	<div style="font-family: 'Poppins', sans-serif;">
-		<TheNavbar class="hidden md:block" />
+		<TheNavbar />
 		<router-view class="bg-white min-h-screen pb-24 md:pb-16"/>
-		<!-- <MobileNavbar class="md:hidden block" /> -->
-		<!-- <footer class="bg-c-blue py-44">
+		<footer class="bg-c-dark-gray py-16">
 			&copy;
-		</footer> -->
+		</footer>
 	</div>
 </template>
 
 <script>
 import TheNavbar from '@/components/Layout/TheNavbar'
-// import MobileNavbar from '@/components/Layout/MobileNavbar'
 
 export default {
 	components: {
 		TheNavbar,
-		// MobileNavbar
 	},
 	computed: {
+		// Aggiungere al removeScroll i filtri e il sidemenu
 		isOpen() {
 			return this.$store.state.cart.isOpen
-		}
+		},
+		showFilters() {
+			return this.$store.state.product.showFilters
+		},
 	},
 	watch: {
 		isOpen() {
 			if (this.isOpen) {
+				document.querySelector('body').className = 'removeScroll'
+			} else {
+				document.querySelector('body').classList.remove('removeScroll')
+			}
+		},
+		showFilters() {
+			if (this.showFilters) {
 				document.querySelector('body').className = 'removeScroll'
 			} else {
 				document.querySelector('body').classList.remove('removeScroll')

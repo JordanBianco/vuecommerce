@@ -1,11 +1,11 @@
 <template>
     <div>
-        <section class="p-4 md:px-0 md:w-10/12 md:mx-auto">
+        <section class="p-4 md:px-0 md:w-11/12 md:mx-auto">
             <div v-if="items.length > 0">
-                <header class="border-b p-4 md:px-0 text-c-light-gray">
+                <header class="border-b py-4 md:px-0 text-gray-500">
                     <div class="flex items-center justify-between">
                         <span>Carrello</span>
-                        <span v-if="items.length > 0" class="text-sm">{{ items.length }} {{ items.length == 1 ? ' prodotto' : ' prodotti' }}</span>
+                        <span v-if="items.length > 0" class="text-sm">{{ items.length }} {{ items.length == 1 ? ' articolo' : 'articoli' }}</span>
                     </div>
                 </header>
                 <div
@@ -13,10 +13,7 @@
                     :key="index"
                     class="flex space-x-4 p-4 odd:bg-gray-100 rounded-lg">
                         <!-- Left Side -->
-                        <router-link
-                            @click.native="toggleCart"
-                            :to="{ name: 'product.show', params: { slug: item.product.slug }}"
-                        >
+                        <router-link :to="{ name: 'product.show', params: { slug: item.product.slug }}">
                             <div class="flex-none bg-gray-200 h-20 w-20 rounded-lg"></div>
                         </router-link>
                         <!-- Right Side -->
@@ -24,9 +21,9 @@
                             <!-- Nome -->
                             <header class="flex flex-col justify-between md:block mb-4 md:mb-0 md:w-2/5">
                                 <h3 class="text-c-dark-gray leading-tight font-semibold mb-1">{{ item.product.name }}</h3>
-                                <p class="hidden lg:block text-c-light-gray text-xs">{{ item.product.description | truncate(200) }}</p>
+                                <p class="hidden lg:block text-gray-500 text-xs">{{ item.product.description | truncate(200) }}</p>
                                 <div class="lg:hidden block">
-                                    <div class="flex items-center space-x-3 text-xs text-c-light-gray">
+                                    <div class="flex items-center space-x-3 text-xs text-gray-500">
                                         <span class="cursor-pointer underline" @click="saveForLater(index, item)">salva per dopo</span>
                                         <span class="cursor-pointer underline" @click="removeFromCart(index)">rimuovi</span>
                                     </div>
@@ -34,7 +31,7 @@
                             </header>
                             <!-- Quantità -->
                             <div class="flex flex-row justify-between items-center md:flex-col md:justify-start md:space-y-2 md:w-1/5">
-                                <p class="text-xs text-c-light-gray md:text-center">Quantità</p>
+                                <p class="text-xs text-gray-500 md:text-center">Quantità</p>
                                 <div class="flex items-center space-x-3">
                                     <div
                                         v-if="item.quantity > 1"
@@ -52,26 +49,28 @@
                             </div>
                             <!-- Prezzo -->
                             <div class="flex flex-row justify-between items-center md:flex-col md:justify-start md:space-y-2 md:w-1/5">
-                                <p class="text-c-light-gray text-xs">Prezzo</p>
+                                <p class="text-gray-500 text-xs">Prezzo</p>
                                 <p class="text-sm text-c-dark-gray font-semibold">€{{ item.product.price * item.quantity }}</p>
                             </div>
                             <!-- Azioni -->
                             <div class="hidden lg:block md:w-1/5">
-                                <div class="flex flex-col space-y-1 text-xs text-c-light-gray">
+                                <div class="flex flex-col space-y-1 text-xs text-gray-500">
                                     <p class="underline cursor-pointer text-right" @click="saveForLater(index, item)">salva per dopo</p>
                                     <p class="underline cursor-pointer text-right" @click="removeFromCart(index, item.product)">rimuovi</p>
                                 </div>
                             </div>
                         </div>
                 </div>
-                <div class="flex justify-end my-2">
-                    <div @click="emptyCart" class="flex items-center space-x-2 max-w-max text-c-light-gray text-sm cursor-pointer">
+
+                <!-- Empty Cart -->
+                <div class="flex justify-end py-6 mt-6 border-t">
+                    <div @click="emptyCart" class="flex items-center space-x-2 max-w-max text-gray-500 text-sm cursor-pointer">
                         <span>svuota carta</span>
                         <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"/></svg>
                     </div>
                 </div>
 
-                <footer class="text-c-light-gray mt-8 pt-8 border-t border-gray-200">
+                <footer class="text-gray-500 border-t border-gray-200 pt-6">
                     <div class="space-y-2">
                         <div class="flex items-center justify-between text-sm">
                             <span>SubTotale</span>
@@ -83,16 +82,18 @@
                         </div>
                     </div>
                     <div class="flex justify-end">
-                        <router-link to="" class="bg-c-green text-center text-white rounded-lg text-sm w-full md:max-w-max px-4 py-2 mt-8">
-                            Vai al pagamento
+                        <router-link :to="{ name: 'Checkout' }" class="bg-c-green text-center text-white rounded-lg text-sm w-full md:max-w-max px-4 py-3 mt-8">
+                            Procedi al pagamento
                         </router-link>
                     </div>
                 </footer>
             </div>
             <div v-else class="flex justify-center pt-10 text-sm">
-                <p class="text-c-light-gray">
+                <p class="text-gray-500">
                     Non hai prodotti nel carrello.
-                    <router-link class="text-c-green" :to="{ name: 'Home' }">Continua lo shopping</router-link>
+                    <router-link class="text-c-green" :to="{ name: 'Home' }">
+                        Continua lo shopping
+                    </router-link>
                 </p>
             </div>
         </section>        
