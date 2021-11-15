@@ -1,8 +1,13 @@
-guardare andre ecommerce
-dopo acquisto ritornare page thanks con ordine
+aggiungere notifiche dopo salvataggi vari
 
-sanctum
-dopo sanctum pagina con i propri ordini
+LARAVEL
+refactor to only request when validate data
+socialite
+maps api
 
---reviews
-post per submit una review -> solo se si è comprato l'articolo
+ADMIN PANEL
+email dopo ordine -> queue !
+invoice
+
+DASHBOARD
+fare responsive

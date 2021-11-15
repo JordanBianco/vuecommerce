@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -8,6 +9,20 @@ const routes = [
 		path: '/',
 		name: 'Home',
 		component: () => import('../views/Home.vue')
+	},
+	// Login
+	{
+		path: '/login',
+		name: 'Login',
+		component: () => import('../views/Auth/login.vue'),
+		meta: { guest: true } 
+	},
+	// Register
+	{
+		path: '/register',
+		name: 'Register',
+		component: () => import('../views/Auth/register.vue'),
+		meta: { guest: true }
 	},
 	// Products
 	{
@@ -28,18 +43,36 @@ const routes = [
 		path: '/cart',
 		name: 'Cart',
 		component: () => import('../views/Cart/show.vue'),
+		meta: { auth: true }
 	},
-	// Cart / Saved
+	// Saved
 	{
 		path: '/saved',
 		name: 'Saved',
 		component: () => import('../views/Saved/show.vue'),
+		meta: { auth: true }
 	},
 	// Checkout
 	{
 		path: '/checkout',
 		name: 'Checkout',
 		component: () => import('../views/Checkout/show.vue'),
+		meta: { auth: true }
+	},
+	// Dashboard
+	{
+		path: '/dashboard',
+		name: 'Dashboard',
+		component: () => import('../views/Auth/dashboard.vue'),
+		meta: { auth: true }
+	},
+	// Review
+	{
+		path: '/review/:slug',
+		name: 'Review',
+		component: () => import('../views/Review/show.vue'),
+		props: true,
+		meta: { auth: true }
 	},
 ]
 
@@ -61,6 +94,7 @@ const router = new VueRouter({
 })
 
 
+// Titolo della pagina
 router.beforeEach((to, from, next) => {
 	if (to.params.slug) {
 		document.title = process.env.VUE_APP_TITLE + ' | ' + to.params.slug
@@ -68,6 +102,29 @@ router.beforeEach((to, from, next) => {
 		document.title = process.env.VUE_APP_TITLE + ' | ' + to.name
 	}
 	next()
+})
+
+// Autorizzazioni
+router.beforeEach((to, from, next) => {
+	if (to.matched.some(record => record.meta.auth)) {
+		if (!store.state.auth.auth) {
+			next({
+				name: 'Login'
+			});
+		} else {
+			next();
+		}
+	} else if (to.matched.some(record => record.meta.guest)) {
+		if (store.state.auth.auth) {
+			next({
+				name: 'Dashboard'
+			});
+		} else {
+			next();
+		}
+	} else {
+		next();
+	}
 })
 
 export default router

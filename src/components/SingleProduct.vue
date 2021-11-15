@@ -13,7 +13,7 @@
         </div>
 
         <div class="p-4 flex flex-col space-y-3 relative h-45">
-            <h3 class="text-c-dark-gray font-semibold md:text-sm leading-tight">{{ product.name }}</h3>
+            <h3 class="text-c-dark-gray font-semibold md:text-sm leading-tight">{{ product.name | truncate(50) }}</h3>
 
             <div class="flex items-center space-x-2">
                 <div class="flex">
@@ -33,7 +33,7 @@
             </div>
 
             <div>
-                <p class="text-gray-400 text-xs">Price</p>
+                <p class="text-gray-400 text-xs">Prezzo</p>
                 <p class="text-c-dark-gray font-semibold">€{{ product.price }}</p>
             </div>
 
@@ -57,6 +57,9 @@ export default {
     name: 'SingleProduct',
     props: ['product', 'index'],
     computed: {
+        isAuth() {
+            return this.$store.state.auth.auth
+        },
         items() {
             return this.$store.state.cart.items
         },
@@ -78,6 +81,10 @@ export default {
     },
     methods: {
 		addToCart() {
+            if (!this.isAuth) {
+                this.$router.push({ name: 'Login' })
+                return
+            }
 			this.$store.dispatch('cart/addToCart', { item: {
                     product: this.product,
                     quantity: 1
@@ -85,6 +92,10 @@ export default {
             })
 		},
         saveForLater() {
+            if (!this.isAuth) {
+                this.$router.push({ name: 'Login' })
+                return
+            }
             if (this.isInSaved()) {
                 alert('L\' articolo si trova già nella tua lista.')
                 return
@@ -107,6 +118,15 @@ export default {
         uniqid() {
             return uniqid()
         }
-	}
+	},
+    filters: {
+        truncate(text, value) {
+            if (text.length > value) {
+                return text.substring(0, value) + '...'
+            } else {
+                return text
+            }
+        }
+    }
 }
 </script>

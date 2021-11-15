@@ -2,7 +2,7 @@
     <div>
         <section class="p-4 md:px-0 md:w-11/12 md:mx-auto">
             <div v-if="items.length > 0">
-                <header class="border-b py-4 md:px-0 text-gray-500">
+                <header class="border-b py-4 md:px-0 text-gray-400">
                     <div class="flex items-center justify-between">
                         <span>Carrello</span>
                         <span v-if="items.length > 0" class="text-sm">{{ items.length }} {{ items.length == 1 ? ' articolo' : 'articoli' }}</span>
@@ -14,24 +14,39 @@
                     class="flex space-x-4 p-4 odd:bg-gray-100 rounded-lg">
                         <!-- Left Side -->
                         <router-link :to="{ name: 'product.show', params: { slug: item.product.slug }}">
-                            <div class="flex-none bg-gray-200 h-20 w-20 rounded-lg"></div>
+                            <div class="flex-none bg-gray-200 h-20 w-16 xs:w-20 rounded-lg"></div>
                         </router-link>
                         <!-- Right Side -->
                         <div class="w-full flex flex-col space-y-1 md:flex-row md:space-y-0 justify-between">
-                            <!-- Nome -->
+
                             <header class="flex flex-col justify-between md:block mb-4 md:mb-0 md:w-2/5">
-                                <h3 class="text-c-dark-gray leading-tight font-semibold mb-1">{{ item.product.name }}</h3>
-                                <p class="hidden lg:block text-gray-500 text-xs">{{ item.product.description | truncate(200) }}</p>
-                                <div class="lg:hidden block">
-                                    <div class="flex items-center space-x-3 text-xs text-gray-500">
-                                        <span class="cursor-pointer underline" @click="saveForLater(index, item)">salva per dopo</span>
-                                        <span class="cursor-pointer underline" @click="removeFromCart(index)">rimuovi</span>
+                                <!-- Nome e Prezzo -->
+                                <div class="flex justify-between space-x-4 text-sm mb-1.5">
+                                    <h3 class="text-c-dark-gray leading-tight">{{ item.product.name }}</h3>
+                                    <span class="md:hidden text-c-dark-gray font-semibold">€{{ item.product.price * item.quantity }}</span>
+                                </div>
+                                
+
+                                <!-- Descrizione -->
+                                <p class="hidden lg:block text-gray-400 text-xs">{{ item.product.description | truncate(200) }}</p>
+                                
+                                <!-- Azioni -->
+                                <div class="lg:hidden block mt-2">
+                                    <div class="flex flex-col space-y-1.5 text-xs text-gray-400">
+                                        <div @click="saveForLater(index, item)" class="flex items-center space-x-0.5 cursor-pointer max-w-max">
+                                            <svg class="text-gray-400 w-4 h-4 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20.16,5A6.29,6.29,0,0,0,12,4.36a6.27,6.27,0,0,0-8.16,9.48l6.21,6.22a2.78,2.78,0,0,0,3.9,0l6.21-6.22A6.27,6.27,0,0,0,20.16,5Zm-1.41,7.46-6.21,6.21a.76.76,0,0,1-1.08,0L5.25,12.43a4.29,4.29,0,0,1,0-6,4.27,4.27,0,0,1,6,0,1,1,0,0,0,1.42,0,4.27,4.27,0,0,1,6,0A4.29,4.29,0,0,1,18.75,12.43Z"/></svg>
+                                            <span>salva per dopo</span>
+                                        </div>
+                                        <div @click="removeFromCart(index, item.product)" class="flex items-center space-x-0.5 cursor-pointer max-w-max">
+                                            <svg class="text-gray-400 w-4 h-4 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"/></svg>
+                                            <span>rimuovi</span>
+                                        </div>
                                     </div>
                                 </div>
                             </header>
                             <!-- Quantità -->
                             <div class="flex flex-row justify-between items-center md:flex-col md:justify-start md:space-y-2 md:w-1/5">
-                                <p class="text-xs text-gray-500 md:text-center">Quantità</p>
+                                <p class="text-xs text-gray-400 md:text-center">Quantità</p>
                                 <div class="flex items-center space-x-3">
                                     <div
                                         v-if="item.quantity > 1"
@@ -48,15 +63,21 @@
                                 </div>
                             </div>
                             <!-- Prezzo -->
-                            <div class="flex flex-row justify-between items-center md:flex-col md:justify-start md:space-y-2 md:w-1/5">
-                                <p class="text-gray-500 text-xs">Prezzo</p>
+                            <div class="hidden md:flex flex-row justify-between items-center md:flex-col md:justify-start md:space-y-2 md:w-1/5">
+                                <p class="text-gray-400 text-xs">Prezzo</p>
                                 <p class="text-sm text-c-dark-gray font-semibold">€{{ item.product.price * item.quantity }}</p>
                             </div>
                             <!-- Azioni -->
-                            <div class="hidden lg:block md:w-1/5">
-                                <div class="flex flex-col space-y-1 text-xs text-gray-500">
-                                    <p class="underline cursor-pointer text-right" @click="saveForLater(index, item)">salva per dopo</p>
-                                    <p class="underline cursor-pointer text-right" @click="removeFromCart(index, item.product)">rimuovi</p>
+                            <div class="hidden lg:block">
+                                <div class="flex flex-col space-y-2 text-xs text-gray-400">
+                                    <div @click="saveForLater(index, item)" class="flex items-center space-x-0.5 cursor-pointer max-w-max">
+                                        <svg class="text-gray-400 w-4 h-4 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20.16,5A6.29,6.29,0,0,0,12,4.36a6.27,6.27,0,0,0-8.16,9.48l6.21,6.22a2.78,2.78,0,0,0,3.9,0l6.21-6.22A6.27,6.27,0,0,0,20.16,5Zm-1.41,7.46-6.21,6.21a.76.76,0,0,1-1.08,0L5.25,12.43a4.29,4.29,0,0,1,0-6,4.27,4.27,0,0,1,6,0,1,1,0,0,0,1.42,0,4.27,4.27,0,0,1,6,0A4.29,4.29,0,0,1,18.75,12.43Z"/></svg>
+                                        <span>salva per dopo</span>
+                                    </div>
+                                    <div @click="removeFromCart(index, item.product)" class="flex items-center space-x-0.5 cursor-pointer max-w-max">
+                                        <svg class="w-4 h-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"/></svg>
+                                        <span>rimuovi</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -64,21 +85,35 @@
 
                 <!-- Empty Cart -->
                 <div class="flex justify-end py-6 mt-6 border-t">
-                    <div @click="emptyCart" class="flex items-center space-x-2 max-w-max text-gray-500 text-sm cursor-pointer">
-                        <span>svuota carta</span>
+                    <div @click="emptyCart" class="flex items-center space-x-2 max-w-max text-gray-400 text-sm cursor-pointer">
+                        <span>svuota carrello</span>
                         <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"/></svg>
                     </div>
                 </div>
 
-                <footer class="text-gray-500 border-t border-gray-200 pt-6">
+                <footer class="text-gray-400 border-t border-gray-200 pt-6">
                     <div class="space-y-2">
+                        <!-- Spedizione gratis -->
+                        <div
+                            v-if="freeShipping > subTotal()"
+                            class="bg-blue-100 text-blue-500 text-xs flex space-x-2 px-4 py-6 mb-4 items-start md:items-center">
+                                <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M1,12.5v5a1,1,0,0,0,1,1H3a3,3,0,0,0,6,0h6a3,3,0,0,0,6,0h1a1,1,0,0,0,1-1V5.5a3,3,0,0,0-3-3H11a3,3,0,0,0-3,3v2H6A3,3,0,0,0,3.6,8.7L1.2,11.9a.61.61,0,0,0-.07.14l-.06.11A1,1,0,0,0,1,12.5Zm16,6a1,1,0,1,1,1,1A1,1,0,0,1,17,18.5Zm-7-13a1,1,0,0,1,1-1h9a1,1,0,0,1,1,1v11h-.78a3,3,0,0,0-4.44,0H10Zm-2,6H4L5.2,9.9A1,1,0,0,1,6,9.5H8Zm-3,7a1,1,0,1,1,1,1A1,1,0,0,1,5,18.5Zm-2-5H8v2.78a3,3,0,0,0-4.22.22H3Z"/></svg>
+                                <span>Se il tuo ordine raggiunge i € 30,00 la spedizione è gratuita</span>
+                        </div>
+                        <!-- Subtotale -->
                         <div class="flex items-center justify-between text-sm">
                             <span>SubTotale</span>
-                            <span>{{ subTotal() }}</span>
+                            <span>€{{ subTotal() }}</span>
                         </div>
+                        <!-- Spedizione -->
+                        <div class="flex items-center justify-between text-sm">
+                            <span>Spedizione</span>
+                            <span>{{ freeShipping > subTotal() ?  '€' + shipping : 'gratis' }}</span>
+                        </div>
+                        <!-- Totale -->
                         <div class="flex items-center justify-between text-c-dark-gray font-semibold">
                             <span>Totale</span>
-                            <span>{{ total() }}</span>
+                            <span>€{{ total() }}</span>
                         </div>
                     </div>
                     <div class="flex justify-end">
@@ -88,10 +123,10 @@
                     </div>
                 </footer>
             </div>
-            <div v-else class="flex justify-center pt-10 text-sm">
-                <p class="text-gray-500">
-                    Non hai prodotti nel carrello.
-                    <router-link class="text-c-green" :to="{ name: 'Home' }">
+            <div v-else class="flex justify-center pt-10">
+                <p class="text-gray-400">
+                    Non hai articoli nel carrello.
+                    <router-link class="text-c-dark-gray block text-center" :to="{ name: 'Home' }">
                         Continua lo shopping
                     </router-link>
                 </p>
@@ -105,6 +140,12 @@ export default {
     name: 'cart.show',
     mounted() {
         this.$store.dispatch('cart/getItems', {user_id: 1})
+    },
+    data() {
+        return {
+            freeShipping: 2999, // sopra i 30 spedizione gratuita
+            shipping: 395,
+        }
     },
     computed: {
         items() {
@@ -140,16 +181,20 @@ export default {
                 subTotal += (item.product.price * item.quantity)
             });
 
-            return '€' + subTotal
+            return subTotal
         },
         total() {
             let total = 0
-
+            
             this.items.forEach(item => {
                 total += (item.product.price * item.quantity)
             });
 
-            return '€' + total
+            if (total < this.freeShipping) {
+                total += this.shipping
+            }
+            
+            return total
         }
     },
     filters: {

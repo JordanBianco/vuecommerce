@@ -82,28 +82,28 @@
                 <section v-if="reviews.length != 0">
                     <header class="md:flex md:items-center md:space-x-4 md:space-y-0 space-y-2 mb-6">
                         <div
-                            @click="setSort('rating.desc')"
-                            :class="[  sort === 'rating.desc' ? 'bg-c-dark-gray text-white' : 'text-gray-500' ]"
-                            class="border text-xs rounded-full px-4 py-2 max-w-max">
-                                Voto decrescente
-                        </div>
-                        <div
-                            @click="setSort('rating.asc')"
-                            :class="[  sort === 'rating.asc' ? 'bg-c-dark-gray text-white' : 'text-gray-500' ]"
-                            class="border text-xs rounded-full px-4 py-2 max-w-max">
-                                Voto crescente
-                        </div>
-                        <div
                             @click="setSort('created_at.desc')"
                             :class="[  sort === 'created_at.desc' ? 'bg-c-dark-gray text-white' : 'text-gray-500' ]"
-                            class="border text-xs rounded-full px-4 py-2 max-w-max">
+                            class="border text-xs rounded-full px-4 py-2 max-w-max cursor-pointer">
                                 Più recenti
                         </div>
                         <div
                             @click="setSort('created_at.asc')"
                             :class="[  sort === 'created_at.asc' ? 'bg-c-dark-gray text-white' : 'text-gray-500' ]"
-                            class="border text-xs rounded-full px-4 py-2 max-w-max">
+                            class="border text-xs rounded-full px-4 py-2 max-w-max cursor-pointer">
                                 Meno recenti
+                        </div>
+                        <div
+                            @click="setSort('rating.desc')"
+                            :class="[  sort === 'rating.desc' ? 'bg-c-dark-gray text-white' : 'text-gray-500' ]"
+                            class="border text-xs rounded-full px-4 py-2 max-w-max cursor-pointer">
+                                Voto decrescente
+                        </div>
+                        <div
+                            @click="setSort('rating.asc')"
+                            :class="[  sort === 'rating.asc' ? 'bg-c-dark-gray text-white' : 'text-gray-500' ]"
+                            class="border text-xs rounded-full px-4 py-2 max-w-max cursor-pointer">
+                                Voto crescente
                         </div>
                     </header>
 
@@ -111,7 +111,7 @@
                         <div class="rounded-lg bg-gray-200 w-14 h-14 flex-none"></div>
                         <div>
                             <h4 class="text-sm text-c-dark-gray font-semibold">{{ review.title }}</h4>
-                            <p class="text-sm md:text-xs text-gray-400">Jordan Bianco il {{ $moment(review.created_at).format('DD/MM/YYYY') }} alle {{ $moment(review.created_at).format('HH:mm') }}</p>
+                            <p class="text-sm md:text-xs text-gray-400">{{ review.user.first_name + ' ' + review.user.last_name }} il {{ $moment(review.created_at).format('DD/MM/YYYY') }} alle {{ $moment(review.created_at).format('HH:mm') }}</p>
                         
                             <div class="my-2 flex">
                                 <svg
@@ -127,9 +127,9 @@
                         </div>
                     </div>
                 </section>
-                <section v-else>
-                    <p class="text-gray-500">Non ci sono recensioni per questo articolo.</p>
-                </section>
+                <div v-else>
+                    <p class="text-gray-400 text-sm">Non ci sono recensioni per questo articolo.</p>
+                </div>
             </section>
 
             <!-- Potrebbero interessarti -->
@@ -182,13 +182,15 @@ export default {
     data() {
         return {
             quantity: 1,
-            sort: ''
+            sort: 'created_at.desc'
         }
     },
     watch: {
         "$route.params.slug": {
             handler: function() {
                 this.getProduct();
+                this.getSimilarProducts();
+                this.getReviews();
             },
             deep: true,
             immediate: true,
@@ -198,6 +200,9 @@ export default {
         }
     },
     computed: {
+        isAuth() {
+            return this.$store.state.auth.auth
+        },
         product() {
             return this.$store.state.product.product
         },
@@ -240,12 +245,20 @@ export default {
             })
         },
         addToCart() {
-			this.$store.dispatch('cart/addToCart', { item: {
-                    product: this.product,
-                    quantity: this.quantity
+            if (!this.isAuth) {
+                this.$router.push({ name: 'Login' })
+                return
+            }
+            this.$store.dispatch('cart/addToCart', { item: {
+                product: this.product,
+                quantity: this.quantity
             }})
 		},
         saveForLater() {
+            if (!this.isAuth) {
+                this.$router.push({ name: 'Login' })
+                return
+            }
 			this.$store.dispatch('cart/saveForLater', {
                 item: {
                     product: this.product,

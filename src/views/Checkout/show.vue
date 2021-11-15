@@ -16,11 +16,11 @@
             <!-- Left Side -->
             <div class="w-full lg:w-2/3 text-sm">
                 <section class="mb-8">
-                    <h2 class="text-c-dark-gray mb-4">Customer details</h2>
+                    <h2 class="text-gray-500 bg-gray-100 p-4 mb-4">Dettagli cliente</h2>
                     <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-4 lg:justify-between lg:mb-4">
                         
                         <div class="w-full lg:w-1/2 mb-4 lg:mb-0 relative">
-                            <label class="text-gray-500 text-xs" for="first_name">First Name</label>
+                            <label class="text-gray-400 text-sm" for="first_name">Nome</label>
                             <input
                                 @keydown="errors.first_name = ''"
                                 v-model="customer.first_name"
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="w-full lg:w-1/2 mb-4 lg:mb-0 relative">
-                            <label class="text-gray-500 text-xs" for="last_name">Last Name</label>
+                            <label class="text-gray-400 text-sm" for="last_name">Cognome</label>
                             <input
                                 @keydown="errors.last_name = ''"
                                 v-model="customer.last_name"
@@ -44,8 +44,8 @@
                         </div>
                     </div>
 
-                    <div class="w-full relative">
-                        <label class="text-gray-500 text-xs" for="email">Email</label>
+                    <div class="w-full relative mb-4">
+                        <label class="text-gray-400 text-sm" for="email">Email</label>
                         <input
                             @keydown="errors.email = ''"
                             v-model="customer.email"
@@ -58,11 +58,11 @@
                 </section>
 
                 <section>
-                    <h2 class="text-c-dark-gray mb-4">Shipping details</h2>
+                    <h2 class="text-gray-500 mb-4 p-4 bg-gray-100">Dettagli Spedizione</h2>
                     <div class="space-y-4">
 
                         <div class="w-full relative">
-                            <label class="text-gray-500 text-xs" for="country">Country</label>
+                            <label class="text-gray-400 text-sm" for="country">Country</label>
                             <input
                                 @keydown="errors.country = ''"
                                 v-model="customer.country"
@@ -74,7 +74,7 @@
                         </div>
 
                         <div class="w-full relative">
-                            <label class="text-gray-500 text-xs" for="city">City</label>
+                            <label class="text-gray-400 text-sm" for="city">City</label>
                             <input
                                 @keydown="errors.city = ''"
                                 v-model="customer.city"
@@ -86,7 +86,7 @@
                         </div>
 
                         <div class="w-full relative">
-                            <label class="text-gray-500 text-xs" for="province">Province</label>
+                            <label class="text-gray-400 text-sm" for="province">Province</label>
                             <input
                                 @keydown="errors.province = ''"
                                 v-model="customer.province"
@@ -98,7 +98,7 @@
                         </div>
                         
                         <div class="w-full relative">
-                            <label class="text-gray-500 text-xs" for="address">Address</label>
+                            <label class="text-gray-400 text-sm" for="address">Address</label>
                             <input
                                 @keydown="errors.address = ''"
                                 v-model="customer.address"
@@ -110,7 +110,7 @@
                         </div>
 
                         <div class="w-full relative">
-                            <label class="text-gray-500 text-xs" for="zipcode">Zipcode</label>
+                            <label class="text-gray-400 text-sm" for="zipcode">Zipcode</label>
                             <input
                                 @keydown="errors.zipcode = ''"
                                 v-model="customer.zipcode"
@@ -122,7 +122,7 @@
                         </div>
 
                         <div class="w-full relative">
-                            <label class="text-gray-500 text-xs" for="phone">Phone</label>
+                            <label class="text-gray-400 text-sm" for="phone">Phone</label>
                             <input
                                 @keydown="errors.phone = ''"
                                 v-model="customer.phone"
@@ -134,7 +134,7 @@
                         </div>
 
                         <div class="w-full">
-                            <label class="text-gray-500 text-xs" for="phone">Additional Notes</label>
+                            <label class="text-gray-400 text-sm" for="phone">Additional Notes</label>
                             <textarea
                                 v-model="notes"
                                 rows="3"
@@ -147,7 +147,7 @@
 
             <!-- Summary -->
             <section class="w-full lg:w-1/3 border-t pt-8 mt-8 lg:border-0 lg:pt-0 lg:mt-0">
-                <h2 class="text-c-dark-gray text-sm mb-4">Summary</h2>
+                <h2 class="text-gray-500 mb-4 p-4 bg-gray-100">Riepilogo Ordine</h2>
                 <div
                     v-for="(item, index) in items"
                     :key="index"
@@ -159,7 +159,7 @@
                         <!-- Right Side -->
                         <div class="w-full flex flex-col space-y-1 justify-between">
                             <!-- Nome -->
-                            <h3 class="text-c-dark-gray text-sm leading-tight font-semibold mb-1">{{ item.product.name }}</h3>
+                            <h3 class="text-c-dark-gray text-sm leading-tight mb-1">{{ item.product.name }}</h3>
                             <p class="text-gray-500 text-xs">{{ item.product.description | truncate(80) }}</p>
                             <!-- Prezzo -->
                             <div class="flex items-center justify-between text-gray-500 text-xs pt-2">
@@ -173,29 +173,89 @@
                             </div>
                         </div>
                 </div>
+
                 <footer class="text-gray-500 mt-4 pt-4 md:pt-8 md:mt-8 border-t border-gray-200">
-                    <div class="space-y-2">
-                        <div class="flex items-center justify-between text-xs">
+                    <!-- Spedizione gratis -->
+                    <div
+                        v-if="freeShipping > subTotal"
+                        class="bg-blue-100 text-blue-500 text-xs flex space-x-2 px-4 py-6 mb-4 items-start">
+                            <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M1,12.5v5a1,1,0,0,0,1,1H3a3,3,0,0,0,6,0h6a3,3,0,0,0,6,0h1a1,1,0,0,0,1-1V5.5a3,3,0,0,0-3-3H11a3,3,0,0,0-3,3v2H6A3,3,0,0,0,3.6,8.7L1.2,11.9a.61.61,0,0,0-.07.14l-.06.11A1,1,0,0,0,1,12.5Zm16,6a1,1,0,1,1,1,1A1,1,0,0,1,17,18.5Zm-7-13a1,1,0,0,1,1-1h9a1,1,0,0,1,1,1v11h-.78a3,3,0,0,0-4.44,0H10Zm-2,6H4L5.2,9.9A1,1,0,0,1,6,9.5H8Zm-3,7a1,1,0,1,1,1,1A1,1,0,0,1,5,18.5Zm-2-5H8v2.78a3,3,0,0,0-4.22.22H3Z"/></svg>
+                            <span>Se il tuo ordine raggiunge i € 30,00 la spedizione è gratuita</span>
+                    </div>
+
+                    <!-- Codice Sconto -->
+                    <div
+                        v-if="isFirstPurchase"
+                        class="bg-green-100 text-c-green text-xs flex space-x-2 px-4 py-6 mb-4 items-start">
+                            <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path fill="currentColor" d="M7.75781,10.75781a3,3,0,1,0-3-3A3.00328,3.00328,0,0,0,7.75781,10.75781Zm0-4a1,1,0,1,1-1,1A1.00067,1.00067,0,0,1,7.75781,6.75781Zm8.48438,6.48438a3,3,0,1,0,3,3A3.00328,3.00328,0,0,0,16.24219,13.24219Zm0,4a1,1,0,1,1,1-1A1.00067,1.00067,0,0,1,16.24219,17.24219ZM19.707,4.293a.99962.99962,0,0,0-1.41406,0l-14,14A.99989.99989,0,1,0,5.707,19.707l14-14A.99962.99962,0,0,0,19.707,4.293Z"/></svg>
+                            <span>Utilizza il codice sconto FIRST-20 per usufruire di un 20% di sconto!</span>
+                    </div>
+
+                    <div class="text-gray-400">
+                        <!-- Subtotale -->
+                        <div class="flex items-center justify-between text-xs mb-2">
                             <span>SubTotale</span>
-                            <span>{{ subTotal() }}</span>
+                            <span>€{{ subTotal }}</span>
                         </div>
-                        <div class="flex items-center justify-between text-c-dark-gray">
-                            <span class="text-xs">Totale</span>
-                            <span class="text-lg font-semibold">€{{ total() }}</span>
+                        
+                        <!-- Spedizione -->
+                        <div class="flex items-center justify-between text-xs mb-2">
+                            <span>Spedizione</span>
+                            <span>{{ freeShipping > subTotal ?  '€' + shipping : 'gratis' }}</span>
+                        </div>
+
+                        <!-- Sconto -->
+                        <div v-if="coupon.length != 0" class="flex items-center justify-between text-xs mb-2 border p-2 py-4">
+                            <span>Codice sconto "{{ coupon.code }}"</span>
+                            <span>{{ coupon.discount }}%</span>
+                        </div>
+
+                        <!-- Totale -->
+                        <div class="flex items-center justify-between text-c-dark-gray mt-4">
+                            <span class="text-sm">Totale</span>
+                            <span class="text-lg font-semibold">€{{ total }}</span>
                         </div>
                     </div>
                 </footer>
 
-                <div class="flex justify-end mt-8">
-                    <div class="flex flex-col">
-                        <router-link
-                            :to="{ name: 'Cart' }"
-                            class="text-sm text-gray-500 hover:text-gray-500 text-right mb-1">
-                                modifica carrello
-                        </router-link>
-                        <button @click="placeOrder" class="bg-c-green text-center text-white rounded-lg text-sm w-full md:max-w-max px-4 py-3">
-                            Conferma ordine
-                        </button>
+                <div v-if="coupon.length == 0" class="mt-6">
+                    <div @click="showCoupon = ! showCoupon" class="flex items-center justify-between text-gray-400 mb-1">
+                        <p>Hai un codice sconto?</p>
+                        <svg :class="[ !showCoupon ? 'rotate-180' : '' ]" class="w-6 h-6 flex-none transform transition duration-150 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"/></svg>
+                    </div>
+                    <transition v-if="showCoupon" name="fade">
+                       <div>
+                           <div class="flex items-center space-x-2">
+                                <input
+                                    @click="couponErrors.coupon = ''"
+                                    type="text"
+                                    v-model="couponName"
+                                    class="border border-gray-200 rounded-lg p-2 focus:outline-none w-full">
+                                <button @click="verifyCoupon" class="px-3 py-2.5 bg-c-dark-gray text-white text-xs rounded-lg focus:outline-none">
+                                    Verifica
+                                </button>
+                        </div>
+                        <p v-if="couponErrors.coupon" class="text-red-500 text-xs mt-0.5">{{ couponErrors.coupon[0] }}</p>
+                       </div>
+                    </transition>
+                </div>
+
+                <div class="flex justify-end mt-6">
+                    <div class="w-full">
+                        <div class="flex justify-end mb-1">
+                            <router-link
+                                :to="{ name: 'Cart' }"
+                                class="text-sm text-gray-400 max-w-max">
+                                    modifica carrello
+                            </router-link>
+                        </div>
+                        <div class="flex justify-end">
+                            <button
+                                @click="placeOrder"
+                                class="bg-c-green text-center text-white rounded-lg text-sm w-full md:max-w-max lg:max-w-full px-4 py-3">
+                                    Conferma ordine
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -208,11 +268,11 @@ export default {
     name: 'Checkout.show',
     mounted() {
         this.$store.dispatch('cart/getItems', {user_id: 1})
+        this.setFields();
     },
     data() {
         return {
             customer: {
-                user_id: 1, // fino a sanctum
                 first_name: '',
                 last_name: '',
                 email: '',
@@ -223,27 +283,32 @@ export default {
                 zipcode: '',
                 phone: '',
             },
-            notes: ''
+            notes: '',
+            freeShipping: 2999, // sopra i 30 spedizione gratuita
+            shipping: 395,
+            showCoupon: false,
+            couponName: ''
         }
     },
     computed: {
+        user() {
+            return this.$store.state.user.user
+        },
         items() {
             return this.$store.state.cart.items
         },
         errors() {
             return this.$store.state.order.errors
-        }
-    },
-    watch: {
-         "$route": {
-            handler: function() {
-                this.emptyErrors();
-            },
-            deep: true,
-            immediate: true,
+        },
+        couponErrors() {
+            return this.$store.state.coupon.errors
+        },
+        isFirstPurchase() {
+			return this.$store.state.user.user.orders_count == 0
 		},
-    },
-    methods: {
+        coupon() {
+            return this.$store.state.coupon.coupon
+        },
         subTotal() {
             let subTotal = 0
 
@@ -251,7 +316,7 @@ export default {
                 subTotal += (item.product.price * item.quantity)
             });
 
-            return '€' + subTotal
+            return subTotal
         },
         total() {
             let total = 0
@@ -260,19 +325,63 @@ export default {
                 total += (item.product.price * item.quantity)
             });
 
+            // Coupon se ci sono
+            if (this.coupon.discount) {
+                total = total - (total * this.coupon.discount / 100)
+            }
+
+            // Applico spese spedizione
+            if (total < this.freeShipping) {
+                total += this.shipping
+            }
+
             return total
         },
+    },
+    watch: {
+         "$route": {
+            handler: function() {
+                this.emptyErrors();
+                this.emptyCouponErrors();
+                this.deleteCoupon();
+            },
+            deep: true,
+            immediate: true,
+		},
+    },
+    methods: {
         placeOrder() {
             this.$store.dispatch('order/placeOrder', {
+                user_id: this.user.id,
                 customer: this.customer,
                 items: this.items,
-                total: this.total(),
+                total: this.total,
                 notes: this.notes
             })
         },
+        setFields() {
+            this.customer.first_name = this.user.first_name
+            this.customer.last_name = this.user.last_name
+            this.customer.email = this.user.email
+            this.customer.country = this.user.country
+            this.customer.city = this.user.city
+            this.customer.province = this.user.province
+            this.customer.address = this.user.address
+            this.customer.zipcode = this.user.zipcode
+            this.customer.phone = this.user.phone
+        },
+        deleteCoupon() {
+            this.$store.dispatch('coupon/deleteCoupon')
+        },
+        verifyCoupon() {
+            this.$store.dispatch('coupon/verifyCoupon', { coupon: this.couponName})
+        },
         emptyErrors() {
             this.$store.dispatch('order/emptyErrors')
-        }
+        },
+        emptyCouponErrors() {
+            this.$store.dispatch('coupon/emptyCouponErrors')
+        },
     },
     filters: {
         truncate(text, value) {

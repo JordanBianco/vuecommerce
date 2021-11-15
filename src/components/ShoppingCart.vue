@@ -1,7 +1,7 @@
 <template>
     <aside
         :class="{ 'translate-x-full' : !isOpen }"
-        class="w-full xs:w-4/5 md:w-80 lg:w-96 overflow-x-hidden fixed transform duration-200 right-0 bottom-0 top-0 h-screen bg-gray-50 text-c-dark-gray z-50">
+        class="w-full xs:w-4/5 md:w-96 overflow-x-hidden fixed transform duration-200 right-0 bottom-0 top-0 h-screen bg-gray-50 text-c-dark-gray z-50 ease-linear">
             <header class="flex items-center justify-between px-6 pt-5 mb-4">
                 <span
                     class="text-gray-500 text-sm w-full"
@@ -22,23 +22,23 @@
                 />
             </div>
             <div v-else class="flex justify-center p-4">
-                <p class="text-gray-500">Non hai prodotti nel carrello.</p>
+                <p class="text-gray-500">Non hai articoli nel carrello.</p>
             </div>
 
             <footer v-if="!isEmpty" class="fixed bottom-0 left-0 right-0">
-                <div class="bg-gray-100 p-6 flex flex-col items-center justify-center">
+                <div class="bg-gray-100 p-4 py-6 flex flex-col items-center justify-center">
+                    <div
+                        v-if="freeShipping > subTotal"
+                        class="bg-blue-100 text-blue-500 text-xs flex space-x-2 p-4 mb-4">
+                            <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M1,12.5v5a1,1,0,0,0,1,1H3a3,3,0,0,0,6,0h6a3,3,0,0,0,6,0h1a1,1,0,0,0,1-1V5.5a3,3,0,0,0-3-3H11a3,3,0,0,0-3,3v2H6A3,3,0,0,0,3.6,8.7L1.2,11.9a.61.61,0,0,0-.07.14l-.06.11A1,1,0,0,0,1,12.5Zm16,6a1,1,0,1,1,1,1A1,1,0,0,1,17,18.5Zm-7-13a1,1,0,0,1,1-1h9a1,1,0,0,1,1,1v11h-.78a3,3,0,0,0-4.44,0H10Zm-2,6H4L5.2,9.9A1,1,0,0,1,6,9.5H8Zm-3,7a1,1,0,1,1,1,1A1,1,0,0,1,5,18.5Zm-2-5H8v2.78a3,3,0,0,0-4.22.22H3Z"/></svg>
+                            <span>Se il tuo ordine raggiunge i € 30,00 la spedizione è gratuita</span>
+                    </div>
+
                     <router-link
                         @click.native="toggleCart"
                         :to="{ name: 'Cart' }"
-                        class="max-w-max text-sm text-gray-500 hover:text-c-dark-gray mb-2">
-                            modifica carrello
-                    </router-link>
-                    <router-link
-                        @click.native="toggleCart"
-                        :to="{ name: 'Checkout' }"
-                        class="flex items-center space-x-2 bg-c-dark-gray rounded-lg max-w-max py-3 px-4">
-                            <span class="text-c-white text-sm">Procedi al pagamento</span>
-                            <svg class="text-c-white w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M14.83,11.29,10.59,7.05a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41L12.71,12,9.17,15.54a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.29,1,1,0,0,0,.71-.29l4.24-4.24A1,1,0,0,0,14.83,11.29Z"/></svg>
+                        class="text-base text-center w-full bg-c-dark-gray rounded-lg text-white py-3">
+                            Carrello <small>(€{{ subTotal }})</small>
                     </router-link>
                 </div>
             </footer>
@@ -54,6 +54,11 @@ export default {
     components: {
         ShoppingCartProduct
     },
+    data() {
+        return {
+            freeShipping: 2999
+        }
+    },
     computed: {
         isOpen() {
             return this.$store.state.cart.isOpen
@@ -61,14 +66,14 @@ export default {
         isEmpty() {
             return this.items.length == 0
         },
-        total() {
-            let total = 0
+        subTotal() {
+            let subTotal = 0
 
             this.items.forEach(item => {
-                total += (item.product.price * item.quantity)
+                subTotal += (item.product.price * item.quantity)
             });
 
-            return '€' + total
+            return subTotal
         }
     },
     methods: {
