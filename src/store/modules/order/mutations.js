@@ -2,6 +2,10 @@ export const GET_ORDERS = (state, orders) => {
     state.orders = orders
 }
 
+export const GET_ORDER = (state, order) => {
+    state.order = order
+}
+
 export const GET_ARCHIVED_ORDERS = (state, archived) => {
     state.archived = archived
 }

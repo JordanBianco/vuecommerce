@@ -74,6 +74,14 @@ const routes = [
 		props: true,
 		meta: { auth: true }
 	},
+	// Order
+	{
+		path: '/order/:slug',
+		name: 'order.show',
+		component: () => import('../views/Order/show.vue'),
+		props: true,
+		meta: { auth: true }
+	},
 ]
 
 const router = new VueRouter({

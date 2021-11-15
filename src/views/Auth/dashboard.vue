@@ -11,10 +11,9 @@
             </button>
         </div>
 
-        <div class="flex md:w-11/12 md:mx-auto p-4 md:px-0 mt-8">
-            <aside class="border-r min-h-screen w-1/5">
+        <div class="flex flex-col space-y-10 lg:space-y-0 lg:flex-row md:w-11/12 md:mx-auto p-4 md:px-0 mt-8">
+            <aside class="lg:border-r lg:min-h-screen lg:w-1/5 w-full lg:border-b-0 border-b pb-10">
                 <div class="space-y-4">
-
                     <router-link
                         :to="{ name: 'Dashboard', query: { view: 'orders' }}"
                         exact-active-class="text-gray-600"
@@ -49,7 +48,6 @@
                 </div>
 
                 <div class="mt-10 space-y-4">
-
                     <h3 class="xl:text-base font-thin text-gray-400 mb-4">Profilo</h3>
 
                     <router-link
@@ -70,7 +68,7 @@
                 </div>
             </aside>
 
-            <main class="w-4/5">
+            <main class="lg:w-4/5 w-full">
                 <MyOrders v-if="$route.query.view == 'orders'" />
                 <MyAddress v-if="$route.query.view == 'address'" />
                 <MyReviews v-if="$route.query.view == 'reviews'" />

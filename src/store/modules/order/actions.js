@@ -12,6 +12,18 @@ export const getOrders = async ({commit}, {sort}) => {
     }
 }
 
+export const getOrderDetails = async ({commit}, {slug}) => {
+    commit('GET_ORDER', null)
+    try {
+        const res = await api.get('/orders/' + slug)
+        if (res.status === 200) {
+            commit('GET_ORDER', res.data.data)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const getArchivedOrders = async ({commit}, {sort}) => {
     try {
         const res = await api.get('/orders/archived?sort=' + sort)

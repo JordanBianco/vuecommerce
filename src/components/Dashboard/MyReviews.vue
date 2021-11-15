@@ -1,10 +1,10 @@
 <template>
-    <div class="px-8">
+    <div class="lg:px-8">
         <section v-if="reviews">
             <div v-if="reviews.length != 0">
-                <header class="flex justify-between items-baseline pb-8 text-sm text-gray-400">
+                <header class="flex flex-col space-y-2 xs:space-y-0 xs:flex-row xs:justify-between xs:items-baseline pb-8 text-sm text-gray-400">
                     <div>
-                        Recensioni: {{ reviews.length }}
+                        {{ reviews.length }} recensioni
                     </div>
                     <div class="flex items-center space-x-2">
                         <span class="text-gray-500">ordina per</span>

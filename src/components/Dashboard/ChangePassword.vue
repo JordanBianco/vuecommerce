@@ -1,5 +1,5 @@
 <template>
-    <div class="px-8">
+    <div class="lg:px-8">
         <form @submit.prevent="changePassword()" class="text-sm">
             
             <!-- Vecchia Password -->

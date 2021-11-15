@@ -1,5 +1,5 @@
 <template>
-    <div class="px-8">
+    <div class="lg:px-8">
         <form v-if="user" @submit.prevent="updateInfo()" class="text-sm">
             <!-- Name -->
             <div class="w-full mb-6 relative">
