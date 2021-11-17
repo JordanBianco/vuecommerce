@@ -22,6 +22,7 @@ import auth from '@/store/modules/auth'
 import user from '@/store/modules/user'
 import coupon from '@/store/modules/coupon'
 import review from '@/store/modules/review'
+import notification from '@/store/modules/notification'
 
 export default new Vuex.Store({
   state: {
@@ -38,7 +39,8 @@ export default new Vuex.Store({
     auth,
     user,
     coupon,
-    review
+    review,
+    notification
   },
   plugins: [
     data

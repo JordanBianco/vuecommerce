@@ -1,14 +1,6 @@
-aggiungere notifiche dopo salvataggi vari
-
 LARAVEL
-refactor to only request when validate data
-socialite
 maps api
-
-ADMIN PANEL
-
-email dopo ordine -> queue !
-invoice
+TESTARE :'(
 
 DASHBOARD
-fare responsive
+impedire uetnte di cliccare ordine conferma due volte

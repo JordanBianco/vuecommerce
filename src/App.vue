@@ -5,15 +5,19 @@
 		<footer class="bg-c-dark-gray py-16">
 			&copy;
 		</footer>
+
+		<NotificationList />
 	</div>
 </template>
 
 <script>
 import TheNavbar from '@/components/Layout/TheNavbar'
+import NotificationList from '@/components/Notifications/NotificationList'
 
 export default {
 	components: {
 		TheNavbar,
+		NotificationList
 	},
 	computed: {
 		// Aggiungere al removeScroll i filtri e il sidemenu

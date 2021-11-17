@@ -11,8 +11,8 @@
             </button>
         </div>
 
-        <div class="flex flex-col space-y-10 lg:space-y-0 lg:flex-row md:w-11/12 md:mx-auto p-4 md:px-0 mt-8">
-            <aside class="lg:border-r lg:min-h-screen lg:w-1/5 w-full lg:border-b-0 border-b pb-10">
+        <div class="flex flex-col lg:flex-row md:w-11/12 md:mx-auto p-4 md:px-0 lg:mt-8">
+            <aside class="hidden lg:block lg:border-r lg:min-h-screen lg:w-1/5 w-full lg:border-b-0 border-b pb-10">
                 <div class="space-y-4">
                     <router-link
                         :to="{ name: 'Dashboard', query: { view: 'orders' }}"
@@ -77,6 +77,8 @@
                 <ChangePassword v-if="$route.query.view == 'change-password'" />
             </main>
         </div>
+
+        <MobileNavigation :name="name" />
     </div>
 </template>
 
@@ -87,6 +89,7 @@ import MyReviews from '@/components/Dashboard/MyReviews'
 import MyArchivedOrders from '@/components/Dashboard/MyArchivedOrders'
 import MyInfo from '@/components/Dashboard/MyInfo'
 import ChangePassword from '@/components/Dashboard/ChangePassword'
+import MobileNavigation from '@/components/Dashboard/MobileNavigation'
 
 export default {
     name: 'Auth.dashboard',
@@ -97,6 +100,7 @@ export default {
         MyArchivedOrders,
         MyInfo,
         ChangePassword,
+        MobileNavigation
     },
     mounted() {
         this.getUser();

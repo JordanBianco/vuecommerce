@@ -21,7 +21,7 @@
                     <div class="rounded-lg bg-gray-200 w-20 h-20 flex-none"></div>
                     <div>
                         <h4 class="text-sm text-c-dark-gray font-semibold">{{ review.title }}</h4>
-                        <p class="text-sm md:text-xs text-gray-400">{{ review.user.first_name + ' ' + review.user.last_name }} il {{ $moment(review.created_at).format('DD/MM/YYYY') }} alle {{ $moment(review.created_at).format('HH:mm') }}</p>
+                        <p class="text-sm md:text-xs text-gray-400">{{ review.user.first_name + ' ' + review.user.last_name }} il {{ $moment(review.created_at).format('DD.MM.YYYY') }} alle {{ $moment(review.created_at).format('HH:mm') }}</p>
                     
                         <div class="my-2 flex">
                             <svg

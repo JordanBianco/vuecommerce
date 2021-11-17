@@ -2,7 +2,6 @@
     <section class="lg:px-8">
 
         <div v-if="orders.length != 0">
-
             <header class="flex flex-col space-y-2 xs:space-y-0 xs:flex-row xs:justify-between xs:items-baseline pb-8 text-sm text-gray-400">
                 <div>
                     {{ orders.length }} ordini
@@ -21,7 +20,7 @@
                     <div>
                         <span class="block text-xs text-gray-400">numero ordine</span>
                         <p class="text-c-dark-gray text-sm">{{ order.order_number }}</p>
-                    </div> 
+                    </div>
 
                     <div class="mt-2 flex items-center space-x-2 text-gray-400 text-xs">
                         <div @click="archiveOrder(order, index)" class="flex items-center space-x-1">
@@ -43,13 +42,22 @@
                         </div>
                         <div class="text-sm text-gray-400 lg:mt-0">
                             <h2 class="text-c-dark-gray mb-2">{{ product.name }}</h2>
-                            <p class="leading-tight text-xs lg:text-sm mb-4">{{ product.description }}</p>
+                            
+                            <div class="flex items-center space-x-2 text-gray-400 text-sm">
+                                <div class="flex space-x-1 items-center">
+                                    <svg class="w-4 h-4 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M15.09814,12.63379,13,11.42285V7a1,1,0,0,0-2,0v5a.99985.99985,0,0,0,.5.86621l2.59814,1.5a1.00016,1.00016,0,1,0,1-1.73242ZM12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Z"/></svg>
+                                    <span class="hidden md:block">data ordine</span>
+                                </div>
+                                <p>{{ $moment(order.created_at).format('DD.MM.YYYY - HH:mm') }}</p>
+                            </div>
+                            
+                            <p class="leading-tight text-xs lg:text-sm mt-2 mb-4">{{ product.description }}</p>
                             
                             <!-- Review -->
                             <div v-if="!hasBeenReviewed(product.id)">
                                 <router-link
                                     :to="{ name: 'Review', params: { slug: product.slug }}"
-                                    class="text-sm text-blue-500 flex space-x-2">
+                                    class="text-sm text-blue-500 flex space-x-2 max-w-max">
                                         <svg class="w-4 h-4 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"/></svg>
                                         <span>Scrivi una recensione</span>
                                 </router-link>

@@ -20,6 +20,10 @@ export const updateInfo = async ({commit}, {user}) => {
         })
         if (res.status === 200) {
             commit('EMPTY_ERRORS');
+
+            commit('notification/ADD_NOTIFICATION', {
+                message: 'Informazioni aggiornate correttamente!'
+            }, { root:true });
         }
     } catch (error) {
         if (error.response.status === 422) {
@@ -40,6 +44,11 @@ export const updateAddress = async ({commit}, {user}) => {
         })
         if (res.status === 200) {
             commit('EMPTY_ERRORS');
+
+            commit('notification/ADD_NOTIFICATION', {
+                message: 'Indirizzo aggiornato correttamente!'
+            }, { root:true });
+        
         }
     } catch (error) {
         if (error.response.status === 422) {
@@ -57,6 +66,10 @@ export const changePassword = async ({commit}, {oldPassword, newPassword, newPas
         })
         if (res.status === 200) {
             commit('EMPTY_ERRORS');
+
+            commit('notification/ADD_NOTIFICATION', {
+                message: 'Password aggiornata correttamente!'
+            }, { root:true });
         }
     } catch (error) {
         if (error.response.status === 422) {
