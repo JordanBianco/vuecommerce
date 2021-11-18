@@ -13,7 +13,7 @@
 
         <div class="flex flex-col lg:flex-row md:w-11/12 md:mx-auto p-4 md:px-0 lg:mt-8">
             <aside class="hidden lg:block lg:border-r lg:min-h-screen lg:w-1/5 w-full lg:border-b-0 border-b pb-10">
-                <div class="space-y-4">
+                <div class="space-y-5">
                     <router-link
                         :to="{ name: 'Dashboard', query: { view: 'orders' }}"
                         exact-active-class="text-gray-600"

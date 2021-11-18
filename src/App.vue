@@ -2,9 +2,7 @@
 	<div style="font-family: 'Poppins', sans-serif;">
 		<TheNavbar />
 		<router-view class="bg-white min-h-screen pb-24 md:pb-16"/>
-		<footer class="bg-c-dark-gray py-16">
-			&copy;
-		</footer>
+		<TheFooter />
 
 		<NotificationList />
 	</div>
@@ -12,11 +10,13 @@
 
 <script>
 import TheNavbar from '@/components/Layout/TheNavbar'
+import TheFooter from '@/components/Layout/TheFooter'
 import NotificationList from '@/components/Notifications/NotificationList'
 
 export default {
 	components: {
 		TheNavbar,
+		TheFooter,
 		NotificationList
 	},
 	computed: {
