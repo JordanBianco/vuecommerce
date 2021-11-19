@@ -3,82 +3,93 @@
         <div v-if="products">
             <div class="md:flex md:w-11/12 md:mx-auto lg:space-x-8 px-4 md:px-0">
 
-                <aside class="lg:w-1/4 xl:w-1/5 border-r border-gray-200 h-screen text-sm hidden lg:block">
-                    <header class="border-b border-gray-200 py-4 mb-8">
-                        <span class="font-semibold">Filter</span>
+                <aside class="lg:w-1/4 xl:w-1/5 border-r border-gray-200 min-h-screen text-sm hidden lg:block">
+                    <header class="border-b border-gray-200 py-4 mb-10">
+                        <span class="font-thin text-base text-c-dark-gray">Filtri</span>
                     </header>
-                    <!-- Heigth -->
-                    <!-- <div class="mb-8 pr-4">
-                        <h3 class="font-semibold block mb-4">Plant size</h3>
-                        <div class="flex items-center space-x-1">
-                            <div
-                                @click="selectSize('xs')"
-                                :class="{ 'bg-gray-300' : sizeView === 'xs' }"
-                                class="cursor-pointer bg-gray-100 w-10 h-10 rounded-full flex justify-center items-center">
-                                    XS
+                    <section class="pr-4">
+                    <!-- Valutazione -->
+                        <div class="mb-10">
+                            <h3 class="xl:text-base font-thin text-c-dark-gray mb-4">Valutazione</h3>
+                            <section class="space-y-1.5 xl:space-y-2">
+                                <!-- 1 star -->
+                                <div @click="setRatingsFilterValue('1')" class="flex items-center justify-between">
+                                    <div class="flex">
+                                        <svg class="w-4 h-4 xl:w-5 xl:h-5 text-c-dark-gray" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
+                                        <svg v-for="i in 4" :key="i + '-1'" class="w-4 h-4 xl:w-5 xl:h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
+                                    </div>
+                                    <span :class="{ 'underline text-c-dark-gray' : ratings === '1' }" class="text-sm text-gray-400 cursor-pointer">1 stella</span>
+                                </div>
+                                <!-- 2 stars -->
+                                <div @click="setRatingsFilterValue('2')" class="flex items-center justify-between">
+                                    <div class="flex">
+                                        <svg v-for="i in 2" :key="i + '-2'" class="w-4 h-4 xl:w-5 xl:h-5 text-c-dark-gray" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
+                                        <svg v-for="i in 3" :key="i + '-3'" class="w-4 h-4 xl:w-5 xl:h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
+                                    </div>
+                                    <span :class="{ 'underline text-c-dark-gray' : ratings === '2' }" class="text-sm text-gray-400 cursor-pointer">2 stelle</span>
+                                </div>
+                                <!-- 3 stars -->
+                                <div @click="setRatingsFilterValue('3')" class="flex items-center justify-between">
+                                    <div class="flex">
+                                        <svg v-for="i in 3" :key="i + '-4'" class="w-4 h-4 xl:w-5 xl:h-5 text-c-dark-gray" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
+                                        <svg v-for="i in 2" :key="i + '-5'" class="w-4 h-4 xl:w-5 xl:h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
+                                    </div>
+                                    <span :class="{ 'underline text-c-dark-gray' : ratings === '3' }" class="text-sm text-gray-400 cursor-pointer">3 stelle</span>
+                                </div>
+                                <!-- 4 stars -->
+                                <div @click="setRatingsFilterValue('4')" class="flex items-center justify-between">
+                                    <div class="flex">
+                                        <svg v-for="i in 4" :key="i + '-6'" class="w-4 h-4 xl:w-5 xl:h-5 text-c-dark-gray" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
+                                        <svg class="w-4 h-4 xl:w-5 xl:h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
+                                    </div>
+                                    <span :class="{ 'underline text-c-dark-gray' : ratings === '4' }" class="text-sm text-gray-400 cursor-pointer">4 stelle</span>
+                                </div>
+                                <!-- 5 stars -->
+                                <div @click="setRatingsFilterValue('5')" class="flex items-center justify-between">
+                                    <div class="flex">
+                                        <svg v-for="i in 5" :key="i + '-7'" class="w-4 h-4 xl:w-5 xl:h-5 text-c-dark-gray" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
+                                    </div>
+                                    <span :class="{ 'underline text-c-dark-gray' : ratings === '5' }" class="text-sm text-gray-400 cursor-pointer">5 stelle</span>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- Price Range -->
+                        <div class="pr-4">
+                            <span class="font-semibold block mb-4">Price range</span>
+                            <div class="flex items-center space-x-2">
+                                <input
+                                    @click="cleanErrors()"
+                                    v-model="min"
+                                    placeholder="Min"
+                                    class="focus:outline-none bg-gray-100 text-gray-400 w-full rounded-lg p-2">
+                                <input
+                                    @click="cleanErrors()"
+                                    v-model="max"
+                                    placeholder="Max"
+                                    class="focus:outline-none bg-gray-100 text-gray-400 w-full rounded-lg p-2">
                             </div>
-                            <div
-                                @click="selectSize('s')"
-                                :class="{ 'bg-gray-300' : sizeView === 's' }"
-                                class="cursor-pointer bg-gray-100 w-10 h-10 rounded-full flex justify-center items-center">
-                                    S
-                            </div>
-                            <div
-                                @click="selectSize('m')"
-                                :class="{ 'bg-gray-300' : sizeView === 'm' }"
-                                class="cursor-pointer bg-gray-100 w-10 h-10 rounded-full flex justify-center items-center">
-                                    M
-                            </div>
-                            <div
-                                @click="selectSize('l')"
-                                :class="{ 'bg-gray-300' : sizeView === 'l' }"
-                                class="cursor-pointer bg-gray-100 w-10 h-10 rounded-full flex justify-center items-center">
-                                    L
-                            </div>
-                            <div
-                                @click="selectSize('xl')"
-                                :class="{ 'bg-gray-300' : sizeView === 'xl' }"
-                                class="cursor-pointer bg-gray-100 w-10 h-10 rounded-full flex justify-center items-center">
-                                    XL
+                            <button @click="setPrice()" class="bg-c-green text-white px-4 py-2 rounded-lg mt-4 w-full">Set price</button>
+                            
+                            <div class="mt-4">
+                                <p v-if="errors.min_price" class="text-red-500 text-xs">{{ errors.min_price[0] }}</p>
+                                <p v-if="errors.max_price" class="text-red-500 text-xs">{{ errors.max_price[0] }}</p>
                             </div>
                         </div>
-
-                        <div class="mt-6">
-                            <p v-if="sizeView == 'xs'" class="text-gray-500 text-sm">Da 2 a 15cm</p>
-                            <p v-if="sizeView == 's'" class="text-gray-500 text-sm">Da 16 a 35cm</p>
-                            <p v-if="sizeView == 'm'" class="text-gray-500 text-sm">Da 36 a 50cm</p>
-                            <p v-if="sizeView == 'l'" class="text-gray-500 text-sm">Da 51 a 100cm</p>
-                            <p v-if="sizeView == 'xl'" class="text-gray-500 text-sm">Dai 101cm</p>
-                        </div>
-                    </div> -->
-                    <!-- Price Range -->
-                    <div class="pr-4">
-                        <span class="font-semibold block mb-4">Price range</span>
-                        <div class="flex items-center space-x-2">
-                            <input
-                                @click="cleanErrors()"
-                                v-model="min"
-                                placeholder="Min"
-                                class="focus:outline-none bg-gray-100 text-gray-400 w-full rounded-lg p-2">
-                            <input
-                                @click="cleanErrors()"
-                                v-model="max"
-                                placeholder="Max"
-                                class="focus:outline-none bg-gray-100 text-gray-400 w-full rounded-lg p-2">
-                        </div>
-                        <button @click="setPrice()" class="bg-c-green text-white px-4 py-2 rounded-lg mt-4 w-full">Set price</button>
-                        
-                        <div class="mt-4">
-                            <p v-if="errors.min_price" class="text-red-500 text-xs">{{ errors.min_price[0] }}</p>
-                            <p v-if="errors.max_price" class="text-red-500 text-xs">{{ errors.max_price[0] }}</p>
-                        </div>
-
-                    </div>
+                    </section>
                 </aside>
 
                 <div class="lg:w-3/4 xl:w-4/5 py-8 w-full">
 
-                    <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8 justify-center">
+                    <div class="flex justify-between items-center text-gray-400 text-sm mb-6">
+                        <div class="space-x-2">
+                            <router-link :to="{ name: 'Home' }" class="text-c-dark-gray">Home</router-link>
+                            <span>|</span>
+                            <span>{{ $route.params.slug }}</span>
+                        </div>
+                        <p v-if="products.meta">{{ products.meta.total }} articoli</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 xl:grid-cols-4 gap-6 md:justify-center">
                         <SingleProduct
                             v-for="(product, index) in products.data"
                             :product="product"
@@ -125,8 +136,14 @@ export default {
         return {
             min: '',
             max: '',
+            ratings: ''
         }
     },
+    watch: {
+		ratings() {
+			this.getProducts();
+		},
+	},
     computed: {
         products() {
             return this.$store.state.category.products
@@ -141,11 +158,19 @@ export default {
                 slug: this.$route.params.slug,
                 min: this.min,
                 max: this.max,
+                ratings: this.ratings,
                 page: page
             })
         },
         setPrice() {
 			this.getProducts();
+		},
+        setRatingsFilterValue(value) {
+			if (this.ratings == value) {
+				this.ratings = ''
+			} else {
+				this.ratings = value
+			}
 		},
         cleanErrors() {
 			this.$store.dispatch('category/cleanErrors')

@@ -11,14 +11,16 @@ export const getCategories = async ({commit}) => {
     }
 }
 
-export const getProducts = async ({commit}, {slug, page, min, max}) => {
+export const getProducts = async ({commit}, {slug, page, min, max, ratings}) => {
     try {
         const res = await api.get(
             '/categories/' + slug + '/products?min_price=' + min
             + '&max_price=' + max
+            + '&ratings=' + ratings
             + '&page=' + page
         )
         if (res.status === 200) {
+            console.log(res)
             commit('GET_PRODUCTS', res.data)
         }
     } catch (error) {

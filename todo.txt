@@ -1,7 +1,8 @@
-LARAVEL
-maps api
-TESTARE :'(
-invocie
-admin panel 
+ADMIN PANEL
 
-impedire uetnte di cliccare ordine conferma due volte
+- user management
+- products management
+- orders management
+- invoice management
+- todos
+- full calendar

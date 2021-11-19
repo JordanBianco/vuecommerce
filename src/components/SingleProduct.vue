@@ -33,7 +33,6 @@
             </div>
 
             <div>
-                <p class="text-gray-400 text-xs">Prezzo</p>
                 <p class="text-c-dark-gray font-semibold">€{{ product.price }}</p>
             </div>
 

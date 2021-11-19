@@ -105,9 +105,9 @@ const router = new VueRouter({
 // Titolo della pagina
 router.beforeEach((to, from, next) => {
 	if (to.params.slug) {
-		document.title = process.env.VUE_APP_TITLE + ' | ' + to.params.slug
+		document.title =  to.params.slug + ' | ' + process.env.VUE_APP_TITLE
 	} else {
-		document.title = process.env.VUE_APP_TITLE + ' | ' + to.name
+		document.title =  to.name + ' | ' + process.env.VUE_APP_TITLE
 	}
 	next()
 })

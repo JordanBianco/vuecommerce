@@ -121,8 +121,8 @@
 				</div>
 
 				<div
-					:class="{ 'translate-y-full' : !showFilters }"
-					class="w-full md:w-80 lg:w-96 fixed transform transition duration-200 bottom-0 top-20 md:top-0 rounded-t-xl md:rounded-t-none bg-white right-0 h-screen z-50 ease-linear">
+					:class="{ 'translate-x-full' : !showFilters }"
+					class="w-full md:w-80 lg:w-96 fixed transform transition duration-150 bottom-0 top-20 md:top-0 rounded-t-xl md:rounded-t-none bg-white right-0 h-screen z-50 ease-linear">
 						<header class="flex items-center justify-between px-4 py-5 border-b border-gray-200">
 							<p class="text-gray-500">Filtra e ordina</p>
 							<svg @click="toggleFilters" class="w-6 h-6 cursor-pointer text-c-dark-gray" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"/></svg>

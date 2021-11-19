@@ -287,7 +287,7 @@ export default {
             freeShipping: 2999, // sopra i 30 spedizione gratuita
             shipping: 395,
             showCoupon: false,
-            couponName: ''
+            couponName: '',
         }
     },
     computed: {
