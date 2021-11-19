@@ -3,7 +3,7 @@
         <div v-if="product">
             <div v-if="hasBeenPurchased()">
                 <div v-if="!hasBeenReviewed()" class="md:w-11/12 md:mx-auto p-4 md:px-0">
-                    <h2 class="text-gray-500">Nuova Recensione</h2>
+                    <h2 class="text-gray-500">{{ $t('new_review') }}</h2>
 
                     <div class="flex flex-col space-y-2 xs:space-y-0 xs:flex-row xs:space-x-4 py-8">
                         <div class="xs:w-20 xs:h-20 w-full h-40 flex-none rounded-lg bg-gray-200"></div>
@@ -17,7 +17,7 @@
 
                         <form @submit.prevent="postReview">
                             <div class="w-full mb-6">
-                                <label class="text-gray-400 text-sm" for="title">Titolo <small>(facoltativo)</small></label>
+                                <label class="text-gray-400 text-sm" for="title">{{ $t('title') }} <small>({{ $t('optional') }})</small></label>
                                 <input
                                     type="text"
                                     @keydown="errors.title = ''"
@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="w-full mb-6">
-                                <label class="text-gray-400 text-sm" for="content">Contenuto <small>(facoltativo)</small></label>
+                                <label class="text-gray-400 text-sm" for="content">{{ $t('content') }} <small>({{ $t('optional') }})</small></label>
                                 <textarea
                                     v-model="review.content"
                                     @keydown="errors.content = ''"
@@ -36,7 +36,7 @@
                                     class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 py-1.5"
                                     rows="3"></textarea>
                                     <p v-if="errors.content" class="text-xs text-red-500 mt-0.5">{{ errors.content[0] }}</p>
-                                    <p class="text-xs text-gray-400">Aggiungi un breve contenuto all tua recensione</p>
+                                    <p class="text-xs text-gray-400">{{ $t('content_suggestion') }}</p>
                             </div>
 
                             <div class="mb-6">
@@ -54,17 +54,17 @@
                             <button
                                 class="text-sm md:max-w-max w-full bg-c-dark-gray rounded-lg text-white py-2 px-3"
                                 type="submit">
-                                    Invia
+                                    {{ $t('send') }}
                             </button>
                         </form>
                     </div>
                 </div>
                 <div v-else class="text-sm text-center text-gray-400 py-10">
-                    <p>Hai già recensito questo articolo.</p>
+                    <p>{{ $t('already_reviewed_err') }}</p>
                 </div>
             </div>
             <div v-else class="text-sm text-center text-gray-400 py-10">
-                <p>Non puoi recensire questo articolo.</p>
+                <p>{{ $t('review_err') }}</p>
             </div>
         </div>
         <div v-else class="flex justify-center mt-16">

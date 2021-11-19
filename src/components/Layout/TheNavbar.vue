@@ -18,15 +18,18 @@
 
                 <!-- hidden on mobile -->
                 <div class="items-center space-x-4 text-sm hidden lg:flex font-thin">
-                    <div class="font-semibold text-c-dark-gray">Shop</div>
-                    <div class="text-gray-400">Plant Care</div>
-                    <div class="text-gray-400">Workshops</div>
-                    <div class="text-gray-400">Blog</div>
+                    <div class="font-semibold text-c-dark-gray">{{ $t('shop') }}</div>
+                    <div class="text-gray-400">{{ $t('plant_care') }}</div>
+                    <div class="text-gray-400">{{ $t('blog') }}</div>
                 </div>
             </div>
 
             <!-- Right Side -->
             <div class="w-1/4 flex items-center space-x-4 justify-end">
+                
+                <!-- LanguageSwitcher -->
+                <LanguageSwitcher />
+
                 <!-- Utente -->
                 <router-link
                     class="text-gray-500 text-sm"
@@ -86,12 +89,14 @@
 <script>
 import ShoppingCart from '@/components/ShoppingCart'
 import Sidebar from '@/components/Layout/Sidebar'
+import LanguageSwitcher from '@/components/Layout/LanguageSwitcher'
 
 export default {
     name: 'TheNavbar',
     components: {
         ShoppingCart,
-        Sidebar
+        Sidebar,
+        LanguageSwitcher
     },
     mounted() {
         if (this.isAuth) {
@@ -143,7 +148,7 @@ export default {
         },
         toggleSidemenu() {
             this.isSidemenuOpen = ! this.isSidemenuOpen
-        }
+        },
     }
 }
 </script>

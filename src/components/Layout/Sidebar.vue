@@ -9,10 +9,9 @@
         </header>
         
         <div class="text-sm flex flex-col w-full">
-            <div class="px-6 py-2 font-semibold border-l-4 border-c-green bg-gray-100 w-full">Shops</div>
-            <div class="px-6 py-2 text-gray-400">Plant Care</div>
-            <div class="px-6 py-2 text-gray-400">Workshops</div>
-            <div class="px-6 py-2 text-gray-400">Blog</div>
+            <div class="px-6 py-2 font-semibold border-l-4 border-c-green bg-gray-100 w-full">{{ $t('shop') }}</div>
+            <div class="px-6 py-2 text-gray-400">{{ $t('plant_care') }}</div>
+            <div class="px-6 py-2 text-gray-400">{{ $t('blog') }}</div>
         </div>
     </div>
 </template>

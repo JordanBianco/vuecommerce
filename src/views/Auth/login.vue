@@ -1,12 +1,11 @@
 <template>
     <div>
         <section class="p-4 py-20 md:px-0 md:w-1/2 lg:w-1/3 xl:w-1/4 md:mx-auto">
-            <h2 class="text-c-dark-gray font-bold text-2xl">Bentornato</h2>
-            <p class="text-gray-400 text-sm">Effettua l'accesso</p>
+            <h2 class="text-c-dark-gray font-bold text-2xl">{{ $t('welcome_back') }}</h2>
 
             <section class="mt-10">
                 <div class="w-full mb-6">
-                    <label class="text-gray-400 text-sm" for="email">Indirizzo email</label>
+                    <label class="text-gray-400 text-sm" for="email">{{ $t('email') }}</label>
                     <input
                         type="email"
                         @keydown="errors.email = ''"
@@ -16,7 +15,7 @@
                         <p v-if="errors.email" class="text-xs text-red-500 mt-0.5">{{ errors.email[0] }}</p>
                 </div>
                 <div class="w-full mb-8">
-                    <label class="text-gray-400 text-sm" for="password">Password</label>
+                    <label class="text-gray-400 text-sm" for="password">{{ $t('password') }}</label>
                     <input
                         type="password"
                         @keydown="errors.password = ''"
@@ -26,11 +25,15 @@
                         <p v-if="errors.password" class="text-xs text-red-500 mt-0.5">{{ errors.password[0] }}</p>
                 </div>
 
-                <p class="text-gray-500 text-sm mb-2">Non hai un account? <router-link :to="{ name: 'Register' }" class="text-c-dark-gray">Registrati</router-link></p> 
+                <p class="text-gray-500 text-sm mb-2">{{ $t('not_signed') }}
+                    <router-link :to="{ name: 'Register' }" class="text-c-dark-gray">
+                        {{ $t('register') }}
+                    </router-link>
+                </p> 
                 <button
                     @click="login"
                     class="bg-c-dark-gray rounded-lg w-full py-2">
-                        <span class="text-c-white text-sm">Accedi</span>
+                        <span class="text-c-white text-sm">{{ $t('login') }}</span>
                 </button>
             </section>
 

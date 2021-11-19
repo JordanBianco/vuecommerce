@@ -4,7 +4,7 @@
         <form v-if="user" @submit.prevent="updateAddress()" class="text-sm">
             <!-- Name -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="country">Country</label>
+                <label class="text-gray-400" for="country">{{ $t('country') }}</label>
                 <input
                     type="text"
                     @click="errors.country = ''"
@@ -16,7 +16,7 @@
 
             <!-- City -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="city">City</label>
+                <label class="text-gray-400" for="city">{{ $t('city') }}</label>
                 <input
                     type="text"
                     @click="errors.city = ''"
@@ -28,7 +28,7 @@
 
             <!-- Province -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="province">Province</label>
+                <label class="text-gray-400" for="province">{{ $t('province') }}</label>
                 <input
                     type="text"
                     @click="errors.province = ''"
@@ -40,7 +40,7 @@
 
             <!-- Address -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="address">Address</label>
+                <label class="text-gray-400" for="address">{{ $t('address') }}</label>
                 <input
                     type="text"
                     @click="errors.address = ''"
@@ -52,7 +52,7 @@
 
             <!-- Zipcode -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="zipcode">Zipcode</label>
+                <label class="text-gray-400" for="zipcode">{{ $t('zipcode') }}</label>
                 <input
                     type="text"
                     @click="errors.zipcode = ''"
@@ -64,7 +64,7 @@
 
             <!-- Phone -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="phone">Phone</label>
+                <label class="text-gray-400" for="phone">{{ $t('phone') }}</label>
                 <input
                     type="text"
                     @click="errors.phone = ''"
@@ -77,7 +77,7 @@
             <button
                 type="submit"
                 class="text-center bg-c-dark-gray rounded-lg text-white px-3 py-2">
-                    Aggiorna Indirizzo    
+                    {{ $t('update_address') }}    
             </button>
         </form>
     </div>

@@ -10,7 +10,8 @@ Vue.use(Vuex)
 const data = createPersistedState({
   paths: [
     'user',
-    'auth'
+    'auth',
+    'language'
   ]
 })
 
@@ -23,6 +24,7 @@ import user from '@/store/modules/user'
 import coupon from '@/store/modules/coupon'
 import review from '@/store/modules/review'
 import notification from '@/store/modules/notification'
+import language from '@/store/modules/language'
 
 export default new Vuex.Store({
   state: {
@@ -40,7 +42,8 @@ export default new Vuex.Store({
     user,
     coupon,
     review,
-    notification
+    notification,
+    language
   },
   plugins: [
     data

@@ -3,17 +3,16 @@
         <div v-if="isAuth && isFirstPurchase" class="bg-gradient-to-r from-c-green to-c-blue py-6 text-white text-center">
 			<div class="w-11/12 mx-auto">
 				<div>
-					<span class="font-bold">20% di sconto</span> sul tuo primo acquisto con il codice <span class="font-bold">FIRST-20. </span>
-					<router-link v-if="!isAuth" :to="{ name: 'Login'}" class="underline">Accedi subito!</router-link>
-					<span>Acquista Ora!</span>
+					{{ $t('banner_promo_log') }}
+					<span class="font-semibold">{{ $t('purchase_now') }}</span>
 				</div>
 			</div>
 		</div>
 		<div v-if="!isAuth" class="bg-gradient-to-r from-c-green to-c-blue py-6 text-white text-center">
 			<div class="w-11/12 mx-auto">
-				<div>
-					<span class="font-bold">20% di sconto</span> sul tuo primo acquisto.
-					<router-link :to="{ name: 'Login'}" class="underline">Accedi subito!</router-link>
+				<div class="font-semibold">
+					{{ $t('banner_promo_not_log') }}
+					<router-link :to="{ name: 'Login'}" class="underline">{{ $t('banner_login') }}</router-link>
 				</div>
 			</div>
 		</div>

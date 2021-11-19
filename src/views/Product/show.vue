@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="product" >
+        <div v-if="product">
             <div class="flex flex-col md:flex-row md:w-11/12 md:mx-auto md:space-x-6 p-4 md:py-20">
                 <div class="relative md:w-1/2">
                     <div class="w-full h-80 rounded-lg bg-gray-200"></div>
@@ -51,7 +51,10 @@
                                 :key="index + uniqid()"
                                 class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
                         </div>
-                        <p class="text-gray-400 text-sm mt-0.5"><span class="text-c-dark-gray font-semibold">{{ product.reviews.length }} </span>{{ product.reviews.length === 1 ? ' recensione' : 'recensioni' }}</p>
+                        <p class="text-gray-400 text-sm mt-0.5">
+                            <span class="text-c-dark-gray font-semibold">{{ product.reviews.length }}</span>
+                            {{ $tc('reviews', product.reviews.length) }}
+                        </p>
                     </div>
 
                     <p class="text-gray-500 text-sm">{{ product.description }}</p>
@@ -61,7 +64,7 @@
                         <button
                             @click="addToCart()"
                             class="max-w-max border border-gray-200 rounded-lg px-4 py-2 text-xs flex items-center justify-between">
-                                <span>aggiungi al carrello</span>
+                                <span>{{ $t('add_to_cart') }}</span>
                                 <svg class="text-gray-500 w-5 h-5" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path fill="currentColor" d="M17.92,11.62a1,1,0,0,0-.21-.33l-5-5a1,1,0,0,0-1.42,1.42L14.59,11H7a1,1,0,0,0,0,2h7.59l-3.3,3.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l5-5a1,1,0,0,0,.21-.33A1,1,0,0,0,17.92,11.62Z"/></svg>
                         </button>
                         <!-- Save Item -->
@@ -77,7 +80,7 @@
 
             <!-- Reviews -->
             <section class="md:w-11/12 md:mx-auto p-4 pt-20">
-                <h2 class="text-gray-500 font-thin text-lg mb-4">Recensioni</h2>
+                <h2 class="text-gray-500 font-thin text-lg mb-4">{{ $t('review_title') }}</h2>
 
                 <section v-if="reviews.length != 0">
                     <header class="md:flex md:items-center md:space-x-4 md:space-y-0 space-y-2 mb-6">
@@ -85,25 +88,25 @@
                             @click="setSort('created_at.desc')"
                             :class="[  sort === 'created_at.desc' ? 'bg-c-dark-gray text-white' : 'text-gray-500' ]"
                             class="border text-xs rounded-full px-4 py-2 max-w-max cursor-pointer">
-                                Più recenti
+                                {{ $t('latest') }}
                         </div>
                         <div
                             @click="setSort('created_at.asc')"
                             :class="[  sort === 'created_at.asc' ? 'bg-c-dark-gray text-white' : 'text-gray-500' ]"
                             class="border text-xs rounded-full px-4 py-2 max-w-max cursor-pointer">
-                                Meno recenti
+                                {{ $t('older') }}
                         </div>
                         <div
                             @click="setSort('rating.desc')"
                             :class="[  sort === 'rating.desc' ? 'bg-c-dark-gray text-white' : 'text-gray-500' ]"
                             class="border text-xs rounded-full px-4 py-2 max-w-max cursor-pointer">
-                                Voto decrescente
+                                {{ $t('descending_vote') }}
                         </div>
                         <div
                             @click="setSort('rating.asc')"
                             :class="[  sort === 'rating.asc' ? 'bg-c-dark-gray text-white' : 'text-gray-500' ]"
                             class="border text-xs rounded-full px-4 py-2 max-w-max cursor-pointer">
-                                Voto crescente
+                                {{ $t('ascending_vote') }}
                         </div>
                     </header>
 
@@ -128,13 +131,13 @@
                     </div>
                 </section>
                 <div v-else>
-                    <p class="text-gray-400 text-sm">Non ci sono recensioni per questo articolo.</p>
+                    <p class="text-gray-400 text-sm">{{ $t('no_reviews') }}</p>
                 </div>
             </section>
 
             <!-- Potrebbero interessarti -->
             <section class="md:w-11/12 md:mx-auto p-4 pt-20" v-if="similar && similar.length != 0">
-                <h2 class="text-gray-500 font-thin text-lg mb-4">Potrebbero interessarti</h2>
+                <h2 class="text-gray-500 font-thin text-lg mb-4">{{ $t('might_also_like') }}</h2>
                 
                 <div class="flex space-x-8 overflow-x-auto overflow-y-hidden pb-10">
                     <div
@@ -156,7 +159,7 @@
                                         <router-link
                                             class="flex items-center space-x-2 text-gray-400 text-sm"
                                             :to="{ name: 'product.show', params: { slug: product.slug }}">
-                                                <span>Visualizza</span>
+                                                <span>{{ $t('view') }}</span>
                                                 <svg class="text-gray-400 w-5 h-5" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path fill="currentColor" d="M17.92,11.62a1,1,0,0,0-.21-.33l-5-5a1,1,0,0,0-1.42,1.42L14.59,11H7a1,1,0,0,0,0,2h7.59l-3.3,3.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l5-5a1,1,0,0,0,.21-.33A1,1,0,0,0,17.92,11.62Z"/></svg>
                                         </router-link>
                                     </div>

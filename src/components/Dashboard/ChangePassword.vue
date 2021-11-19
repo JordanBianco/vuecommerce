@@ -4,7 +4,7 @@
             
             <!-- Vecchia Password -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="oldPassword">Vecchia password</label>
+                <label class="text-gray-400" for="oldPassword">{{ $t('old_password') }}</label>
                 <input
                     type="password"
                     @click="errors.oldPassword = ''"
@@ -16,7 +16,7 @@
 
             <!-- Nuova Password -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="newPassword">Nuova password</label>
+                <label class="text-gray-400" for="newPassword">{{ $t('new_password') }}</label>
                 <input
                     type="password"
                     @click="errors.newPassword = ''"
@@ -24,12 +24,12 @@
                     :class="{ 'border-red-500' : errors.newPassword }"
                     class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 py-1.5">
                     <p v-if="errors.newPassword" class="text-xs text-red-500 mt-0.5">{{ errors.newPassword[0] }}</p>
-                    <p class="text-gray-500 text-xs mt-1">La password deve essere lunga almeno 8 caratteri e contenere almeno un numero ed un simbolo</p>
+                    <p class="text-gray-500 text-xs mt-1">{{ $t('password_suggestion') }}</p>
             </div>
 
             <!-- Conferma Nuova Password -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="newPassword_confirmation">Conferma password</label>
+                <label class="text-gray-400" for="newPassword_confirmation">{{ $t('confirm_password') }}</label>
                 <input
                     type="password"
                     @click="errors.newPassword_confirmation = ''"
@@ -42,7 +42,7 @@
             <button
                 type="submit"
                 class="text-center bg-c-dark-gray rounded-lg text-white px-3 py-2">
-                    Aggiorna Password    
+                    {{ $t('update_password') }}      
             </button>
         </form>
     </div>
