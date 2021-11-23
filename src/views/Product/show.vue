@@ -177,6 +177,7 @@ import uniqid from 'uniqid';
 
 export default {
     name: 'product.show',
+    props: ['slug'],
     mounted() {
         this.getProduct();
         this.getSimilarProducts();
@@ -189,15 +190,15 @@ export default {
         }
     },
     watch: {
-        "$route.params.slug": {
-            handler: function() {
+        slug : {
+            deep: true,
+            immediate: true,
+            handler() {
                 this.getProduct();
                 this.getSimilarProducts();
                 this.getReviews();
             },
-            deep: true,
-            immediate: true,
-		},
+        },
         sort() {
             this.getReviews();
         }
@@ -236,14 +237,14 @@ export default {
     },
     methods: {
         getProduct() {
-            this.$store.dispatch('product/getProduct', { slug: this.$route.params.slug })
+            this.$store.dispatch('product/getProduct', { slug: this.slug })
         },
         getSimilarProducts() {
-            this.$store.dispatch('product/getSimilarProducts', { slug: this.$route.params.slug })
+            this.$store.dispatch('product/getSimilarProducts', { slug: this.slug })
         },
         getReviews() {
             this.$store.dispatch('product/getReviews', {
-                slug: this.$route.params.slug,
+                slug: this.slug,
                 sort: this.sort    
             })
         },

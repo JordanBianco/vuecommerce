@@ -1,8 +1,8 @@
 <template>
 	<div style="font-family: 'Poppins', sans-serif;">
-		<TheNavbar />
+		<TheNavbar v-if="!isDashboard" />
 		<router-view class="bg-white min-h-screen pb-24 md:pb-16"/>
-		<TheFooter />
+		<TheFooter v-if="!isDashboard" />
 
 		<NotificationList />
 	</div>
@@ -27,6 +27,9 @@ export default {
 		showFilters() {
 			return this.$store.state.product.showFilters
 		},
+		isDashboard() {
+			return this.$route.meta.dashboard
+		}
 	},
 	watch: {
 		isOpen() {

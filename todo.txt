@@ -6,3 +6,8 @@ ADMIN PANEL
 - invoice management
 - todos
 - full calendar
+
+
+EMAIL QUEUE
+
+WEATHER APP NELLA DASHBOARD

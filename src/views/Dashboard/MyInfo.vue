@@ -1,6 +1,10 @@
 <template>
-    <div class="lg:px-8">
-        <form v-if="user" @submit.prevent="updateInfo()" class="text-sm">
+    <div>
+        <header class="pb-6">
+            <h2 class="text-xl text-gray-600">{{ $t('my_data') }}</h2>
+        </header>
+
+        <form v-if="user" @submit.prevent="updateInfo()" class="text-sm text-gray-600">
             <!-- Name -->
             <div class="w-full mb-6">
                 <label class="text-gray-400" for="first_name">{{ $t('first_name') }}</label>
@@ -39,7 +43,7 @@
 
             <button
                 type="submit"
-                class="text-center bg-c-dark-gray rounded-lg text-white px-3 py-2">
+                class="text-center bg-indigo-400 rounded-lg text-white px-3 py-2 shadow-sm">
                     {{ $t('update_info') }}    
             </button>
         </form>

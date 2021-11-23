@@ -23,13 +23,19 @@ module.exports = {
 				'c-green' : '#47a358'
 			},
 			spacing: {
+				'18' : '4.5rem',
 				'4.5' : '18px',
+				'5.5' : '22px',
 				'110' : '26.5rem',
 				'120' : '28rem',
 				'55' : '55%',
 				'45' : '45%',
 			},
 		},
+		transitionProperty: {
+			'width': 'width',
+			'maxWidth' : 'maxWidth'
+		}
 	},
 	variants: {
 		extend: {

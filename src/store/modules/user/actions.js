@@ -78,17 +78,6 @@ export const changePassword = async ({commit}, {oldPassword, newPassword, newPas
     }
 }
 
-export const getReviews = async ({commit}, {sort}) => {
-    try {
-        const res = await api.get('/user/reviews?sort=' + sort)
-        if (res.status === 200) {
-            commit('SET_REVIEWS', res.data.data);
-        }
-    } catch (error) {
-        console.log(error)
-    }
-}
-
 export const emptyErrors = ({commit}) => {
     commit('EMPTY_ERRORS')
 }

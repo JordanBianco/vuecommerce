@@ -129,6 +129,7 @@
     "review_err" : "You can't review this article",
     "optional" : "Optional",
 
+    "dashboard" : "Dashboard",
     "my_orders" : "My orders",
     "my_address" : "My address",
     "my_reviews" : "My reviews",
@@ -136,10 +137,13 @@
     "profile" : "Profile",
     "my_data" : "My personal data",
     "change_password" : "Change password",
+    "back_to_shop" : "Back to shop",
+    "settings" : "Settings",
+    "actions" : "Actions",
 
     "write_review" : "Write a review",
     "no_my_orders" : "Your orders will be displayed here.",
-    "orders" : "orders",
+    "orders" : "order | orders",
     "archive" : "archive",
 
     "restore" : "restore",
@@ -157,5 +161,19 @@
     "old_password" : "Old password",
     "new_password" : "New password",
     "confirm_password" : "Confirm password",
-    "update_password" : "Update password"
+    "update_password" : "Update password",
+
+    "shipping_address" : "Shipping address",
+    "purchase_date" : "Purchase date",
+    "status" : "Status",
+    "order_details" : "Order details",
+    "search_placeholder" : "Search through orders...",
+    "rating" : "Rating",
+    "review_date" : "Review date",
+    "review_placeholder" : "Search through reviews...",
+    "edit" : "Edit",
+    "delete" : "Delete",
+    "delete_review_confirm" : "Want to delete this review?",
+    "save_changes" : "Save changes"
+
 }

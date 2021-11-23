@@ -85,7 +85,7 @@
                         <div class="space-x-2">
                             <router-link :to="{ name: 'Home' }" class="text-c-dark-gray">Home</router-link>
                             <span>|</span>
-                            <span>{{ $route.params.slug }}</span>
+                            <span>{{ slug }}</span>
                         </div>
                         <p v-if="products.meta">{{ products.meta.total }} {{ $tc('items', products.meta.total) }}</p>
                     </div>
@@ -130,6 +130,7 @@ export default {
     components: {
         SingleProduct
     },
+    props: ['slug'],
     mounted() {
         this.getProducts();
     },
@@ -156,7 +157,7 @@ export default {
     methods: {
         getProducts(page = 1) {
             this.$store.dispatch('category/getProducts', { 
-                slug: this.$route.params.slug,
+                slug: this.slug,
                 min: this.min,
                 max: this.max,
                 ratings: this.ratings,

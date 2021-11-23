@@ -20,7 +20,6 @@ export const getProducts = async ({commit}, {slug, page, min, max, ratings}) => 
             + '&page=' + page
         )
         if (res.status === 200) {
-            console.log(res)
             commit('GET_PRODUCTS', res.data)
         }
     } catch (error) {

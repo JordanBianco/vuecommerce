@@ -1,9 +1,14 @@
 import api from '@/apis/api'
 import router from '@/router'
 
-export const getOrders = async ({commit}, {sort}) => {
+export const getOrders = async ({commit}, {search, fstatus, sort, dir}) => {
     try {
-        const res = await api.get('/orders?sort=' + sort)
+        const res = await api.get(
+            '/orders?search=' + search 
+            + '&fstatus=' + fstatus
+            + '&sort=' + sort
+            + '&dir=' + dir
+        )
         if (res.status === 200) {
             commit('GET_ORDERS', res.data.data)
         }
@@ -12,21 +17,14 @@ export const getOrders = async ({commit}, {sort}) => {
     }
 }
 
-export const getOrderDetails = async ({commit}, {slug}) => {
-    commit('GET_ORDER', null)
+export const getArchivedOrders = async ({commit}, {search, fstatus, sort, dir}) => {
     try {
-        const res = await api.get('/orders/' + slug)
-        if (res.status === 200) {
-            commit('GET_ORDER', res.data.data)
-        }
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-export const getArchivedOrders = async ({commit}, {sort}) => {
-    try {
-        const res = await api.get('/orders/archived?sort=' + sort)
+        const res = await api.get(
+            '/orders/archived?search=' + search 
+            + '&fstatus=' + fstatus
+            + '&sort=' + sort
+            + '&dir=' + dir
+        )
         if (res.status === 200) {
             commit('GET_ARCHIVED_ORDERS', res.data.data)
         }
@@ -54,7 +52,7 @@ export const placeOrder = async ({commit, dispatch}, {user_id, customer, items, 
         })
         if (res.status === 200) {
             dispatch('cart/emptyCart', [], { root:true })
-            router.push({ name: 'Dashboard', query: { view: 'orders' }})
+            router.push({ name: 'Dashboard' })
         }
     } catch (error) {
         if (error.response.status === 422) {

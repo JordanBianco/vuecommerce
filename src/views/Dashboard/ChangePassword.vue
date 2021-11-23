@@ -1,7 +1,10 @@
 <template>
-    <div class="lg:px-8">
-        <form @submit.prevent="changePassword()" class="text-sm">
-            
+    <div>
+        <header class="pb-6">
+            <h2 class="text-xl text-gray-600">{{ $t('change_password') }}</h2>
+        </header>
+
+        <form @submit.prevent="changePassword()" class="text-sm">    
             <!-- Vecchia Password -->
             <div class="w-full mb-6">
                 <label class="text-gray-400" for="oldPassword">{{ $t('old_password') }}</label>
@@ -41,7 +44,7 @@
 
             <button
                 type="submit"
-                class="text-center bg-c-dark-gray rounded-lg text-white px-3 py-2">
+                class="text-center bg-indigo-400 rounded-lg text-white px-3 py-2">
                     {{ $t('update_password') }}      
             </button>
         </form>

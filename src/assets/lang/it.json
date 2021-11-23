@@ -129,6 +129,7 @@
     "review_err" : "Non puoi recensire questo articolo",
     "optional" : "Facoltativo",
 
+    "dashboard" : "Dashboard",
     "my_orders" : "I miei ordini",
     "my_address" : "Il mio indirizzo",
     "my_reviews" : "Le mie recensioni",
@@ -136,10 +137,13 @@
     "profile" : "Profilo",
     "my_data" : "I miei dati personali",
     "change_password" : "Cambio password",
+    "back_to_shop" : "Torna allo shop",
+    "settings" : "Impostazioni",
+    "actions" : "Azioni",
 
     "write_review" : "Scrivi una recensione",
     "no_my_orders" : "I tuoi ordini verranno visualizzati qui.",
-    "orders" : "ordini",
+    "orders" : "ordine | ordini",
     "archive" : "archivia",
 
     "restore" : "ripristina",
@@ -157,6 +161,19 @@
     "old_password" : "Vecchia password",
     "new_password" : "Nuova password",
     "confirm_password" : "Conferma password",
-    "update_password" : "Aggiorna password"
+    "update_password" : "Aggiorna password",
+
+    "shipping_address" : "Indirizzo spedizione",
+    "purchase_date" : "Data acquisto",
+    "status" : "Stato",
+    "order_details" : "Dettagli ordine",
+    "search_placeholder" : "Cerca tra gli ordini...",
+    "rating" : "Valutazione",
+    "review_date" : "Data recensione",
+    "review_placeholder" : "Cerca tra le recensioni...",
+    "edit" : "Modifica",
+    "delete" : "Elimina",
+    "delete_review_confirm" : "Vuoi eliminare questa recensione?",
+    "save_changes" : "Salva modifiche"
     
 }

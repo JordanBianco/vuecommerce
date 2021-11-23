@@ -30,7 +30,7 @@ export const login = async ({commit}, {user}) => {
         })
         if (res.status === 200) {
             commit('SET_AUTH', true)
-            router.push({ name: 'Dashboard', query: { view: 'orders' }})
+            router.push({ name: 'Dashboard' })
         }
     } catch (error) {
         if (error.response.status === 422) {

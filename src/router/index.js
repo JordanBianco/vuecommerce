@@ -5,11 +5,6 @@ import store from '@/store'
 Vue.use(VueRouter)
 
 const routes = [
-	{
-		path: '/',
-		name: 'Home',
-		component: () => import('../views/Home.vue')
-	},
 	// Login
 	{
 		path: '/login',
@@ -23,6 +18,12 @@ const routes = [
 		name: 'Register',
 		component: () => import('../views/Auth/register.vue'),
 		meta: { guest: true }
+	},
+	// Home
+	{
+		path: '/',
+		name: 'Home',
+		component: () => import('../views/Home.vue')
 	},
 	// Products
 	{
@@ -59,13 +60,6 @@ const routes = [
 		component: () => import('../views/Checkout/show.vue'),
 		meta: { auth: true }
 	},
-	// Dashboard
-	{
-		path: '/dashboard',
-		name: 'Dashboard',
-		component: () => import('../views/Auth/dashboard.vue'),
-		meta: { auth: true }
-	},
 	// Review
 	{
 		path: '/review/:slug',
@@ -74,13 +68,55 @@ const routes = [
 		props: true,
 		meta: { auth: true }
 	},
-	// Order
+	// Dashboard
 	{
-		path: '/order/:slug',
-		name: 'order.show',
-		component: () => import('../views/Order/show.vue'),
-		props: true,
-		meta: { auth: true }
+		path: '/dashboard',
+		component: () => import('../views/Auth/dashboard.vue'),
+		meta: { auth: true },
+		children: [
+			{
+				path: '/',
+				name: 'Dashboard',
+				component: () => import('../views/Dashboard/Dashboard.vue'),
+				meta: { dashboard: true },
+			},
+			{
+				path: 'orders',
+				name: 'My Orders',
+				component: () => import('../views/Dashboard/MyOrders.vue'),
+				meta: { dashboard: true },
+			},
+			{
+				path: 'address',
+				name: 'My Address',
+				component: () => import('../views/Dashboard/MyAddress.vue'),
+				meta: { dashboard: true },
+			},
+			{
+				path: 'reviews',
+				name: 'My Reviews',
+				component: () => import('../views/Dashboard/MyReviews.vue'),
+				meta: { dashboard: true },
+			},
+			{
+				path: 'archived-orders',
+				name: 'Archived Orders',
+				component: () => import('../views/Dashboard/MyArchivedOrders.vue'),
+				meta: { dashboard: true },
+			},
+			{
+				path: 'personal-info',
+				name: 'Personal Info',
+				component: () => import('../views/Dashboard/MyInfo.vue'),
+				meta: { dashboard: true },
+			},
+			{
+				path: 'change-password',
+				name: 'Change Password',
+				component: () => import('../views/Dashboard/ChangePassword.vue'),
+				meta: { dashboard: true },
+			}
+		]
 	},
 ]
 
