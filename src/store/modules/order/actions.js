@@ -105,6 +105,17 @@ export const restoreOrder = async ({commit}, {order, index}) => {
     }
 }
 
+export const getLastOrder = async ({commit}) => {
+    try {
+        const res = await api.get('/orders/last')
+        if (res.status === 200) {
+            commit('SET_LAST_ORDER', res.data.data)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const emptyErrors = ({commit}) => {
     commit('EMPTY_ERRORS')
 }

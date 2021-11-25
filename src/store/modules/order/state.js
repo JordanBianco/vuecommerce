@@ -5,4 +5,5 @@ export default {
     productsReviewed: [],
     purchasedProducts: [],
     archived: [],
+    last: {},
 }

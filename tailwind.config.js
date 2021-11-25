@@ -10,6 +10,9 @@ module.exports = {
 			...defaultTheme.screens,
 		  },
 		extend: {
+			fontSize: {
+				'xxs' : '0.65rem', // 10.4 px
+			},
 			colors: {
 				'c-white' : '#fffffe',
 				'c-black' : '#16161a',
@@ -30,6 +33,8 @@ module.exports = {
 				'120' : '28rem',
 				'55' : '55%',
 				'45' : '45%',
+				'28%' : '28%',
+				'72%' : '72%',
 			},
 		},
 		transitionProperty: {

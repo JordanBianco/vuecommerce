@@ -1,7 +1,7 @@
 <template>
 	<div style="font-family: 'Poppins', sans-serif;">
 		<TheNavbar v-if="!isDashboard" />
-		<router-view class="bg-white min-h-screen pb-24 md:pb-16"/>
+		<router-view class="bg-white min-h-screen"/>
 		<TheFooter v-if="!isDashboard" />
 
 		<NotificationList />

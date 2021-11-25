@@ -77,6 +77,17 @@ export const setSuccessStatus = ({commit}, {value}) => {
     commit('SET_SUCCESS_STATUS', value);
 }
 
+export const getLastReview = async ({commit}) => {
+    try {
+        const res = await api.get('/reviews/last')
+        if (res.status === 200) {
+            commit('SET_LAST_REVIEW', res.data.data)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const emptyErrors = ({commit}) => {
     commit('SET_ERRORS', []);
 }

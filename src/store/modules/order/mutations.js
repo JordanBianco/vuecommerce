@@ -22,6 +22,11 @@ export const REMOVE_ARCHIVED_ORDER = (state, index) => {
     state.archived.splice(index, 1)
 }
 
+export const SET_LAST_ORDER = (state, order) => {
+    state.last = order
+}
+
+
 export const SET_ERRORS = (state, errors) => {
     state.errors = errors
 }

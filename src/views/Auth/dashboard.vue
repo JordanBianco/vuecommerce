@@ -1,7 +1,7 @@
 <template>
     <div>
         <main class="w-full">
-            <nav class="w-full border-b">
+            <nav class="w-full border-b fixed top-0 z-20 bg-white">
                 <div class="flex items-center justify-between md:w-11/12 md:mx-auto p-4.5 md:px-0">
                     <TheSidebar />
 
@@ -17,7 +17,7 @@
             </nav>
             
             <transition name="fade">
-                <router-view class="py-10 pl-28 pr-14" :key="$route.path"></router-view>
+                <router-view class="pl-28 py-18 pr-14 bg-gray-50 min-h-screen" :key="$route.path"></router-view>
             </transition>
         </main>
     </div>
