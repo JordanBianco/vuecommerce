@@ -43,7 +43,7 @@
 
             <button
                 type="submit"
-                class="text-center bg-indigo-400 rounded-lg text-white px-3 py-2 shadow-sm">
+                class="text-center bg-gradient-to-r from-indigo-400 to-indigo-500 rounded-lg text-white px-3 py-2 shadow-sm">
                     {{ $t('update_info') }}    
             </button>
         </form>

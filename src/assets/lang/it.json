@@ -182,6 +182,21 @@
     "no_last_purchase" : "Non hai ancora effettuato un acquisto",
 
     "last_review" : "Ultima recensione",
-    "no_last_review" : "Non hai ancora lasciato una recensione."
+    "no_last_review" : "Non hai ancora lasciato una recensione.",
+
+    "no_activities" : "La tua attività verrà mostrata qui",
+    "delete_account" : "Elimina account",
+    "order_created" : "Hai effettuato un acquisto per un totale di",
+    "order_archived" : "Hai archiviato un ordine",
+    "order_restored" : "Hai ripristinato un ordine",
+    "review_left" : "Hai scritto una recensione per l'articolo",
+    "review_updated" : "Hai aggiornato la recensione per l'articolo",
+    "review_deleted" : "Hai eliminato una recensione",
+
+    "user_updated" : "Hai aggiornato il tuo profilo",
+    "hide_changes" : "Nascondi modifiche",
+    "show_changes" : "Mostra modifiche",
+    "password_update" : "Hai aggiornato la tua password",
+    "delete_account_confirm" : "Vuoi davvero eliminare il tuo account?"
     
 }

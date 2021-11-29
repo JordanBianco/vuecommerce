@@ -1,6 +1,6 @@
 <template>
     <div>
-        <main class="w-full">
+        <main v-if="user" class="w-full">
             <nav class="w-full border-b fixed top-0 z-20 bg-white">
                 <div class="flex items-center justify-between md:w-11/12 md:mx-auto p-4.5 md:px-0">
                     <TheSidebar />
@@ -10,14 +10,14 @@
                         <LanguageSwitcher />
 
                         <div class="text-gray-500 text-sm">
-                            {{ name }}
+                            {{ this.user.first_name + ' ' + this.user.last_name }}
                         </div>
                     </div>
                 </div>
             </nav>
             
             <transition name="fade">
-                <router-view class="pl-28 py-18 pr-14 bg-gray-50 min-h-screen" :key="$route.path"></router-view>
+                <router-view class="pl-28 pt-24 pb-12 pr-14 bg-gray-50 min-h-screen" :key="$route.path"></router-view>
             </transition>
         </main>
     </div>
@@ -40,9 +40,6 @@ export default {
     computed: {
         user() {
             return this.$store.state.user.user
-        },
-        name() {
-            return `${this.user.first_name} ${this.user.last_name}`
         },
     },
     methods: {

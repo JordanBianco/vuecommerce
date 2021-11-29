@@ -1,15 +1,17 @@
 import api from '@/apis/api'
 import router from '@/router'
 
-export const getReviews = async ({commit}, {search, sort, dir}) => {
+export const getReviews = async ({commit}, {search, sort, dir, perPage, page}) => {
     try {
         const res = await api.get(
             '/reviews?search=' + search
             + '&sort=' + sort
             + '&dir=' + dir
+            + '&perPage=' + perPage
+            + '&page=' + page
         )
         if (res.status === 200) {
-            commit('SET_REVIEWS', res.data.data);
+            commit('SET_REVIEWS', res.data);
         }
     } catch (error) {
         console.log(error)
@@ -20,7 +22,6 @@ export const getReviews = async ({commit}, {search, sort, dir}) => {
 export const postReview = async ({commit}, {product_id, review}) => {
     try {
         const res = await api.post('/' + product_id + '/review', {
-            title: review.title,
             content: review.content,
             rating: review.rating,
         })
@@ -37,7 +38,6 @@ export const postReview = async ({commit}, {product_id, review}) => {
 export const updateReview = async ({commit}, {review}) => {
     try {
         const res = await api.patch('/reviews/' + review.id, {
-            title: review.title,
             content: review.content,
             rating: review.rating
         })
@@ -73,7 +73,6 @@ export const deleteReview = async ({commit}, {review, index}) => {
 }
 
 export const setSuccessStatus = ({commit}, {value}) => {
-    console.log(value)
     commit('SET_SUCCESS_STATUS', value);
 }
 
@@ -81,7 +80,7 @@ export const getLastReview = async ({commit}) => {
     try {
         const res = await api.get('/reviews/last')
         if (res.status === 200) {
-            commit('SET_LAST_REVIEW', res.data.data)
+            commit('SET_LAST_REVIEW', res.data)
         }
     } catch (error) {
         console.log(error)

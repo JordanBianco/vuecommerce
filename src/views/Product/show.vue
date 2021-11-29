@@ -113,7 +113,6 @@
                     <div v-for="review in reviews" :key="review.id" class="flex space-x-4 my-2 odd:bg-gray-100 rounded-lg p-4">
                         <div class="rounded-lg bg-gray-200 w-14 h-14 flex-none"></div>
                         <div>
-                            <h4 class="text-sm text-c-dark-gray font-semibold">{{ review.title }}</h4>
                             <p class="text-sm md:text-xs text-gray-400">{{ review.user.first_name + ' ' + review.user.last_name }} il {{ $moment(review.created_at).format('DD.MM.YYYY') }} alle {{ $moment(review.created_at).format('HH:mm') }}</p>
                         
                             <div class="my-2 flex">

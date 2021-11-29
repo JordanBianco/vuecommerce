@@ -3,7 +3,7 @@ export const SET_REVIEWS = (state, reviews) => {
 }
 
 export const DELETE_REVIEW = (state, index) => {
-    state.reviews.splice(index, 1)
+    state.reviews.data.splice(index, 1)
 }
 
 export const SET_LAST_REVIEW = (state, review) => {

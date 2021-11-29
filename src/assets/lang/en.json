@@ -182,6 +182,24 @@
     "no_last_purchase" : "You haven't made a purchase yet",
     
     "last_review" : "Last review",
-    "no_last_review" : "You haven't left a review yet"
+    "no_last_review" : "You haven't left a review yet",
+
+    "no_activities" : "Your recent activity will be shown here",
+    "delete_account" : "Delete account",
+    "order_created" : "You have made a purchase for a total of",
+    "order_archived" : "You have archived an order",
+    "order_restored" : "You have restored an order",
+    "review_left" : "You wrote a review for the article",
+    "review_updated" : "You have updated the review for the article",
+    "review_deleted" : "You deleted a review",
+
+    "user_updated" : "You have updated your profile",
+    "hide_changes" : "Hide changes",
+    "show_changes" : "Show changes",
+    "password_update" : "You have updated your password",
+    "delete_account_confirm" : "Do you really want to delete your account?"
+
+
+
 
 }

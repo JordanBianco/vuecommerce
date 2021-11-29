@@ -16,16 +16,6 @@
                     <div class="border-t pt-8 text-sm">
 
                         <form @submit.prevent="postReview">
-                            <div class="w-full mb-6">
-                                <label class="text-gray-400 text-sm" for="title">{{ $t('title') }} <small>({{ $t('optional') }})</small></label>
-                                <input
-                                    type="text"
-                                    @keydown="errors.title = ''"
-                                    v-model="review.title"
-                                    :class="{ 'border-red-500' : errors.title }"
-                                    class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 py-1.5">
-                                    <p v-if="errors.title" class="text-xs text-red-500 mt-0.5">{{ errors.title[0] }}</p>
-                            </div>
 
                             <div class="w-full mb-6">
                                 <label class="text-gray-400 text-sm" for="content">{{ $t('content') }} <small>({{ $t('optional') }})</small></label>
@@ -86,7 +76,6 @@ export default {
     data() {
         return {
             review: {
-                title: '',
                 content: '',
                 rating: '',
             }

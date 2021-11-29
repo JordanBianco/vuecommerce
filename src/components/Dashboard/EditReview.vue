@@ -1,19 +1,10 @@
 <template>
     <div>
         <header class="bg-gray-100 flex justify-end text-sm p-4 text-gray-600">
-            <svg @click="$emit('toggleEditReview')" class="w-5 h-5 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"/></svg>
+            <svg @click="$emit('toggleEditReview')" class="w-6 h-6 text-gray-400 hover:text-gray-600 duration-200 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"/></svg>
         </header>
 
         <section class="overflow-y-auto pb-20 h-screen p-4 text-sm text-gray-600">
-            <div class="mb-6">
-                <label class="text-gray-400" for="title">{{ $t('title') }}</label>
-                <input
-                    v-model="review.title"
-                    type="text"
-                    :class="{ 'border-red-500' : errors.title }"
-                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5">
-                    <p v-if="errors.title" class="text-xs text-red-500 mt-0.5">{{ errors.title[0] }}</p>
-            </div>
 
             <div class="mb-6">
                 <label class="text-gray-400" for="content">{{ $t('content') }}</label>
@@ -49,8 +40,6 @@
 </template>
 
 <script>
-import uniqid from 'uniqid';
-
 export default {
     name: 'Dashboard.EditReview',
     props: ['review'],
@@ -75,9 +64,6 @@ export default {
             this.$store.dispatch('review/updateReview', {
                 review: this.review
             })
-        },
-        uniqid() {
-            return uniqid()
         },
         setRating(i) {
             this.review.rating = i

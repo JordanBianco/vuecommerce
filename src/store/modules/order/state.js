@@ -1,9 +1,9 @@
 export default {
-    errors: [],
-    orders: [],
+    orders: {},
     order: {},
     productsReviewed: [],
     purchasedProducts: [],
-    archived: [],
-    last: {},
+    archived: {},
+    last: [],
+    errors: []
 }

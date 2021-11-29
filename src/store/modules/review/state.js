@@ -1,6 +1,6 @@
 export default {
-    reviews: [],
-    errors: [],
+    reviews: {},
     success: false,
-    last: {}
+    last: [],
+    errors: []
 }

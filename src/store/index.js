@@ -12,7 +12,6 @@ const data = createPersistedState({
     'user',
     'auth',
     'language',
-    // 'weather'
   ]
 })
 

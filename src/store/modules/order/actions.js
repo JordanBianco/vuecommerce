@@ -1,32 +1,36 @@
 import api from '@/apis/api'
 import router from '@/router'
 
-export const getOrders = async ({commit}, {search, fstatus, sort, dir}) => {
+export const getOrders = async ({commit}, {search, fstatus, sort, dir, perPage, page}) => {
     try {
         const res = await api.get(
             '/orders?search=' + search 
             + '&fstatus=' + fstatus
             + '&sort=' + sort
             + '&dir=' + dir
+            + '&perPage=' + perPage
+            + '&page=' + page
         )
         if (res.status === 200) {
-            commit('GET_ORDERS', res.data.data)
+            commit('GET_ORDERS', res.data)
         }
     } catch (error) {
         console.log(error)
     }
 }
 
-export const getArchivedOrders = async ({commit}, {search, fstatus, sort, dir}) => {
+export const getArchivedOrders = async ({commit}, {search, fstatus, sort, dir, perPage, page}) => {
     try {
         const res = await api.get(
             '/orders/archived?search=' + search 
             + '&fstatus=' + fstatus
             + '&sort=' + sort
             + '&dir=' + dir
+            + '&perPage=' + perPage
+            + '&page=' + page
         )
         if (res.status === 200) {
-            commit('GET_ARCHIVED_ORDERS', res.data.data)
+            commit('GET_ARCHIVED_ORDERS', res.data)
         }
     } catch (error) {
         console.log(error)
@@ -109,7 +113,7 @@ export const getLastOrder = async ({commit}) => {
     try {
         const res = await api.get('/orders/last')
         if (res.status === 200) {
-            commit('SET_LAST_ORDER', res.data.data)
+            commit('SET_LAST_ORDER', res.data)
         }
     } catch (error) {
         console.log(error)

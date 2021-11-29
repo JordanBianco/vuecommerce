@@ -41,9 +41,14 @@ export const login = async ({commit}, {user}) => {
 
 export const logout = async ({commit}) => {
     try {
+        sanctum.get('/csrf-cookie')
         const res = await api.post('/logout')
         if (res.status === 200) {
             commit('SET_AUTH', false)
+            commit('user/SET_USER', null, { root: true })
+            commit('user/SET_ACTIVITIES', null, { root: true })
+            commit('review/SET_LAST_REVIEW', null, { root: true })
+            commit('order/SET_LAST_ORDER', null, { root: true })
             commit('cart/EMPTY_CART', [], { root: true })
             commit('cart/EMPTY_SAVED', [], { root: true })
             router.push({ name: 'Home' })

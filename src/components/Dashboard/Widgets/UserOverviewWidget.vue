@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="bg-white p-6 flex shadow-md rounded-lg mb-6 h-52">
+        <div class="bg-white p-6 flex shadow rounded-lg mb-6 h-52">
         
             <div class="flex justify-between items-center w-full">
                 <!-- Left Side -->
@@ -19,9 +19,9 @@
                                     {{ $t('edit')}}
                             </router-link>
                             <button
-                                :to="{ name: 'Personal Info' }"
+                                @click="deleteAccount()"
                                 class="text-center text-xs border border-red-500 rounded-lg text-red-500 px-3 py-2 shadow-sm">
-                                    elimina account
+                                    {{ $t('delete_account')}}
                             </button>
                         </div>
                     </div>
@@ -47,7 +47,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </template>
@@ -55,6 +54,14 @@
 <script>
 export default {
     name: 'Dashboard.Widgets.UserOverviewWidget',
-    props: ['user']
+    props: ['user'],
+    methods: {
+        deleteAccount() {
+            if (confirm(this.$t('delete_account_confirm'))) {
+                this.$store.dispatch('user/deleteAccount')
+            }
+        }
+    }
+
 }
 </script>

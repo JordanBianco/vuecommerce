@@ -4,7 +4,7 @@
             <h2 class="text-xl text-gray-600">{{ $t('my_reviews') }}</h2>
         </header>
 
-        <div class="mb-6 text-xs">
+        <div class="mb-6 text-xs flex justify-between items-center">
             <div class="relative w-1/3">
                 <input
                     v-model="search"
@@ -14,25 +14,30 @@
                 
                     <svg class="w-5 h-5 text-gray-300 flex-none absolute right-3 top-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
             </div>
+
+            <div>
+                <select v-model="perPage" class="p-2 px-4 border rounded-lg focus:outline-none focus:border-indigo-400 text-gray-600">
+                    <option value="">{{ $t('results_per_page') }}</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
         </div>
 
         <div class="overflow-x-auto">
             <table class="w-full">
                 <tr class="bg-gray-100 text-gray-600 text-xs border-b">
                     <!-- Articolo -->
-                    <th class="font-normal text-left uppercase p-3 w-1/6">
+                    <th class="font-normal text-left uppercase p-3 w-1/5">
                         <span>{{ $tc('items', 1) }}</span>
                     </th>
-                    <!-- Titolo -->
-                    <th class="font-normal text-left uppercase p-3 w-1/6">
-                        <span>{{ $t('title') }}</span>
-                    </th>
                     <!-- Contenuto -->
-                    <th class="font-normal text-left uppercase p-3 w-2/6">
+                    <th class="font-normal text-left uppercase p-3 w-2/5">
                         <span>{{ $t('content') }}</span>
                     </th>
                     <!-- Voto -->
-                    <th @click="sortBy('rating')" class="font-normal text-left uppercase p-3 w-1/6">
+                    <th @click="sortBy('rating')" class="font-normal text-left uppercase p-3 w-1/5">
                         <div class="flex space-x-1 items-center cursor-pointer max-w-max">
                             <span class="whitespace-nowrap">{{ $t('rating') }}</span>
 
@@ -43,7 +48,7 @@
                         </div>
                     </th>
                     <!-- Data review -->
-                    <th class="font-normal text-left uppercase p-3 w-1/6">
+                    <th class="font-normal text-left uppercase p-3 w-1/5">
                         <div @click="sortBy('created_at')" class="flex space-x-1 items-center cursor-pointer max-w-max">
                             <span>{{ $t('review_date') }}</span>
 
@@ -54,28 +59,27 @@
                         </div>
                     </th>
                     <!-- Azioni -->
-                    <th class="font-normal text-left uppercase p-3 w-1/6">
+                    <th class="font-normal text-left uppercase p-3 w-1/5">
                         <span>{{ $t('actions') }}</span>
                     </th>
                 </tr>
 
-                <tr v-for="(review, index) in reviews" :key="review.id" class="odd:bg-gray-100 last:border-b text-xs text-gray-400 p-3">
+                <tr v-for="(review, index) in reviews.data" :key="review.id" class="odd:bg-gray-100 last:border-b text-xs text-gray-400 p-3">
                     <td class="p-3 text-indigo-400">
                         <router-link class="hover:underline" :to="{ name: 'product.show', params: { slug: review.product.slug }}">
                             {{ review.product.name }}
                         </router-link>
                     </td>
-                    <td class="p-3">{{ review.title }}</td>
                     <td class="p-3">{{ review.content }}</td>
                     <td class="p-3">
                         <div class="flex">
                             <svg
                                 v-for="index in review.rating"
-                                :key="index + uniqid()"
+                                :key="index + $uniqid()"
                                 class="w-4 h-4 text-indigo-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
                             <svg
                                 v-for="index in 5 - review.rating"
-                                :key="index + uniqid()"
+                                :key="index + $uniqid()"
                                 class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
                         </div>
                     </td>
@@ -92,8 +96,31 @@
                     </td>
                 </tr>
             </table>
-            <footer class="mt-4 text-xs text-gray-400 flex justify-end">
-                <span class="block">{{ $t('results') }} {{ reviews.length }}</span>
+            
+            <footer v-if="reviews.meta"  class="mt-8 flex justify-between items-center text-gray-500">
+
+                <div class="flex items-center space-x-4">
+                    <span class="text-xs block">{{ $t('results') }} {{ reviews.meta.total }}</span>
+                    <span v-if="reviews.meta.total > reviews.data.length" class="text-xs block">{{ $t('results_per_page') }} {{ reviews.data.length }}</span>
+                </div>
+
+                <!-- Pagination -->
+                <pagination
+                    class="flex items-center space-x-4 text-base"
+                    :data="reviews"
+                    :limit="3"
+                    @pagination-change-page="getReviews">
+                        <div
+                            class="bg-gradient-to-r from-indigo-400 to-indigo-500 text-white text-sm p-1 rounded-lg"
+                            slot="prev-nav">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <div
+                            class="bg-gradient-to-r from-indigo-400 to-indigo-500 text-white text-sm p-1 rounded-lg"
+                            slot="next-nav">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        </div>
+                </pagination>
             </footer>
         </div>
 
@@ -112,7 +139,6 @@
 </template>
 
 <script>
-import uniqid from 'uniqid';
 import EditReview from '@/components/Dashboard/EditReview';
 
 export default {
@@ -129,7 +155,8 @@ export default {
             sort: 'created_at',
             dir: 'desc',
             editReview: false,
-            selectedReview: {}
+            selectedReview: {},
+            perPage: ''
         }
     },
     watch: {
@@ -142,6 +169,9 @@ export default {
         dir() {
             this.getReviews();
         },
+        perPage() {
+            this.getReviews();
+        },
     },
     computed: {
         reviews() {
@@ -149,11 +179,13 @@ export default {
         },
     },
     methods: {
-        getReviews() {
+        getReviews(page = 1) {
             this.$store.dispatch('review/getReviews', {
                 search: this.search,
                 sort: this.sort,
                 dir: this.dir,
+                perPage: this.perPage,
+                page: page
             })
         },
         sortBy(value) {
@@ -170,6 +202,8 @@ export default {
                     review: review,
                     index: index
                 })
+
+                this.getReviews()
             }
         },
         selectReview(review) {
@@ -178,9 +212,6 @@ export default {
         },
         toggleEditReview() {
             this.editReview = ! this.editReview
-        },
-        uniqid() {
-            return uniqid()
         },
     }
 }

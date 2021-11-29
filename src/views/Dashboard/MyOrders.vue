@@ -15,13 +15,20 @@
                     <svg class="w-5 h-5 text-gray-300 flex-none absolute right-3 top-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
             </div>
 
-            <div>
+            <div class="flex items-center space-x-2">
                 <select v-model="fstatus" class="p-2 px-4 border rounded-lg focus:outline-none focus:border-indigo-400 text-gray-600">
                     <option value="">{{ $t('status') }}</option>
                     <option value="pending">pending</option>
                     <option value="in transit">in transit</option>
                     <option value="complete">complete</option>
                     <option value="canceled">canceled</option>
+                </select>
+
+                <select v-model="perPage" class="p-2 px-4 border rounded-lg focus:outline-none focus:border-indigo-400 text-gray-600">
+                    <option value="">{{ $t('results_per_page') }}</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
                 </select>
             </div>
         </div>
@@ -82,7 +89,7 @@
                         <span>{{ $t('actions') }}</span>
                     </th>
                 </tr>
-                <tr v-for="(order, index) in orders" :key="order.id" class="odd:bg-gray-100 last:border-b text-xs text-gray-400 p-3">
+                <tr v-for="(order, index) in orders.data" :key="order.id" class="odd:bg-gray-100 last:border-b text-xs text-gray-400 p-3">
                     <td class="p-3 text-indigo-400 whitespace-nowrap">{{ order.order_number }}</td>
                     <td class="p-3 whitespace-nowrap">{{ order.address }}</td>
                     <td class="p-3">€{{ order.total }}</td>
@@ -104,8 +111,31 @@
                     </td>
                 </tr>
             </table>
-            <footer class="mt-4 text-xs text-gray-400 flex justify-end">
-                <span class="block">{{ $t('results') }} {{ orders.length }}</span>
+
+            <footer v-if="orders.meta"  class="mt-8 flex justify-between items-center text-gray-500">
+
+                <div class="flex items-center space-x-4">
+                    <span class="text-xs block">{{ $t('results') }} {{ orders.meta.total }}</span>
+                    <span v-if="orders.meta.total > orders.data.length" class="text-xs block">{{ $t('results_per_page') }} {{ orders.data.length }}</span>
+                </div>
+
+                <!-- Pagination -->
+                <pagination
+                    class="flex items-center space-x-4 text-base"
+                    :data="orders"
+                    :limit="3"
+                    @pagination-change-page="getOrders">
+                        <div
+                            class="bg-gradient-to-r from-indigo-400 to-indigo-500 text-white text-sm p-1 rounded-lg"
+                            slot="prev-nav">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        </div>
+                        <div
+                            class="bg-gradient-to-r from-indigo-400 to-indigo-500 text-white text-sm p-1 rounded-lg"
+                            slot="next-nav">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                        </div>
+                </pagination>
             </footer>
         </div>
 
@@ -142,6 +172,7 @@ export default {
             dir: 'desc',
             orderDetails: false,
             selectedOrder: {},
+            perPage: '',
         }
     },
     watch: {
@@ -161,6 +192,9 @@ export default {
         fstatus() {
             this.getOrders();
         },
+        perPage() {
+			this.getOrders();
+		},
     },
     computed: {
         orders() {
@@ -168,12 +202,14 @@ export default {
         },
     },
     methods: {
-        getOrders() {
+        getOrders(page = 1) {
             this.$store.dispatch('order/getOrders', {
                 search: this.search,
                 fstatus: this.fstatus,
                 sort: this.sort,
                 dir: this.dir,
+                perPage: this.perPage,
+                page: page
             })
         },
         archiveOrder(order, index) {
@@ -181,6 +217,8 @@ export default {
                 order: order,
                 index: index
             })
+
+            this.getOrders()
         },
         status(order) {
             switch (order.status) {

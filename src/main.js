@@ -7,8 +7,10 @@ import '@/css/tailwind.css'
 
 import i18n from './assets/i18n'
 import moment from 'moment'
+import uniqid from 'uniqid';
 
 Vue.prototype.$moment = moment;
+Vue.prototype.$uniqid = uniqid;
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 

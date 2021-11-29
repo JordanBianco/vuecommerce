@@ -10,4 +10,7 @@ ADMIN PANEL
 
 EMAIL QUEUE
 
-WEATHER APP NELLA DASHBOARD
+
+forget password?
+ordine cambio status -> cronologia attività utente,
+evitare di effettuare due ordini, se si preme in fretta bottone,

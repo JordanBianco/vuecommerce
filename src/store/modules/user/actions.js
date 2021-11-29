@@ -11,6 +11,17 @@ export const getUser = async ({commit}) => {
     }
 }
 
+export const getActivities = async ({commit}) => {
+    try {
+        const res = await api.get('/user/activities')
+        if (res.status === 200) {
+            commit('SET_ACTIVITIES', res.data.data)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const updateInfo = async ({commit}, {user}) => {
     try {
         const res = await api.patch('/user/personal-info', {
@@ -75,6 +86,17 @@ export const changePassword = async ({commit}, {oldPassword, newPassword, newPas
         if (error.response.status === 422) {
             commit('SET_ERRORS', error.response.data.errors);
         }
+    }
+}
+
+export const deleteAccount = async ({dispatch}) => {
+    try {
+        const res = await api.delete('/user/delete')
+        if (res.status === 200) {
+            dispatch('auth/logout', [], { root:true });
+        }
+    } catch (error) {
+        console.log(error)
     }
 }
 

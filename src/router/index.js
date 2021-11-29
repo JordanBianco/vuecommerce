@@ -58,7 +58,7 @@ const routes = [
 		path: '/checkout',
 		name: 'Checkout',
 		component: () => import('../views/Checkout/show.vue'),
-		meta: { auth: true }
+		meta: { cart: true }
 	},
 	// Review
 	{
@@ -154,6 +154,14 @@ router.beforeEach((to, from, next) => {
 		if (!store.state.auth.auth) {
 			next({
 				name: 'Login'
+			});
+		} else {
+			next();
+		}
+	} else if (to.matched.some(record => record.meta.cart)) {
+		if (store.state.cart.items.length < 1) {
+			next({
+				name: 'Dashboard'
 			});
 		} else {
 			next();
