@@ -27,7 +27,7 @@ import LastOrderWidget from '@/components/Dashboard/Widgets/LastOrderWidget'
 import LastReviewWidget from '@/components/Dashboard/Widgets/LastReviewWidget'
 
 export default {
-    name: 'Dashboard.Dashboard',
+    name: 'User.Dashboard.Overview',
     components: {
         UserOverviewWidget,
         UserTimelineWidget,

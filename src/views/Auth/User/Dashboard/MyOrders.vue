@@ -1,7 +1,7 @@
 <template>
     <section>
         <header class="pb-6">
-            <h2 class="text-xl text-gray-600">{{ $t('archived_orders') }}</h2>
+            <h2 class="text-xl text-gray-600">{{ $t('my_orders') }}</h2>
         </header>
 
         <div class="flex flex-col space-y-3 md:flex-row md:justify-between md:items-center md:space-y-0 mb-6 text-xs">
@@ -73,17 +73,6 @@
                             </div>
                         </div>
                     </th>
-                    <!-- Data Archiviazione -->
-                    <th @click="sortBy('archived_at')" class="font-normal text-left uppercase p-3">
-                        <div class="flex space-x-1 items-center cursor-pointer max-w-max">
-                            <span class="whitespace-nowrap">{{ $t('archiving_date') }}</span>
-
-                            <div class="flex flex-col -space-y-2.5">
-                                <svg :class="{ 'text-gray-600' : sort == 'archived_at' && dir == 'asc' }" class="w-4.5 h-4.5 flex-none text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M17,13.41,12.71,9.17a1,1,0,0,0-1.42,0L7.05,13.41a1,1,0,0,0,0,1.42,1,1,0,0,0,1.41,0L12,11.29l3.54,3.54a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29A1,1,0,0,0,17,13.41Z"/></svg>
-                                <svg :class="{ 'text-gray-600' : sort == 'archived_at' && dir == 'desc' }" class="w-4.5 h-4.5 flex-none text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"/></svg>
-                            </div>
-                        </div>
-                    </th>
                     <!-- Stato -->
                     <th @click="sortBy('status')" class="font-normal text-left uppercase p-3">
                         <div class="flex space-x-1 items-center cursor-pointer max-w-max">
@@ -100,12 +89,11 @@
                         <span>{{ $t('actions') }}</span>
                     </th>
                 </tr>
-                <tr v-for="(order, index) in archived.data" :key="order.id" class="odd:bg-gray-100 last:border-b text-xs text-gray-400 p-3">
+                <tr v-for="(order, index) in orders.data" :key="order.id" class="odd:bg-gray-100 last:border-b text-xs text-gray-400 p-3">
                     <td class="p-3 text-indigo-400 whitespace-nowrap">{{ order.order_number }}</td>
                     <td class="p-3 whitespace-nowrap">{{ order.address }}</td>
                     <td class="p-3">€{{ order.total }}</td>
                     <td class="p-3 whitespace-nowrap">{{ $moment(order.created_at).format('DD.MM.YYYY HH:mm') }}</td>
-                    <td class="p-3 whitespace-nowrap">{{ $moment(order.archived_at).format('DD.MM.YYYY HH:mm') }}</td>
                     <td class="p-3">
                         <div :class="status(order)" class="p-1 px-2.5 text-xs rounded-full max-w-max whitespace-nowrap">
                             {{ order.status }}
@@ -113,8 +101,8 @@
                     </td>
                     <td class="p-3">
                         <div class="flex items-center space-x-2 text-gray-500">
-                            <div :title="$t('restore')" @click="restoreOrder(order, index)" class="cursor-pointer">
-                                <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12,2A10,10,0,0,0,5.12,4.77V3a1,1,0,0,0-2,0V7.5a1,1,0,0,0,1,1H8.62a1,1,0,0,0,0-2H6.22A8,8,0,1,1,4,12a1,1,0,0,0-2,0A10,10,0,1,0,12,2Zm0,6a1,1,0,0,0-1,1v3a1,1,0,0,0,1,1h2a1,1,0,0,0,0-2H13V9A1,1,0,0,0,12,8Z"/></svg>
+                            <div :title="$t('archive')"  @click="archiveOrder(order, index)" class="cursor-pointer">
+                                <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M10,14h4a1,1,0,0,0,0-2H10a1,1,0,0,0,0,2ZM19,3H5A3,3,0,0,0,2,6V9a1,1,0,0,0,1,1H4v8a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V10h1a1,1,0,0,0,1-1V6A3,3,0,0,0,19,3ZM18,18a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V10H18ZM20,8H4V6A1,1,0,0,1,5,5H19a1,1,0,0,1,1,1Z"/></svg>
                             </div>
                             <div :title="$t('details')" @click="selectOrder(order)" class="cursor-pointer">
                                 <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12,14a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V15A1,1,0,0,0,12,14Zm.38-2.92A1,1,0,0,0,11.8,11l-.18.06-.18.09-.15.12A1,1,0,0,0,11,12a1,1,0,0,0,.29.71,1,1,0,0,0,.33.21A.84.84,0,0,0,12,13a1,1,0,0,0,.71-.29A1,1,0,0,0,13,12a1,1,0,0,0-.29-.71A1.15,1.15,0,0,0,12.38,11.08ZM20,8.94a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19l-.1,0A1.1,1.1,0,0,0,13.06,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V9S20,9,20,8.94ZM14,5.41,16.59,8H15a1,1,0,0,1-1-1ZM18,19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4h5V7a3,3,0,0,0,3,3h3Z"/></svg>
@@ -124,16 +112,16 @@
                 </tr>
             </table>
 
-            <footer v-if="archived.meta"  class="mt-8 flex justify-between items-center text-gray-500">
-                
-                <span class="text-xs block">{{ $t('results') }} {{ archived.meta.total }}</span>
+            <footer v-if="orders.meta"  class="mt-8 flex justify-between items-center text-gray-500">
+
+                <span class="text-xs block">{{ $t('results') }} {{ orders.meta.total }}</span>
 
                 <!-- Pagination -->
                 <pagination
                     class="flex items-center space-x-4 text-base"
-                    :data="archived"
+                    :data="orders"
                     :limit="3"
-                    @pagination-change-page="getArchivedOrders">
+                    @pagination-change-page="getOrders">
                         <div
                             class="bg-gradient-to-r from-indigo-400 to-indigo-500 text-white text-sm p-1 rounded-lg"
                             slot="prev-nav">
@@ -146,7 +134,6 @@
                         </div>
                 </pagination>
             </footer>
-
         </div>
 
         <!-- Side Order Details -->
@@ -160,7 +147,6 @@
         </div>
         <!-- Overlay -->
         <div v-if="orderDetails" @click="toggleOrderDetails" class="fixed inset-0 bg-black opacity-30 z-40"></div>
-
     </section>
 </template>
 
@@ -168,22 +154,22 @@
 import OrderDetails from '@/components/Dashboard/OrderDetails'
 
 export default {
-    name: 'Dashboard.MyArchivedOrders',
+    name: 'User.Dashboard.MyOrders',
     components: {
         OrderDetails
     },
     mounted() {
-        this.getArchivedOrders();
+        this.getOrders();
     },
     data() {
         return {
             search: '',
+            fstatus: '',
             sort: 'created_at',
             dir: 'desc',
-            fstatus: '',
-            selectedOrder: {},
             orderDetails: false,
-            perPage: ''
+            selectedOrder: {},
+            perPage: '',
         }
     },
     watch: {
@@ -191,45 +177,45 @@ export default {
             if (this.search.length <= 6) {
                 return
             }
-            this.getArchivedOrders();
+            this.getOrders();
             
         },
         sort() {
-            this.getArchivedOrders();
+            this.getOrders();
         },
         dir() {
-            this.getArchivedOrders();
+            this.getOrders();
         },
         fstatus() {
-            this.getArchivedOrders();
+            this.getOrders();
         },
         perPage() {
-			this.getArchivedOrders();
+			this.getOrders();
 		},
     },
     computed: {
-        archived() {
-            return this.$store.state.order.archived
+        orders() {
+            return this.$store.state.order.orders
         },
     },
     methods: {
-        getArchivedOrders(page = 1) {
-            this.$store.dispatch('order/getArchivedOrders', {
+        getOrders(page = 1) {
+            this.$store.dispatch('order/getOrders', {
                 search: this.search,
                 fstatus: this.fstatus,
                 sort: this.sort,
                 dir: this.dir,
                 perPage: this.perPage,
-                page: page,
+                page: page
             })
         },
-        restoreOrder(order, index) {
-            this.$store.dispatch('order/restoreOrder', {
+        archiveOrder(order, index) {
+            this.$store.dispatch('order/archiveOrder', {
                 order: order,
                 index: index
             })
 
-            this.getArchivedOrders()
+            this.getOrders()
         },
         status(order) {
             switch (order.status) {

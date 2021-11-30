@@ -68,61 +68,75 @@ const routes = [
 		props: true,
 		meta: { auth: true }
 	},
-	// Dashboard
+	// User Routes
 	{
 		path: '/dashboard',
-		component: () => import('../views/Auth/dashboard.vue'),
+		component: () => import('../views/Auth/User/dashboard.vue'),
 		meta: { auth: true },
 		children: [
 			{
 				path: '/',
 				name: 'Dashboard',
-				component: () => import('../views/Dashboard/Dashboard.vue'),
+				component: () => import('../views/Auth/User/Dashboard/Dashboard.vue'),
 				meta: { dashboard: true },
 			},
 			{
 				path: 'orders',
 				name: 'My Orders',
-				component: () => import('../views/Dashboard/MyOrders.vue'),
+				component: () => import('../views/Auth/User/Dashboard/MyOrders.vue'),
 				meta: { dashboard: true },
 			},
 			{
 				path: 'address',
 				name: 'My Address',
-				component: () => import('../views/Dashboard/MyAddress.vue'),
+				component: () => import('../views/Auth/User/Dashboard/MyAddress.vue'),
 				meta: { dashboard: true },
 			},
 			{
 				path: 'reviews',
 				name: 'My Reviews',
-				component: () => import('../views/Dashboard/MyReviews.vue'),
+				component: () => import('../views/Auth/User/Dashboard/MyReviews.vue'),
 				meta: { dashboard: true },
 			},
 			{
 				path: 'archived-orders',
 				name: 'Archived Orders',
-				component: () => import('../views/Dashboard/MyArchivedOrders.vue'),
+				component: () => import('../views/Auth/User/Dashboard/MyArchivedOrders.vue'),
 				meta: { dashboard: true },
 			},
 			{
 				path: 'personal-info',
 				name: 'Personal Info',
-				component: () => import('../views/Dashboard/MyInfo.vue'),
+				component: () => import('../views/Auth/User/Dashboard/MyInfo.vue'),
 				meta: { dashboard: true },
 			},
 			{
 				path: 'change-password',
 				name: 'Change Password',
-				component: () => import('../views/Dashboard/ChangePassword.vue'),
+				component: () => import('../views/Auth/User/Dashboard/ChangePassword.vue'),
 				meta: { dashboard: true },
 			},
 			{
 				path: 'delete-account',
 				name: 'Delete Account',
-				component: () => import('../views/Dashboard/DeleteAccount.vue'),
+				component: () => import('../views/Auth/User/Dashboard/DeleteAccount.vue'),
 				meta: { dashboard: true },
 			}
-		]
+		],	
+	},
+	// Admin Routes
+	{
+		path: '/admin/dashboard',
+		component: () => import('../views/Auth/Admin/dashboard.vue'),
+		meta: { auth: true },
+		children: [
+			// {
+			// 	path: '/',
+			// 	name: 'Admin Dashboard',
+			// 	component: () => import('../views/Admin/Dashboard/Dashboard.vue'),
+			// 	// meta: { dashboard: true },
+			// },
+		],	
 	},
 ]
 

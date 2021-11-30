@@ -88,7 +88,7 @@
 
 <script>
 export default {
-    name: 'Dashboard.MyAddress',
+    name: 'User.Dashboard.MyAddress',
     watch: {
         "$route.params.slug": {
             handler() {

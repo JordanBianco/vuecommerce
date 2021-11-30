@@ -53,7 +53,7 @@
 
 <script>
 export default {
-    name: 'Dashboard.ChangePassword',
+    name: 'User.Dashboard.ChangePassword',
     data() {
         return {
             oldPassword: '',

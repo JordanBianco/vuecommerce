@@ -141,7 +141,7 @@
 import EditReview from '@/components/Dashboard/EditReview';
 
 export default {
-    name: 'Dashboard.MyReviews',
+    name: 'User.Dashboard.MyReviews',
     components: {
         EditReview
     },

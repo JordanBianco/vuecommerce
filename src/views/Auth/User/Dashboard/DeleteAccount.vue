@@ -16,7 +16,7 @@
 
 <script>
 export default {
-    name: 'Dashboard.DeleteAccount',
+    name: 'User.Dashboard.DeleteAccount',
     methods: {
         deleteAccount() {
             if (confirm(this.$t('delete_account_confirm'))) {

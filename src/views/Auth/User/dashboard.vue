@@ -6,7 +6,6 @@
                     <TheSidebar />
 
                     <div class="flex items-center space-x-2">
-                        <!-- LanguageSwitcher -->
                         <LanguageSwitcher />
 
                         <div class="text-gray-500 text-sm">
@@ -28,7 +27,7 @@ import TheSidebar from '@/components/Dashboard/TheSidebar'
 import LanguageSwitcher from '@/components/Layout/LanguageSwitcher'
 
 export default {
-    name: 'Auth.dashboard',
+    name: 'Auth.User.dashboard',
     components: {
         TheSidebar,
         LanguageSwitcher
@@ -45,9 +44,6 @@ export default {
     methods: {
         getUser() {
             this.$store.dispatch('user/getUser')
-        },
-        logout() {
-            this.$store.dispatch('auth/logout')
         },
     }
 }

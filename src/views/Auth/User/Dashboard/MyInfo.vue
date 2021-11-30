@@ -52,7 +52,7 @@
 
 <script>
 export default {
-    name: 'Dashboard.MyInfo',
+    name: 'User.Dashboard.MyInfo',
     watch: {
         "$route.params.slug": {
             handler() {

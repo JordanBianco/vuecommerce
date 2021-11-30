@@ -14,7 +14,7 @@ api.interceptors.response.use(function (response) {
         store.dispatch('auth/logout');
     }
     if (error.response.status === 403) {
-        router.push({ name: 'Dashboard', query: { view: 'orders' }})
+        router.push({ name: 'Dashboard' })
     }
     // if (error.response.status === 404) {
     //     // TODO: NOT FOUND PAGE
