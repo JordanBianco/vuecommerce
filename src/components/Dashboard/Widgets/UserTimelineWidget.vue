@@ -10,7 +10,7 @@
             </div>
         </header>
 
-        <section class="mt-4 p-3">
+        <section class="mt-8 xs:pl-3">
             <div v-if="activities && activities.length != 0">
                 <div v-for="activity in activities" :key="activity.id" class="mb-10">
                     <component
@@ -18,10 +18,6 @@
                         :activity="activity">
                     </component>
                 </div>
-
-                <p class="text-sm text-gray-500 text-right">
-                    Visualizza tutta l'attività
-                </p>
             </div>
             <!-- Se non è presente alcun attività -->
             <div v-else class="flex items-center justify-center text-sm text-gray-400 h-72">

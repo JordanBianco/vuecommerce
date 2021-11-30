@@ -1,9 +1,17 @@
 <template>
     <div>
+        <div @click="isOpen = ! isOpen" class="fixed top-4.5 left-4">
+            <svg class="w-6 h-6 text-gray-600 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+        </div>
+        <div
+            @click="isOpen = false"
+            v-if="isOpen"
+            class="fixed bg-black opacity-20 inset-0"></div>
+
         <aside
             @mouseover="isOpen = true"
             @mouseleave="isOpen = false"
-            :class="[ isOpen ? 'w-64' : 'lg:w-16' ]"
+            :class="[ isOpen ? 'w-64' : 'lg:w-16 w-0' ]"
             class="fixed left-0 bottom-0 top-0 transition duration-200 transform ease-in-out shadow-xl bg-white text-gray-500 min-h-screen overflow-x-hidden space-y-1 text-sm z-30">
                 
                 <div class="space-y-1 p-3 pt-8 mt-14 border-t">
@@ -92,10 +100,19 @@
                             <span class="whitespace-nowrap" v-if="isOpen">{{ $t('back_to_shop')}}</span>
                     </router-link>
 
-                    <button @click="logout" class="text-sm flex items-center space-x-3 p-2">
+                    <button @click="logout" class="text-sm flex items-center space-x-3 p-2 w-full">
                         <svg class="w-5.5 h-5.5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"/></svg>
                         <span class="whitespace-nowrap" v-if="isOpen">Logout</span>
                     </button>
+
+                    <router-link
+                        :class="{ 'bg-gradient-to-r from-indigo-400 to-indigo-500 rounded-lg text-white shadow' : $route.name == 'Change Password'}"
+                        :to="{ name: 'Delete Account' }"
+                        class="flex items-center space-x-3 p-2">
+                            <svg class="w-5.5 h-5.5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"/></svg>
+                            <span class="whitespace-nowrap" v-if="isOpen">{{ $t('delete_account') }}</span>
+                    </router-link>
+
                 </div>
         </aside>
     </div>

@@ -4,8 +4,8 @@
             <h2 class="text-xl text-gray-600">{{ $t('my_reviews') }}</h2>
         </header>
 
-        <div class="mb-6 text-xs flex justify-between items-center">
-            <div class="relative w-1/3">
+        <div class="mb-6 text-xs flex flex-col space-y-3 md:flex-row md:justify-between md:items-center md:space-y-0">
+            <div class="relative w-full md:w-1/3">
                 <input
                     v-model="search"
                     :placeholder="$t('review_placeholder')"
@@ -16,16 +16,18 @@
             </div>
 
             <div>
-                <select v-model="perPage" class="p-2 px-4 border rounded-lg focus:outline-none focus:border-indigo-400 text-gray-600">
-                    <option value="">{{ $t('results_per_page') }}</option>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
+                <select
+                    v-model="perPage"
+                    class="p-2 px-4 w-full md:max-w-max border rounded-lg focus:outline-none focus:border-indigo-400 text-gray-600">
+                        <option value="">{{ $t('results_per_page') }}</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
                 </select>
             </div>
         </div>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto pb-8">
             <table class="w-full">
                 <tr class="bg-gray-100 text-gray-600 text-xs border-b">
                     <!-- Articolo -->
@@ -99,10 +101,7 @@
             
             <footer v-if="reviews.meta"  class="mt-8 flex justify-between items-center text-gray-500">
 
-                <div class="flex items-center space-x-4">
-                    <span class="text-xs block">{{ $t('results') }} {{ reviews.meta.total }}</span>
-                    <span v-if="reviews.meta.total > reviews.data.length" class="text-xs block">{{ $t('results_per_page') }} {{ reviews.data.length }}</span>
-                </div>
+                <span class="text-xs block">{{ $t('results') }} {{ reviews.meta.total }}</span>
 
                 <!-- Pagination -->
                 <pagination

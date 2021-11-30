@@ -1,14 +1,14 @@
 <template>
     <div>
-        <section class="flex space-x-6">
+        <section class="lg:flex lg:space-x-6">
             <!-- Left Side -->
-            <div class="w-72%">
+            <div class="lg:w-72%">
                 <UserOverviewWidget :user="user" />
                 <UserTimelineWidget :user="user" />
             </div>
 
             <!-- Right Side -->
-            <div class="w-28%">
+            <div class="lg:w-28%">
                 <div class="flex flex-col space-y-6">
                     <WeatherWidget />
                     <LastOrderWidget />

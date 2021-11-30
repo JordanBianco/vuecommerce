@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="relative hidden xs:block">
+        <section class="relative">
             <div
                 @click="openMenu"
                 class="flex items-center space-x-1 text-gray-700 cursor-pointer">

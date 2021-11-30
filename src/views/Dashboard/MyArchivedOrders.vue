@@ -4,8 +4,8 @@
             <h2 class="text-xl text-gray-600">{{ $t('archived_orders') }}</h2>
         </header>
 
-        <div class="flex justify-between items-center mb-6 text-xs">
-            <div class="relative w-1/3">
+        <div class="flex flex-col space-y-3 md:flex-row md:justify-between md:items-center md:space-y-0 mb-6 text-xs">
+            <div class="relative w-full md:w-1/3">
                 <input
                     v-model="search"
                     :placeholder="$t('search_placeholder')"
@@ -15,7 +15,7 @@
                     <svg class="w-5 h-5 text-gray-300 flex-none absolute right-3 top-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
             </div>
 
-            <div class="flex items-center space-x-2">
+            <div class="flex flex-col space-y-3 md:flex-row md:items-center md:space-x-2 md:space-y-0">
                 <select v-model="fstatus" class="p-2 px-4 border rounded-lg focus:outline-none focus:border-indigo-400 text-gray-600">
                     <option value="">{{ $t('status') }}</option>
                     <option value="pending">pending</option>
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto pb-8">
             <table class="w-full">
                 <tr class="bg-gray-100 text-gray-600 text-xs border-b">
                     <!-- Numero Ordine -->
@@ -126,10 +126,7 @@
 
             <footer v-if="archived.meta"  class="mt-8 flex justify-between items-center text-gray-500">
                 
-                <div class="flex items-center space-x-4">
-                    <span class="text-xs block">{{ $t('results') }} {{ archived.meta.total }}</span>
-                    <span v-if="archived.meta.total > archived.data.length" class="text-xs block">{{ $t('results_per_page') }} {{ archived.data.length }}</span>
-                </div>
+                <span class="text-xs block">{{ $t('results') }} {{ archived.meta.total }}</span>
 
                 <!-- Pagination -->
                 <pagination

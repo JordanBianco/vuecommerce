@@ -1,9 +1,9 @@
 <template>
     <section>
         <!-- Paese -->
-        <div v-if="activity.changes.before.country" class="flex justify-between space-x-8 py-2">
+        <div v-if="activity.changes.before.country" class="flex flex-col space-y-2 md:flex-row md:justify-between md:space-x-8 md:space-y-0 py-2">
             <!-- Paese Before -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('country') }}</span>
                 <div class="flex space-x-2">
                     <span class="text-red-400 block text-lg">-</span>
@@ -12,7 +12,7 @@
             </div>
 
             <!-- Paese After -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('country') }}</span>
                 <div class="flex items-start space-x-2">
                     <span class="text-c-green block text-lg">+</span>
@@ -22,9 +22,9 @@
         </div> <!-- Fine Paese -->
 
         <!-- Città -->
-        <div v-if="activity.changes.before.city" class="flex justify-between space-x-8 py-2">
+        <div v-if="activity.changes.before.city" class="flex flex-col space-y-2 md:flex-row md:justify-between md:space-x-8 md:space-y-0 py-2">
             <!-- Città Before -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('city') }}</span>
                 <div class="flex space-x-2">
                     <span class="text-red-400 block text-lg">-</span>
@@ -33,7 +33,7 @@
             </div>
 
             <!-- Città After -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('city') }}</span>
                 <div class="flex items-start space-x-2">
                     <span class="text-c-green block text-lg">+</span>
@@ -43,9 +43,9 @@
         </div> <!-- Fine Città -->
 
         <!-- Provincia -->
-        <div v-if="activity.changes.before.province" class="flex justify-between space-x-8 py-2">
+        <div v-if="activity.changes.before.province" class="flex flex-col space-y-2 md:flex-row md:justify-between md:space-x-8 md:space-y-0 py-2">
             <!-- Provincia Before -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('province') }}</span>
                 <div class="flex space-x-2">
                     <span class="text-red-400 block text-lg">-</span>
@@ -54,7 +54,7 @@
             </div>
 
             <!-- Provincia After -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('province') }}</span>
                 <div class="flex items-start space-x-2">
                     <span class="text-c-green block text-lg">+</span>
@@ -64,9 +64,9 @@
         </div> <!-- Fine Provincia -->
 
         <!-- Indirizzo -->
-        <div v-if="activity.changes.before.address" class="flex justify-between space-x-8 py-2">
+        <div v-if="activity.changes.before.address" class="flex flex-col space-y-2 md:flex-row md:justify-between md:space-x-8 md:space-y-0 py-2">
             <!-- Indirizzo Before -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('address') }}</span>
                 <div class="flex space-x-2">
                     <span class="text-red-400 block text-lg">-</span>
@@ -75,7 +75,7 @@
             </div>
 
             <!-- Indirizzo After -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('address') }}</span>
                 <div class="flex items-start space-x-2">
                     <span class="text-c-green block text-lg">+</span>
@@ -85,9 +85,9 @@
         </div> <!-- Fine Indirizzo -->
 
         <!-- Codice Postale -->
-        <div v-if="activity.changes.before.zipcode" class="flex justify-between space-x-8 py-2">
+        <div v-if="activity.changes.before.zipcode" class="flex flex-col space-y-2 md:flex-row md:justify-between md:space-x-8 md:space-y-0 py-2">
             <!-- Codice Postale Before -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('zipcode') }}</span>
                 <div class="flex space-x-2">
                     <span class="text-red-400 block text-lg">-</span>
@@ -96,7 +96,7 @@
             </div>
 
             <!-- Codice Postale After -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('zipcode') }}</span>
                 <div class="flex items-start space-x-2">
                     <span class="text-c-green block text-lg">+</span>
@@ -106,9 +106,9 @@
         </div> <!-- Fine Codice Postale -->
 
         <!-- Telefono -->
-        <div v-if="activity.changes.before.phone" class="flex justify-between space-x-8 py-2">
+        <div v-if="activity.changes.before.phone" class="flex flex-col space-y-2 md:flex-row md:justify-between md:space-x-8 md:space-y-0 py-2">
             <!-- Telefono Before -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('phone') }}</span>
                 <div class="flex space-x-2">
                     <span class="text-red-400 block text-lg">-</span>
@@ -117,7 +117,7 @@
             </div>
 
             <!-- Telefono After -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('phone') }}</span>
                 <div class="flex items-start space-x-2">
                     <span class="text-c-green block text-lg">+</span>

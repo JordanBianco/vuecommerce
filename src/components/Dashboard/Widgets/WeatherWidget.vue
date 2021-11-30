@@ -1,5 +1,5 @@
 <template>
-    <section class="shadow bg-white rounded-lg p-4 flex justify-center items-center h-52">
+    <section class="shadow bg-white rounded-lg p-4 flex justify-center items-center lg:h-52">
         <div>
             <div v-if="current.length != 0">
 

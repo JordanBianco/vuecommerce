@@ -17,7 +17,7 @@
             </nav>
             
             <transition name="fade">
-                <router-view class="pl-28 pt-24 pb-12 pr-14 bg-gray-50 min-h-screen" :key="$route.path"></router-view>
+                <router-view class="lg:pl-28 pt-24 pb-12 lg:pr-14 p-6 bg-gray-50 min-h-screen" :key="$route.path"></router-view>
             </transition>
         </main>
     </div>

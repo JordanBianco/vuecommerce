@@ -1,6 +1,6 @@
 <template>
-    <div class="flex justify-between space-x-10">
-        <div class="flex space-x-8 w-full">
+    <div v-if="!activity.changes.before.remember_token" class="flex flex-col space-y-4 sm:flex-row sm:justify-between sm:space-x-10 sm:space-y-0">      
+        <div class="flex space-x-4 xs:space-x-8 w-full">
             <div class="w-2.5 h-2.5 ring-4 ring-indigo-200 bg-indigo-500 rounded-full flex-none mt-2"></div>
 
             <div class="w-full">
@@ -19,9 +19,9 @@
                     </section>
                 </transition>
             </div>
-
-            <span class="block text-gray-400 text-xs whitespace-nowrap">{{ $moment(activity.created_at).fromNow() }}</span>
         </div>
+
+        <span class="block text-gray-400 text-xs whitespace-nowrap ml-6 xs:ml-11 sm:ml-0">{{ $moment(activity.created_at).fromNow() }}</span>
     </div>
 </template>
 

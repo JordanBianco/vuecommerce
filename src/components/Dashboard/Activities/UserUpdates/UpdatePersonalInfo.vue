@@ -1,7 +1,7 @@
 <template>
     <section>
         <!-- Nome -->
-        <div v-if="activity.changes.before.first_name" class="flex justify-between space-x-8 py-2">
+        <div v-if="activity.changes.before.first_name" class="flex flex-col space-y-2 md:flex-row md:justify-between md:space-x-8 md:space-y-0 py-2">
             <!-- Nome Before -->
             <div class="flex flex-col w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('first_name') }}</span>
@@ -22,9 +22,9 @@
         </div> <!-- Fine Nome -->
 
         <!-- Cognome -->
-        <div v-if="activity.changes.before.last_name" class="flex justify-between space-x-8 py-2">
+        <div v-if="activity.changes.before.last_name" class="flex flex-col space-y-2 md:flex-row md:justify-between md:space-x-8 md:space-y-0 py-2">
             <!-- Cognome Before -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('last_name') }}</span>
                 <div class="flex space-x-2">
                     <span class="text-red-400 block text-lg">-</span>
@@ -33,7 +33,7 @@
             </div>
 
             <!-- Cognome After -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('last_name') }}</span>
                 <div class="flex items-start space-x-2">
                     <span class="text-c-green block text-lg">+</span>
@@ -43,9 +43,9 @@
         </div> <!-- Fine Cognome -->
 
         <!-- Email -->
-        <div v-if="activity.changes.before.email" class="flex justify-between space-x-8 py-2">
+        <div v-if="activity.changes.before.email" class="flex flex-col space-y-2 md:flex-row md:justify-between md:space-x-8 md:space-y-0 py-2">
             <!-- Email Before -->
-            <div class="flex flex-col w-1/2">
+            <div class="flex flex-col md:w-1/2">
                 <span class="text-xs text-gray-400">{{ $t('email') }}</span>
                 <div class="flex space-x-2">
                     <span class="text-red-400 block text-lg">-</span>

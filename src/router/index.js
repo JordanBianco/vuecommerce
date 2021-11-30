@@ -115,6 +115,12 @@ const routes = [
 				name: 'Change Password',
 				component: () => import('../views/Dashboard/ChangePassword.vue'),
 				meta: { dashboard: true },
+			},
+			{
+				path: 'delete-account',
+				name: 'Delete Account',
+				component: () => import('../views/Dashboard/DeleteAccount.vue'),
+				meta: { dashboard: true },
 			}
 		]
 	},
