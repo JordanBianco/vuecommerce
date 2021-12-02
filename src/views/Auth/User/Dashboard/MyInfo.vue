@@ -7,7 +7,7 @@
         <form v-if="user" @submit.prevent="updateInfo()" class="text-sm text-gray-600">
             <!-- Name -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="first_name">{{ $t('first_name') }}</label>
+                <label class="text-gray-400 text-xs" for="first_name">{{ $t('first_name') }}</label>
                 <input
                     type="text"
                     @click="errors.first_name = ''"
@@ -19,7 +19,7 @@
 
             <!-- Cognome -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="last_name">{{ $t('last_name') }}</label>
+                <label class="text-gray-400 text-xs" for="last_name">{{ $t('last_name') }}</label>
                 <input
                     type="text"
                     @click="errors.last_name = ''"
@@ -31,7 +31,7 @@
 
             <!-- Email -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="email">{{ $t('email') }}</label>
+                <label class="text-gray-400 text-xs" for="email">{{ $t('email') }}</label>
                 <input
                     type="email"
                     @click="errors.email = ''"

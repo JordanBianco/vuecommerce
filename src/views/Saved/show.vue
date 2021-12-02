@@ -1,5 +1,7 @@
 <template>
     <div>
+        <TheNavbar />
+
         <section class="p-4 md:px-0 md:w-11/12 md:mx-auto">
             <div v-if="savedItems.length > 0">
                 <header class="border-b py-4 md:px-0 text-gray-400">
@@ -74,7 +76,7 @@
                 </div>
 
             </div>
-            <div v-else class="flex justify-center pt-10">
+            <div v-else class="flex justify-center min-h-screen pt-10">
                 <p class="text-gray-400">
                     {{ $t('no_saved_items') }}
                     <router-link class="text-c-dark-gray text-center block" :to="{ name: 'Home' }">
@@ -83,12 +85,21 @@
                 </p>
             </div>
         </section>
+
+        <TheFooter />
     </div>
 </template>
 
 <script>
+import TheNavbar from '@/components/Layout/TheNavbar'
+import TheFooter from '@/components/Layout/TheFooter'
+
 export default {
     name: 'saved.show',
+    components: {
+        TheNavbar,
+        TheFooter,
+    },
     mounted() {
         this.$store.dispatch('cart/getSavedItems')
     },

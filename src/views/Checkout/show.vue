@@ -1,5 +1,7 @@
 <template>
     <div>
+        <TheNavbar />
+
         <section class="p-4 md:px-0 md:w-11/12 md:mx-auto">
             <div v-if="items.length > 0">
                 <header class="border-b py-4 md:px-0 text-gray-500">
@@ -262,12 +264,21 @@
                 </div>
             </section>
         </div>
+
+        <TheFooter />
     </div>
 </template>
 
 <script>
+import TheNavbar from '@/components/Layout/TheNavbar'
+import TheFooter from '@/components/Layout/TheFooter'
+
 export default {
     name: 'Checkout.show',
+    components: {
+        TheNavbar,
+        TheFooter,
+    },
     mounted() {
         this.$store.dispatch('cart/getItems', {user_id: 1})
         this.setFields();

@@ -197,6 +197,16 @@
     "hide_changes" : "Nascondi modifiche",
     "show_changes" : "Mostra modifiche",
     "password_update" : "Hai aggiornato la tua password",
-    "delete_account_confirm" : "Vuoi davvero eliminare il tuo account?"
+    "delete_account_confirm" : "Vuoi davvero eliminare il tuo account?",
     
+    "management" : "Gestione",
+    "users" : "Utenti",
+    "manage_orders" : "Ordini",
+    "users_placeholder" : "Cerca tra gli utenti",
+    "registered_on" : "Registrato il",
+    "email_verified" : "Email verificata",
+    "yes" : "Sì",
+    "personal_data" : "Dati personali",
+    "role" : "Ruolo"
+
 }

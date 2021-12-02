@@ -27,6 +27,10 @@ import notification from '@/store/modules/notification'
 import language from '@/store/modules/language'
 import weather from '@/store/modules/weather'
 
+// Admin
+import users from '@/store/modules/admin/users'
+
+
 export default new Vuex.Store({
   state: {
   },
@@ -45,7 +49,8 @@ export default new Vuex.Store({
     review,
     notification,
     language,
-    weather
+    weather,
+    users
   },
   plugins: [
     data

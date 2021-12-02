@@ -36,9 +36,10 @@
         <div class="overflow-x-auto pb-8">
             <table class="w-full">
                 <tr class="bg-gray-100 text-gray-600 text-xs border-b">
+                    
                     <!-- Numero Ordine -->
-                    <th @click="sortBy('order_number')" class="font-normal text-left uppercase p-3">
-                        <div class="flex space-x-1 items-center cursor-pointer max-w-max">
+                    <th class="font-normal text-left uppercase p-3">
+                        <div @click="sortBy('order_number')" class="flex space-x-1 items-center cursor-pointer max-w-max">
                             <span>#{{ $t('order_number') }}</span>
 
                             <div class="flex flex-col -space-y-2.5">
@@ -47,13 +48,15 @@
                             </div>
                         </div>
                     </th>
+                    
                     <!-- Indirizzo spedizione -->
                     <th class="font-normal text-left uppercase p-3">
                         <span>{{ $t('shipping_address') }}</span>
                     </th>
+                    
                     <!-- Totale -->
-                    <th @click="sortBy('total')" class="font-normal text-left uppercase p-3">
-                        <div class="flex space-x-1 items-center cursor-pointer max-w-max">
+                    <th class="font-normal text-left uppercase p-3">
+                        <div @click="sortBy('total')" class="flex space-x-1 items-center cursor-pointer max-w-max">
                             <span>{{ $t('total') }}</span>
 
                             <div class="flex flex-col -space-y-2.5">
@@ -62,9 +65,10 @@
                             </div>
                         </div>
                     </th>
+
                     <!-- Data Acquisto -->
-                    <th @click="sortBy('created_at')" class="font-normal text-left uppercase p-3">
-                        <div class="flex space-x-1 items-center cursor-pointer max-w-max">
+                    <th class="font-normal text-left uppercase p-3">
+                        <div @click="sortBy('created_at')" class="flex space-x-1 items-center cursor-pointer max-w-max">
                             <span class="whitespace-nowrap">{{ $t('purchase_date') }}</span>
 
                             <div class="flex flex-col -space-y-2.5">
@@ -73,9 +77,10 @@
                             </div>
                         </div>
                     </th>
+
                     <!-- Stato -->
-                    <th @click="sortBy('status')" class="font-normal text-left uppercase p-3">
-                        <div class="flex space-x-1 items-center cursor-pointer max-w-max">
+                    <th class="font-normal text-left uppercase p-3">
+                        <div @click="sortBy('status')" class="flex space-x-1 items-center cursor-pointer max-w-max">
                             <span>{{ $t('status') }}</span>
 
                             <div class="flex flex-col -space-y-2.5">
@@ -84,6 +89,7 @@
                             </div>
                         </div>
                     </th>
+
                     <!-- Actions -->
                     <th class="font-normal text-left uppercase p-3">
                         <span>{{ $t('actions') }}</span>
@@ -113,9 +119,7 @@
             </table>
 
             <footer v-if="orders.meta"  class="mt-8 flex justify-between items-center text-gray-500">
-
                 <span class="text-xs block">{{ $t('results') }} {{ orders.meta.total }}</span>
-
                 <!-- Pagination -->
                 <pagination
                     class="flex items-center space-x-4 text-base"

@@ -23,9 +23,10 @@ module.exports = {
 				'c-red' : '#d9376e',
 				'c-pink' : '#eebbc3',
 				'c-orange' : '#ff8e3c',
-				'c-green' : '#47a358'
+				'c-green' : '#47a358',
 			},
 			spacing: {
+				'15' : '3.7rem',
 				'18' : '4.5rem',
 				'4.5' : '18px',
 				'5.5' : '22px',

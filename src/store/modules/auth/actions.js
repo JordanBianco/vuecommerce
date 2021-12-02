@@ -41,7 +41,6 @@ export const login = async ({commit}, {user}) => {
 
 export const logout = async ({commit}) => {
     try {
-        sanctum.get('/csrf-cookie')
         const res = await api.post('/logout')
         if (res.status === 200) {
             commit('SET_AUTH', false)

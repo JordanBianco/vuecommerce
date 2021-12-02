@@ -1,5 +1,7 @@
 <template>
     <div>
+        <TheNavbar />
+
         <div v-if="product">
             <div class="flex flex-col md:flex-row md:w-11/12 md:mx-auto md:space-x-6 p-4 md:py-20">
                 <div class="relative md:w-1/2">
@@ -168,15 +170,29 @@
                 </div>
             </section>
         </div>
+        <div v-else class="flex justify-center items-center h-screen mt-16">
+            <img
+                class="animate-spin w-10 h-10"
+                src="https://img.icons8.com/ios/50/BBBBBB/spinning-circle--v1.png"/>
+        </div>
+
+        <TheFooter />
     </div>
 </template>
 
 <script>
+import TheNavbar from '@/components/Layout/TheNavbar'
+import TheFooter from '@/components/Layout/TheFooter'
 import uniqid from 'uniqid';
+
 
 export default {
     name: 'product.show',
     props: ['slug'],
+    components: {
+        TheNavbar,
+        TheFooter
+    },
     mounted() {
         this.getProduct();
         this.getSimilarProducts();

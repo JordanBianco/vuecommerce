@@ -5,9 +5,9 @@
         </header>
 
         <form v-if="user" @submit.prevent="updateAddress()" class="text-sm text-gray-600">
-            <!-- Name -->
+            <!-- Country -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="country">{{ $t('country') }}</label>
+                <label class="text-gray-400 text-xs" for="country">{{ $t('country') }}</label>
                 <input
                     type="text"
                     @click="errors.country = ''"
@@ -19,7 +19,7 @@
 
             <!-- City -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="city">{{ $t('city') }}</label>
+                <label class="text-gray-400 text-xs" for="city">{{ $t('city') }}</label>
                 <input
                     type="text"
                     @click="errors.city = ''"
@@ -31,7 +31,7 @@
 
             <!-- Province -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="province">{{ $t('province') }}</label>
+                <label class="text-gray-400 text-xs" for="province">{{ $t('province') }}</label>
                 <input
                     type="text"
                     @click="errors.province = ''"
@@ -43,7 +43,7 @@
 
             <!-- Address -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="address">{{ $t('address') }}</label>
+                <label class="text-gray-400 text-xs" for="address">{{ $t('address') }}</label>
                 <input
                     type="text"
                     @click="errors.address = ''"
@@ -55,7 +55,7 @@
 
             <!-- Zipcode -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="zipcode">{{ $t('zipcode') }}</label>
+                <label class="text-gray-400 text-xs" for="zipcode">{{ $t('zipcode') }}</label>
                 <input
                     type="text"
                     @click="errors.zipcode = ''"
@@ -67,7 +67,7 @@
 
             <!-- Phone -->
             <div class="w-full mb-6">
-                <label class="text-gray-400" for="phone">{{ $t('phone') }}</label>
+                <label class="text-gray-400 text-xs" for="phone">{{ $t('phone') }}</label>
                 <input
                     type="text"
                     @click="errors.phone = ''"

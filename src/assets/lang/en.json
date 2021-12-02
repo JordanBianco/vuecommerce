@@ -167,10 +167,10 @@
     "purchase_date" : "Purchase date",
     "status" : "Status",
     "order_details" : "Order details",
-    "search_placeholder" : "Search through orders...",
+    "search_placeholder" : "Search amongst the orders...",
     "rating" : "Rating",
     "review_date" : "Review date",
-    "review_placeholder" : "Search through reviews...",
+    "review_placeholder" : "Search amongst the reviews...",
     "edit" : "Edit",
     "delete" : "Delete",
     "delete_review_confirm" : "Want to delete this review?",
@@ -197,9 +197,17 @@
     "hide_changes" : "Hide changes",
     "show_changes" : "Show changes",
     "password_update" : "You have updated your password",
-    "delete_account_confirm" : "Do you really want to delete your account?"
+    "delete_account_confirm" : "Do you really want to delete your account?",
 
-
+    "management" : "Management",
+    "users" : "Users",
+    "manage_orders" : "Orders",
+    "users_placeholder" : "Search amongst the users...",
+    "registered_on" : "Registered on",
+    "email_verified" : "Verified email",
+    "yes" : "Yes",
+    "personal_data" : "Personal data",
+    "role" : "Role"
 
 
 }

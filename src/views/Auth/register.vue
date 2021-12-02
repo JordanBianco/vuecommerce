@@ -1,7 +1,7 @@
 <template>
     <div>
-        <section class="p-4 md:px-0 md:w-1/2 lg:w-1/3 xl:w-1/4 md:mx-auto">
-            <h2 class="text-gray-500">{{ $t('register') }}</h2>
+        <section class="py-20 md:w-1/2 lg:w-1/3 xl:w-1/4 md:mx-auto">
+            <h2 class="text-c-dark-gray font-bold text-2xl">{{ $t('register') }}</h2>
 
             <section class="mt-10">
                 <div class="w-full mb-6">

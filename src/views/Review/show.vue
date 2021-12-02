@@ -1,5 +1,7 @@
 <template>
     <div>
+        <TheNavbar />
+        
         <div v-if="product">
             <div v-if="hasBeenPurchased()">
                 <div v-if="!hasBeenReviewed()" class="md:w-11/12 md:mx-auto p-4 md:px-0">
@@ -57,17 +59,26 @@
                 <p>{{ $t('review_err') }}</p>
             </div>
         </div>
-        <div v-else class="flex justify-center mt-16">
+        <div v-else class="flex justify-center items-center min-h-screen mt-16">
             <img
                 class="animate-spin w-10 h-10"
                 src="https://img.icons8.com/ios/50/BBBBBB/spinning-circle--v1.png"/>
         </div>
+
+        <TheFooter />
     </div>
 </template>
 
 <script>
+import TheNavbar from '@/components/Layout/TheNavbar'
+import TheFooter from '@/components/Layout/TheFooter'
+
 export default {
     name: 'Review.show',
+    components: {
+        TheNavbar,
+        TheFooter,
+    },
     mounted() {
         this.getProduct();
         this.getProductsReviewed();

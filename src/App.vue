@@ -1,22 +1,16 @@
 <template>
 	<div style="font-family: 'Poppins', sans-serif;">
-		<TheNavbar v-if="!isDashboard" />
 		<router-view class="bg-white min-h-screen"/>
-		<TheFooter v-if="!isDashboard" />
 
 		<NotificationList />
 	</div>
 </template>
 
 <script>
-import TheNavbar from '@/components/Layout/TheNavbar'
-import TheFooter from '@/components/Layout/TheFooter'
 import NotificationList from '@/components/Notifications/NotificationList'
 
 export default {
 	components: {
-		TheNavbar,
-		TheFooter,
 		NotificationList
 	},
 	computed: {
@@ -27,9 +21,6 @@ export default {
 		showFilters() {
 			return this.$store.state.product.showFilters
 		},
-		isDashboard() {
-			return this.$route.meta.dashboard
-		}
 	},
 	watch: {
 		isOpen() {

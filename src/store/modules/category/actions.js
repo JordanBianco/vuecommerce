@@ -12,6 +12,7 @@ export const getCategories = async ({commit}) => {
 }
 
 export const getProducts = async ({commit}, {slug, page, min, max, ratings}) => {
+    commit('GET_PRODUCTS', null)
     try {
         const res = await api.get(
             '/categories/' + slug + '/products?min_price=' + min

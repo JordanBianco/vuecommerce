@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="p-4 py-20 md:px-0 md:w-1/2 lg:w-1/3 xl:w-1/4 md:mx-auto">
+        <section class="py-20 md:w-1/2 lg:w-1/3 xl:w-1/4 md:mx-auto">
             <h2 class="text-c-dark-gray font-bold text-2xl">{{ $t('welcome_back') }}</h2>
 
             <section class="mt-10">

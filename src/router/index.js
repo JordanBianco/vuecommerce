@@ -5,19 +5,25 @@ import store from '@/store'
 Vue.use(VueRouter)
 
 const routes = [
-	// Login
+	// AUTH ROUTES
 	{
-		path: '/login',
-		name: 'Login',
-		component: () => import('../views/Auth/login.vue'),
-		meta: { guest: true } 
-	},
-	// Register
-	{
-		path: '/register',
-		name: 'Register',
-		component: () => import('../views/Auth/register.vue'),
-		meta: { guest: true }
+		path: '/auth',
+		component: () => import('../views/Auth/layout.vue'),
+		meta: { guest: true },
+		children: [
+			{
+				path: '/auth/login',
+				name: 'Login',
+				component: () => import('../views/Auth/login.vue'),
+				meta: { guest: true }
+			},
+			{
+				path: '/auth/register',
+				name: 'Register',
+				component: () => import('../views/Auth/register.vue'),
+				meta: { guest: true }
+			},
+		]
 	},
 	// Home
 	{
@@ -71,7 +77,7 @@ const routes = [
 	// User Routes
 	{
 		path: '/dashboard',
-		component: () => import('../views/Auth/User/dashboard.vue'),
+		component: () => import('../views/Auth/User/layout.vue'),
 		meta: { auth: true },
 		children: [
 			{
@@ -127,15 +133,31 @@ const routes = [
 	// Admin Routes
 	{
 		path: '/admin/dashboard',
-		component: () => import('../views/Auth/Admin/dashboard.vue'),
-		meta: { auth: true },
+		component: () => import('../views/Auth/Admin/layout.vue'),
+		// meta: { auth: true, admin: true },
 		children: [
-			// {
-			// 	path: '/',
-			// 	name: 'Admin Dashboard',
-			// 	component: () => import('../views/Admin/Dashboard/Dashboard.vue'),
-			// 	// meta: { dashboard: true },
-			// },
+			{
+				path: '/',
+				name: 'Admin Dashboard',
+				component: () => import('../views/Auth/Admin/Dashboard/Dashboard.vue'),
+			},
+			{
+				path: '/admin/users',
+				name: 'Manage Users',
+				component: () => import('../views/Auth/Admin/Dashboard/Users/index.vue'),
+			},
+			{
+				path: '/admin/users/:id',
+				name: 'user.show',
+				component: () => import('../views/Auth/Admin/Dashboard/Users/show.vue'),
+				props: true
+			},
+			{
+				path: '/admin/users/:id/edit',
+				name: 'user.edit',
+				component: () => import('../views/Auth/Admin/Dashboard/Users/edit.vue'),
+				props: true
+			},
 		],	
 	},
 ]
@@ -162,6 +184,8 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
 	if (to.params.slug) {
 		document.title =  to.params.slug + ' | ' + process.env.VUE_APP_TITLE
+	} if (to.params.id) {
+		document.title =  'User ' + to.params.id + ' | ' + process.env.VUE_APP_TITLE
 	} else {
 		document.title =  to.name + ' | ' + process.env.VUE_APP_TITLE
 	}
@@ -181,7 +205,7 @@ router.beforeEach((to, from, next) => {
 	} else if (to.matched.some(record => record.meta.cart)) {
 		if (store.state.cart.items.length < 1) {
 			next({
-				name: 'Dashboard'
+				name: 'Home'
 			});
 		} else {
 			next();

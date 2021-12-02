@@ -30,17 +30,20 @@
         <div class="overflow-x-auto pb-8">
             <table class="w-full">
                 <tr class="bg-gray-100 text-gray-600 text-xs border-b">
+                    
                     <!-- Articolo -->
                     <th class="font-normal text-left uppercase p-3 w-1/5">
                         <span>{{ $tc('items', 1) }}</span>
                     </th>
+                    
                     <!-- Contenuto -->
                     <th class="font-normal text-left uppercase p-3 w-2/5">
                         <span>{{ $t('content') }}</span>
                     </th>
+                    
                     <!-- Voto -->
-                    <th @click="sortBy('rating')" class="font-normal text-left uppercase p-3 w-1/5">
-                        <div class="flex space-x-1 items-center cursor-pointer max-w-max">
+                    <th class="font-normal text-left uppercase p-3 w-1/5">
+                        <div @click="sortBy('rating')" class="flex space-x-1 items-center cursor-pointer max-w-max">
                             <span class="whitespace-nowrap">{{ $t('rating') }}</span>
 
                             <div class="flex flex-col -space-y-2.5">
@@ -49,6 +52,7 @@
                             </div>
                         </div>
                     </th>
+                    
                     <!-- Data review -->
                     <th class="font-normal text-left uppercase p-3 w-1/5">
                         <div @click="sortBy('created_at')" class="flex space-x-1 items-center cursor-pointer max-w-max">

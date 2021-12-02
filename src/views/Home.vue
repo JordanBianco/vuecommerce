@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<TheNavbar />
 		<!-- Banner -->
 		<PromoBanner />
 
@@ -456,18 +457,24 @@
 				</pagination>
 			</div>
 		</div>
+
+		<TheFooter />
 	</div>
 </template>
 
 <script>
 import SingleProduct from '@/components/SingleProduct'
 import PromoBanner from '@/components/PromoBanner'
+import TheNavbar from '@/components/Layout/TheNavbar'
+import TheFooter from '@/components/Layout/TheFooter'
 
 export default {
 	name: 'Home',
 	components: {
+		TheNavbar,
+		PromoBanner,
 		SingleProduct,
-		PromoBanner
+		TheFooter		
 	},
 	data() {
 		return {
