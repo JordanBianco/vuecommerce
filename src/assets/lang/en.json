@@ -155,7 +155,7 @@
     "order_by" : "Order by",
 
     "update_info" : "Update info",
-
+    "update_coupon" : "Update Coupon",
     "update_address" : "Update address",
 
     "old_password" : "Old password",
@@ -207,7 +207,16 @@
     "email_verified" : "Verified email",
     "yes" : "Yes",
     "personal_data" : "Personal data",
-    "role" : "Role"
+    "role" : "Role",
+    "code" : "Code",
+    "description" : "Description",
+    "discount" : "Discount",
+    "created_at" : "Created on",
+    "add_coupon" : "Add Coupon",
+    "save" : "Save",
+    "search_coupon_placeholder" : "Search amongst the coupons..."
+
+
 
 
 }

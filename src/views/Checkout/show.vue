@@ -356,7 +356,7 @@ export default {
             handler: function() {
                 this.emptyErrors();
                 this.emptyCouponErrors();
-                this.deleteCoupon();
+                this.remvoeCoupon();
             },
             deep: true,
             immediate: true,
@@ -383,8 +383,8 @@ export default {
             this.customer.zipcode = this.user.zipcode
             this.customer.phone = this.user.phone
         },
-        deleteCoupon() {
-            this.$store.dispatch('coupon/deleteCoupon')
+        remvoeCoupon() {
+            this.$store.dispatch('coupon/remvoeCoupon')
         },
         verifyCoupon() {
             this.$store.dispatch('coupon/verifyCoupon', { coupon: this.couponName})

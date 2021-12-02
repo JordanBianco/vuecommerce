@@ -1,4 +1,6 @@
 export default {
+    coupons: {},
     coupon: [],
-    errors: []
+    errors: [],
+    success: false
 }

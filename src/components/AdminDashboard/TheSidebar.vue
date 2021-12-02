@@ -44,12 +44,20 @@
                     </router-link>
 
                     <router-link
+                        :class="{ 'bg-gray-600 text-white' : $route.name == 'Manage Coupons'}"
+                        :to="{ name: 'Manage Coupons' }"
+                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-gray-600 duration-150">
+                            <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path fill="currentColor" d="M7.75781,10.75781a3,3,0,1,0-3-3A3.00328,3.00328,0,0,0,7.75781,10.75781Zm0-4a1,1,0,1,1-1,1A1.00067,1.00067,0,0,1,7.75781,6.75781Zm8.48438,6.48438a3,3,0,1,0,3,3A3.00328,3.00328,0,0,0,16.24219,13.24219Zm0,4a1,1,0,1,1,1-1A1.00067,1.00067,0,0,1,16.24219,17.24219ZM19.707,4.293a.99962.99962,0,0,0-1.41406,0l-14,14A.99989.99989,0,1,0,5.707,19.707l14-14A.99962.99962,0,0,0,19.707,4.293Z"/></svg>
+                            <span class="whitespace-nowrap" v-if="isOpen">Coupon</span>
+                    </router-link>
+
+                    <!-- <router-link
                         :class="{ 'bg-gray-600 text-white' : $route.name == 'Manage Orders'}"
                         :to="{ name: 'My Orders' }"
                         class="flex items-center space-x-3 pl-4 py-2 hover:bg-gray-600 duration-150">
                             <svg class="w-5.5 h-5.5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20.49,7.52a.19.19,0,0,1,0-.08.17.17,0,0,1,0-.07l0-.09-.06-.15,0,0h0l0,0,0,0a.48.48,0,0,0-.09-.11l-.09-.08h0l-.05,0,0,0L16.26,4.45h0l-3.72-2.3A.85.85,0,0,0,12.25,2h-.08a.82.82,0,0,0-.27,0h-.1a1.13,1.13,0,0,0-.33.13L4,6.78l-.09.07-.09.08L3.72,7l-.05.06,0,0-.06.15,0,.09v.06a.69.69,0,0,0,0,.2v8.73a1,1,0,0,0,.47.85l7.5,4.64h0l0,0,.15.06.08,0a.86.86,0,0,0,.52,0l.08,0,.15-.06,0,0h0L20,17.21a1,1,0,0,0,.47-.85V7.63S20.49,7.56,20.49,7.52ZM12,4.17l1.78,1.1L8.19,8.73,6.4,7.63Zm-1,15L5.5,15.81V9.42l5.5,3.4Zm1-8.11L10.09,9.91l5.59-3.47L17.6,7.63Zm6.5,4.72L13,19.2V12.82l5.5-3.4Z"/></svg>
                             <span class="whitespace-nowrap" v-if="isOpen">{{ $t('manage_orders') }}</span>
-                    </router-link>                    
+                    </router-link>                     -->
 
 
                     <!-- <router-link

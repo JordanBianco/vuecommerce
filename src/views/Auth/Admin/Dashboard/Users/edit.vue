@@ -6,11 +6,15 @@
             </header>
 
             <!-- Breadcrumb -->
-            <div class="text-sm flex items-center space-x-1 text-gray-400 mb-10">
+            <div class="text-sm flex items-center space-x-0.5 text-gray-400 mb-10">
                 <router-link class="hover:underline" :to="{ name: 'Manage Users' }">Utenti</router-link>
-                    <span class="text-xxs">/</span>
+                    <span>
+                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M14.83,11.29,10.59,7.05a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41L12.71,12,9.17,15.54a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.29,1,1,0,0,0,.71-.29l4.24-4.24A1,1,0,0,0,14.83,11.29Z"/></svg>
+                    </span>
                 <router-link class="hover:underline" :to="{ name: 'user.show', params: { id: id }}">{{ user.first_name + ' ' + user.last_name }}</router-link>
-                    <span class="text-xxs">/</span>
+                    <span>
+                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M14.83,11.29,10.59,7.05a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41L12.71,12,9.17,15.54a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.29,1,1,0,0,0,.71-.29l4.24-4.24A1,1,0,0,0,14.83,11.29Z"/></svg>
+                    </span>
                 <span class="text-blue-400">{{ $t('edit') }}</span>
             </div>
 
@@ -173,7 +177,7 @@ export default {
             deep: true,
             immediate: true,
             handler() {
-                this.cleanErrors();
+                this.clearErrors();
             }
         }
     },
@@ -204,7 +208,7 @@ export default {
                 user: this.user
             })
         },
-        cleanErrors() {
+        clearErrors() {
             this.$store.dispatch('users/clearErrors')
         }
     }

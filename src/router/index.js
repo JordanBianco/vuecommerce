@@ -141,6 +141,7 @@ const routes = [
 				name: 'Admin Dashboard',
 				component: () => import('../views/Auth/Admin/Dashboard/Dashboard.vue'),
 			},
+			// Users
 			{
 				path: '/admin/users',
 				name: 'Manage Users',
@@ -156,6 +157,18 @@ const routes = [
 				path: '/admin/users/:id/edit',
 				name: 'user.edit',
 				component: () => import('../views/Auth/Admin/Dashboard/Users/edit.vue'),
+				props: true
+			},
+			// Coupons
+			{
+				path: '/admin/coupons',
+				name: 'Manage Coupons',
+				component: () => import('../views/Auth/Admin/Dashboard/Coupon/index.vue'),
+			},
+			{
+				path: '/admin/coupons/:id/edit',
+				name: 'coupon.edit',
+				component: () => import('../views/Auth/Admin/Dashboard/Coupon/edit.vue'),
 				props: true
 			},
 		],	
