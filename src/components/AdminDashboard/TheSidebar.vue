@@ -14,7 +14,13 @@
             :class="[ isOpen ? 'w-64' : 'lg:w-14 w-0' ]"
             class="fixed left-0 bottom-0 top-0 transition duration-200 transform ease-in-out shadow-xl bg-gray-700 text-gray-400 min-h-screen overflow-x-hidden text-xs z-30">
                 
-                <div class="pt-8 mt-14 border-t border-gray-600">
+                <div>
+                    <header class="p-2.5 border-b border-gray-600 mb-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-gray-600 rounded-full w-9 h-9 flex-none"></div>
+                            <span v-if="isOpen" class="whitespace-nowrap">{{ user.first_name + ' ' + user.last_name }}</span>
+                        </div>
+                    </header>
 
                     <router-link
                         :class="{ 'bg-gray-600 text-white' : $route.name == 'Admin Dashboard'}"
@@ -24,6 +30,7 @@
                             <span class="whitespace-nowrap" v-if="isOpen">{{ $t('dashboard') }}</span>
                     </router-link>
 
+                    <!-- Management -->
                     <div v-if="!isOpen" class="flex justify-center py-4">
                         <svg class="w-5 h-5 text-gray-400 flex-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                     </div>
@@ -51,14 +58,28 @@
                             <span class="whitespace-nowrap" v-if="isOpen">Coupon</span>
                     </router-link>
 
-                    <!-- <router-link
-                        :class="{ 'bg-gray-600 text-white' : $route.name == 'Manage Orders'}"
-                        :to="{ name: 'My Orders' }"
-                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-gray-600 duration-150">
-                            <svg class="w-5.5 h-5.5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20.49,7.52a.19.19,0,0,1,0-.08.17.17,0,0,1,0-.07l0-.09-.06-.15,0,0h0l0,0,0,0a.48.48,0,0,0-.09-.11l-.09-.08h0l-.05,0,0,0L16.26,4.45h0l-3.72-2.3A.85.85,0,0,0,12.25,2h-.08a.82.82,0,0,0-.27,0h-.1a1.13,1.13,0,0,0-.33.13L4,6.78l-.09.07-.09.08L3.72,7l-.05.06,0,0-.06.15,0,.09v.06a.69.69,0,0,0,0,.2v8.73a1,1,0,0,0,.47.85l7.5,4.64h0l0,0,.15.06.08,0a.86.86,0,0,0,.52,0l.08,0,.15-.06,0,0h0L20,17.21a1,1,0,0,0,.47-.85V7.63S20.49,7.56,20.49,7.52ZM12,4.17l1.78,1.1L8.19,8.73,6.4,7.63Zm-1,15L5.5,15.81V9.42l5.5,3.4Zm1-8.11L10.09,9.91l5.59-3.47L17.6,7.63Zm6.5,4.72L13,19.2V12.82l5.5-3.4Z"/></svg>
-                            <span class="whitespace-nowrap" v-if="isOpen">{{ $t('manage_orders') }}</span>
-                    </router-link>                     -->
+                    <!-- App -->
+                    <div v-if="!isOpen" class="flex justify-center py-4">
+                        <svg class="w-5 h-5 text-gray-400 flex-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+                    </div>
+                    <div v-else class="py-4.5 pl-5">
+                        <span class="block uppercase text-gray-400">App</span>
+                    </div>
 
+                    <router-link
+                        :class="{ 'bg-gray-600 text-white' : $route.name == 'Calendar'}"
+                        :to="{ name: 'Calendar' }"
+                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-gray-600 duration-150">
+                            <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path fill="currentColor" d="M12,19a1,1,0,1,0-1-1A1,1,0,0,0,12,19Zm5,0a1,1,0,1,0-1-1A1,1,0,0,0,17,19Zm0-4a1,1,0,1,0-1-1A1,1,0,0,0,17,15Zm-5,0a1,1,0,1,0-1-1A1,1,0,0,0,12,15ZM19,3H18V2a1,1,0,0,0-2,0V3H8V2A1,1,0,0,0,6,2V3H5A3,3,0,0,0,2,6V20a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V6A3,3,0,0,0,19,3Zm1,17a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V11H20ZM20,9H4V6A1,1,0,0,1,5,5H6V6A1,1,0,0,0,8,6V5h8V6a1,1,0,0,0,2,0V5h1a1,1,0,0,1,1,1ZM7,15a1,1,0,1,0-1-1A1,1,0,0,0,7,15Zm0,4a1,1,0,1,0-1-1A1,1,0,0,0,7,19Z"/></svg>
+                            <span class="whitespace-nowrap" v-if="isOpen">{{ $t('calendar') }}</span>
+                    </router-link>                    
+
+                    <div class="absolute bottom-4 w-full ">
+                        <button @click="logout" class="flex items-center space-x-3 pl-4 py-2 hover:bg-gray-600 duration-150 w-full">
+                            <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"/></svg>
+                            <span class="whitespace-nowrap" v-if="isOpen">Logout</span>
+                        </button>
+                    </div>
 
                     <!-- <router-link
                         :class="{ 'bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg text-white shadow' : $route.name == 'My Orders'}"
@@ -122,10 +143,7 @@
                         <span class="block uppercase text-gray-400">{{ $t('actions') }}</span>
                     </div>
 
-                    <button @click="logout" class="text-sm flex items-center space-x-3 p-2 w-full">
-                        <svg class="w-5.5 h-5.5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"/></svg>
-                        <span class="whitespace-nowrap" v-if="isOpen">Logout</span>
-                    </button> -->
+                     -->
 
                     <!-- <router-link
                         :class="{ 'bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg text-white shadow' : $route.name == 'Delete Account'}"
@@ -142,6 +160,7 @@
 <script>
 export default {
     name: 'Dashboard.TheSidebar',
+    props: ['user'],
     data() {
         return {
             isOpen: false

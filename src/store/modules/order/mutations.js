@@ -34,3 +34,7 @@ export const EMPTY_ERRORS = (state) => {
     state.errors = []
 }
 
+export const SET_SUCCESS_STATUS = (state, value) => {
+    state.success = value
+}
+

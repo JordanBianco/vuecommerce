@@ -214,8 +214,9 @@
     "created_at" : "Created on",
     "add_coupon" : "Add Coupon",
     "save" : "Save",
-    "search_coupon_placeholder" : "Search amongst the coupons..."
-
+    "search_coupon_placeholder" : "Search amongst the coupons...",
+    "calendar" : "Calendar",
+    "last_login_at" : "Last Login"
 
 
 

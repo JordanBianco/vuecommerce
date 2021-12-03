@@ -30,7 +30,13 @@ export const login = async ({commit}, {user}) => {
         })
         if (res.status === 200) {
             commit('SET_AUTH', true)
-            router.push({ name: 'Dashboard' })
+            commit('SET_IS_ADMIN', res.data.data.is_admin)
+
+            if (!res.data.data.is_admin) {
+                router.push({ name: 'Dashboard' })
+            } else {
+                router.push({ name: 'Admin Dashboard' })
+            }
         }
     } catch (error) {
         if (error.response.status === 422) {
@@ -44,6 +50,7 @@ export const logout = async ({commit}) => {
         const res = await api.post('/logout')
         if (res.status === 200) {
             commit('SET_AUTH', false)
+            commit('SET_IS_ADMIN', false)
             commit('user/SET_USER', null, { root: true })
             commit('user/SET_ACTIVITIES', null, { root: true })
             commit('review/SET_LAST_REVIEW', null, { root: true })

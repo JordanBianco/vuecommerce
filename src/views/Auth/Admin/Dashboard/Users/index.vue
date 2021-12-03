@@ -92,9 +92,16 @@
                             <span>{{ $t('email_verified') }}</span>
                         </th>
 
-                        <!-- Ruolo -->
-                        <th class="font-normal text-left uppercase p-3">
-                            <span>{{ $t('role') }}</span>
+                        <!-- Ultimo login -->
+                        <th @click="sortBy('last_login_at')" class="font-normal text-left uppercase p-3">
+                            <div class="flex space-x-1 items-center cursor-pointer max-w-max">
+                                <span class="whitespace-nowrap">{{ $t('last_login_at') }}</span>
+
+                                <div class="flex flex-col -space-y-3">
+                                    <svg :class="{ 'text-gray-600' : sort == 'last_login_at' && dir == 'asc' }" class="w-4.5 h-4.5 flex-none text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M17,13.41,12.71,9.17a1,1,0,0,0-1.42,0L7.05,13.41a1,1,0,0,0,0,1.42,1,1,0,0,0,1.41,0L12,11.29l3.54,3.54a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29A1,1,0,0,0,17,13.41Z"/></svg>
+                                    <svg :class="{ 'text-gray-600' : sort == 'last_login_at' && dir == 'desc' }" class="w-4.5 h-4.5 flex-none text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"/></svg>
+                                </div>
+                            </div>
                         </th>
 
                         <!-- Iscritto il -->
@@ -125,7 +132,14 @@
                                     {{ user.email_verified_at != null ? $t('yes') : 'No' }}
                             </div>
                         </td>
-                        <td class="p-3 whitespace-nowrap">utente</td>
+                        <td class="p-3">
+                            <div class="whitespace-nowrap" v-if="user.last_login_at">
+                                {{ $moment(user.last_login_at).format('DD.MM.YYYY HH:mm') }}        
+                            </div>
+                            <div v-else>
+                                <span></span>    
+                            </div>
+                        </td>
                         <td class="p-3 whitespace-nowrap">{{ $moment(user.created_at).format('DD.MM.YYYY HH:mm') }}</td>
                         <td class="p-3">
                             <div class="flex items-center space-x-2 text-gray-400 duration-150">

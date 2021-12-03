@@ -78,7 +78,7 @@ const routes = [
 	{
 		path: '/dashboard',
 		component: () => import('../views/Auth/User/layout.vue'),
-		meta: { auth: true },
+		meta: { dashboard: true, auth: true },
 		children: [
 			{
 				path: '/',
@@ -134,42 +134,55 @@ const routes = [
 	{
 		path: '/admin/dashboard',
 		component: () => import('../views/Auth/Admin/layout.vue'),
-		// meta: { auth: true, admin: true },
+		meta: { admin: true, auth: true },
 		children: [
 			{
 				path: '/',
 				name: 'Admin Dashboard',
 				component: () => import('../views/Auth/Admin/Dashboard/Dashboard.vue'),
+				meta: { admin: true, auth: true },
 			},
 			// Users
 			{
 				path: '/admin/users',
 				name: 'Manage Users',
 				component: () => import('../views/Auth/Admin/Dashboard/Users/index.vue'),
+				meta: { admin: true, auth: true },
 			},
 			{
 				path: '/admin/users/:id',
 				name: 'user.show',
 				component: () => import('../views/Auth/Admin/Dashboard/Users/show.vue'),
-				props: true
+				props: true,
+				meta: { admin: true, auth: true },
 			},
 			{
 				path: '/admin/users/:id/edit',
 				name: 'user.edit',
 				component: () => import('../views/Auth/Admin/Dashboard/Users/edit.vue'),
-				props: true
+				props: true,
+				meta: { admin: true, auth: true },
 			},
 			// Coupons
 			{
 				path: '/admin/coupons',
 				name: 'Manage Coupons',
 				component: () => import('../views/Auth/Admin/Dashboard/Coupon/index.vue'),
+				meta: { admin: true, auth: true },
 			},
 			{
 				path: '/admin/coupons/:id/edit',
 				name: 'coupon.edit',
 				component: () => import('../views/Auth/Admin/Dashboard/Coupon/edit.vue'),
-				props: true
+				props: true,
+				meta: { admin: true, auth: true },
+			},
+			// Calendar
+			{
+				path: '/admin/calendar',
+				name: 'Calendar',
+				component: () => import('../views/Auth/Admin/Dashboard/Calendar/index.vue'),
+				meta: { admin: true, auth: true },
 			},
 		],	
 	},
@@ -212,16 +225,32 @@ router.beforeEach((to, from, next) => {
 			next({
 				name: 'Login'
 			});
+		} else if (to.matched.some(record => record.meta.admin)) {
+			if (!store.state.auth.isAdmin) {
+				next({
+					name: 'Dashboard'
+				});
+			} else {
+				next();
+			}
+		} else if (to.matched.some(record => record.meta.dashboard)) {
+			if (!store.state.auth.isAdmin) {
+				next()
+			} else {
+				next({
+					name: 'Admin Dashboard'
+				});
+			}
+		} else if (to.matched.some(record => record.meta.cart)) {
+			if (store.state.cart.items.length < 1) {
+				next({
+					name: 'Home'
+				});
+			} else {
+				next();
+			}
 		} else {
-			next();
-		}
-	} else if (to.matched.some(record => record.meta.cart)) {
-		if (store.state.cart.items.length < 1) {
-			next({
-				name: 'Home'
-			});
-		} else {
-			next();
+			next()
 		}
 	} else if (to.matched.some(record => record.meta.guest)) {
 		if (store.state.auth.auth) {

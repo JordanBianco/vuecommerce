@@ -1,9 +1,9 @@
 <template>
     <div>
-        <main class="w-full">
+        <main v-if="user" class="w-full">
             <nav class="w-full border-b fixed top-0 z-20 bg-white">
                 <div class="flex items-center justify-between md:w-11/12 md:mx-auto p-4.5 md:px-0">
-                    <TheSidebar />
+                    <TheSidebar :user="user" />
 
                     <div class="flex items-center space-x-2">
                         <LanguageSwitcher />
@@ -35,21 +35,18 @@ export default {
         TheSidebar,
         LanguageSwitcher
     },
-    // mounted() {
-    //     this.getUser();
-    // },
-    // computed: {
-    //     user() {
-    //         return this.$store.state.user.user
-    //     },
-    // },
-    // methods: {
-    //     getUser() {
-    //         this.$store.dispatch('user/getUser')
-    //     },
-    //     logout() {
-    //         this.$store.dispatch('auth/logout')
-    //     },
-    // }
+    mounted() {
+        this.getUser();
+    },
+    computed: {
+        user() {
+            return this.$store.state.user.user
+        },
+    },
+    methods: {
+        getUser() {
+            this.$store.dispatch('user/getUser')
+        },
+    }
 }
 </script>

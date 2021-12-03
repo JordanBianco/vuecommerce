@@ -60,6 +60,7 @@ export const placeOrder = async ({commit, dispatch}, {user_id, customer, items, 
         }
     } catch (error) {
         if (error.response.status === 422) {
+            commit('SET_SUCCESS_STATUS', false)
             commit('SET_ERRORS', error.response.data.errors);
         }
     }
@@ -122,4 +123,8 @@ export const getLastOrder = async ({commit}) => {
 
 export const emptyErrors = ({commit}) => {
     commit('EMPTY_ERRORS')
+}
+
+export const setSuccessStatus = ({commit}, {value}) => {
+    commit('SET_SUCCESS_STATUS', value)
 }

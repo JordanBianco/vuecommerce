@@ -223,9 +223,9 @@
                 </footer>
 
                 <div v-if="coupon.length == 0" class="mt-6">
-                    <div @click="showCoupon = ! showCoupon" class="flex items-center justify-between text-gray-400 mb-1">
+                    <div @click="showCoupon = ! showCoupon" class="flex items-center justify-between text-gray-400 mb-1 cursor-pointer">
                         <p>{{ $t('have_coupon') }}</p>
-                        <svg :class="[ !showCoupon ? 'rotate-180' : '' ]" class="w-6 h-6 flex-none transform transition duration-150 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"/></svg>
+                        <svg :class="[ !showCoupon ? 'rotate-180' : '' ]" class="w-6 h-6 flex-none transform transition duration-150" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"/></svg>
                     </div>
                     <transition v-if="showCoupon" name="fade">
                        <div>
@@ -265,6 +265,16 @@
             </section>
         </div>
 
+        <transition name="fade">
+            <div
+                v-if="orderPlaced"
+                class="fixed inset-0 z-50">
+                    <div class="flex justify-center items-center h-screen mt-16">
+                        <img class="animate-spin w-14 h-14" src="https://img.icons8.com/ios/50/BBBBBB/spinning-circle--v1.png"/>
+                    </div>
+            </div>
+        </transition>
+
         <TheFooter />
     </div>
 </template>
@@ -301,6 +311,7 @@ export default {
             shipping: 395,
             showCoupon: false,
             couponName: '',
+            orderPlaced: false
         }
     },
     computed: {
@@ -309,6 +320,9 @@ export default {
         },
         items() {
             return this.$store.state.cart.items
+        },
+        success() {
+            return this.$store.state.order.success
         },
         errors() {
             return this.$store.state.order.errors
@@ -356,14 +370,24 @@ export default {
             handler: function() {
                 this.emptyErrors();
                 this.emptyCouponErrors();
-                this.remvoeCoupon();
+                this.removeCoupon();
             },
             deep: true,
             immediate: true,
 		},
+        success() {
+            if (this.success) {
+                this.setSuccessStatus([])
+            } else {
+                this.orderPlaced = false
+                this.setSuccessStatus([])
+            }
+        }
     },
     methods: {
         placeOrder() {
+            this.orderPlaced = true
+
             this.$store.dispatch('order/placeOrder', {
                 user_id: this.user.id,
                 customer: this.customer,
@@ -383,8 +407,8 @@ export default {
             this.customer.zipcode = this.user.zipcode
             this.customer.phone = this.user.phone
         },
-        remvoeCoupon() {
-            this.$store.dispatch('coupon/remvoeCoupon')
+        removeCoupon() {
+            this.$store.dispatch('coupon/removeCoupon')
         },
         verifyCoupon() {
             this.$store.dispatch('coupon/verifyCoupon', { coupon: this.couponName})
@@ -394,6 +418,9 @@ export default {
         },
         emptyCouponErrors() {
             this.$store.dispatch('coupon/emptyCouponErrors')
+        },
+        setSuccessStatus(value) {
+            this.$store.dispatch('order/setSuccessStatus', value)
         },
     },
     filters: {
