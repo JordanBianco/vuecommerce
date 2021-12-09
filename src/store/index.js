@@ -29,6 +29,7 @@ import weather from '@/store/modules/weather'
 
 // Admin
 import users from '@/store/modules/admin/users'
+import event from '@/store/modules/admin/event'
 
 
 export default new Vuex.Store({
@@ -50,7 +51,8 @@ export default new Vuex.Store({
     notification,
     language,
     weather,
-    users
+    users,
+    event
   },
   plugins: [
     data

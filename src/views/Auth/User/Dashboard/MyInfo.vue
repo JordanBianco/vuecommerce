@@ -4,7 +4,7 @@
             <h2 class="text-xl text-gray-600">{{ $t('my_data') }}</h2>
         </header>
 
-        <form v-if="user" @submit.prevent="updateInfo()" class="text-sm text-gray-600">
+        <form v-if="user" @submit.prevent="updateInfo()" class="text-gray-600">
             <!-- Name -->
             <div class="w-full mb-6">
                 <label class="text-gray-400 text-xs" for="first_name">{{ $t('first_name') }}</label>
@@ -13,7 +13,7 @@
                     @click="errors.first_name = ''"
                     v-model="user.first_name"
                     :class="{ 'border-red-500' : errors.first_name }"
-                    class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 py-1.5">
+                    class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 py-1.5 text-sm">
                     <p v-if="errors.first_name" class="text-xs text-red-500 mt-0.5">{{ errors.first_name[0] }}</p>
             </div>
 
@@ -25,7 +25,7 @@
                     @click="errors.last_name = ''"
                     v-model="user.last_name"
                     :class="{ 'border-red-500' : errors.last_name }"
-                    class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 py-1.5">
+                    class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 py-1.5 text-sm">
                     <p v-if="errors.last_name" class="text-xs text-red-500 mt-0.5">{{ errors.last_name[0] }}</p>
             </div>
 
@@ -37,7 +37,7 @@
                     @click="errors.email = ''"
                     v-model="user.email"
                     :class="{ 'border-red-500' : errors.email }"
-                    class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 py-1.5">
+                    class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 py-1.5 text-sm">
                     <p v-if="errors.email" class="text-xs text-red-500 mt-0.5">{{ errors.email[0] }}</p>
             </div>
 

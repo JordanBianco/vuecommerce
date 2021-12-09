@@ -216,6 +216,8 @@
     "save" : "Salva",
     "search_coupon_placeholder" : "Cerca tra i coupon...",
     "calendar" : "Calendario",
-    "last_login_at" : "Ultimo accesso"
+    "last_login_at" : "Ultimo accesso",
+    "category" : "Categoria",
+    "update" : "Aggiorna"
 
 }

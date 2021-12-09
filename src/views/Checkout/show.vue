@@ -30,7 +30,7 @@
                                 v-model="customer.first_name"
                                 type="text"
                                 :class="{ 'border-red-500' : errors.first_name }"
-                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2">
+                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 text-sm">
                                 <svg v-if="errors.first_name" class="text-red-500 w-5 h-5 absolute right-2 top-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16a1,1,0,1,0,1,1A1,1,0,0,0,12,16Zm10.67,1.47-8.05-14a3,3,0,0,0-5.24,0l-8,14A3,3,0,0,0,3.94,22H20.06a3,3,0,0,0,2.61-4.53Zm-1.73,2a1,1,0,0,1-.88.51H3.94a1,1,0,0,1-.88-.51,1,1,0,0,1,0-1l8-14a1,1,0,0,1,1.78,0l8.05,14A1,1,0,0,1,20.94,19.49ZM12,8a1,1,0,0,0-1,1v4a1,1,0,0,0,2,0V9A1,1,0,0,0,12,8Z"/></svg>
                                 <p v-if="errors.first_name" class="text-xs text-red-500 mt-0.5">{{ errors.first_name[0] }}</p>
                         </div>
@@ -42,7 +42,7 @@
                                 v-model="customer.last_name"
                                 type="text"
                                 :class="{ 'border-red-500' : errors.last_name }"
-                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2">
+                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 text-sm">
                                 <svg v-if="errors.last_name" class="text-red-500 w-5 h-5 absolute right-2 top-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16a1,1,0,1,0,1,1A1,1,0,0,0,12,16Zm10.67,1.47-8.05-14a3,3,0,0,0-5.24,0l-8,14A3,3,0,0,0,3.94,22H20.06a3,3,0,0,0,2.61-4.53Zm-1.73,2a1,1,0,0,1-.88.51H3.94a1,1,0,0,1-.88-.51,1,1,0,0,1,0-1l8-14a1,1,0,0,1,1.78,0l8.05,14A1,1,0,0,1,20.94,19.49ZM12,8a1,1,0,0,0-1,1v4a1,1,0,0,0,2,0V9A1,1,0,0,0,12,8Z"/></svg>
                                 <p v-if="errors.last_name" class="text-xs text-red-500 mt-0.5">{{ errors.last_name[0] }}</p>
                         </div>
@@ -55,7 +55,7 @@
                             v-model="customer.email"
                             type="email"
                             :class="{ 'border-red-500' : errors.email }"
-                            class="border border-gray-200 focus:outline-none w-full rounded-lg p-2">
+                            class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 text-sm">
                             <svg v-if="errors.email" class="text-red-500 w-5 h-5 absolute right-2 top-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16a1,1,0,1,0,1,1A1,1,0,0,0,12,16Zm10.67,1.47-8.05-14a3,3,0,0,0-5.24,0l-8,14A3,3,0,0,0,3.94,22H20.06a3,3,0,0,0,2.61-4.53Zm-1.73,2a1,1,0,0,1-.88.51H3.94a1,1,0,0,1-.88-.51,1,1,0,0,1,0-1l8-14a1,1,0,0,1,1.78,0l8.05,14A1,1,0,0,1,20.94,19.49ZM12,8a1,1,0,0,0-1,1v4a1,1,0,0,0,2,0V9A1,1,0,0,0,12,8Z"/></svg>
                             <p v-if="errors.email" class="text-xs text-red-500 mt-0.5">{{ errors.email[0] }}</p>
                     </div>
@@ -72,7 +72,7 @@
                                 v-model="customer.country"
                                 type="text"
                                 :class="{ 'border-red-500' : errors.country }"
-                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2">
+                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 text-sm">
                                 <svg v-if="errors.country" class="text-red-500 w-5 h-5 absolute right-2 top-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16a1,1,0,1,0,1,1A1,1,0,0,0,12,16Zm10.67,1.47-8.05-14a3,3,0,0,0-5.24,0l-8,14A3,3,0,0,0,3.94,22H20.06a3,3,0,0,0,2.61-4.53Zm-1.73,2a1,1,0,0,1-.88.51H3.94a1,1,0,0,1-.88-.51,1,1,0,0,1,0-1l8-14a1,1,0,0,1,1.78,0l8.05,14A1,1,0,0,1,20.94,19.49ZM12,8a1,1,0,0,0-1,1v4a1,1,0,0,0,2,0V9A1,1,0,0,0,12,8Z"/></svg>
                                 <p v-if="errors.country" class="text-xs text-red-500 mt-0.5">{{ errors.country[0] }}</p>
                         </div>
@@ -84,7 +84,7 @@
                                 v-model="customer.city"
                                 type="text"
                                 :class="{ 'border-red-500' : errors.city }"
-                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2">
+                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 text-sm">
                                 <svg v-if="errors.city" class="text-red-500 w-5 h-5 absolute right-2 top-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16a1,1,0,1,0,1,1A1,1,0,0,0,12,16Zm10.67,1.47-8.05-14a3,3,0,0,0-5.24,0l-8,14A3,3,0,0,0,3.94,22H20.06a3,3,0,0,0,2.61-4.53Zm-1.73,2a1,1,0,0,1-.88.51H3.94a1,1,0,0,1-.88-.51,1,1,0,0,1,0-1l8-14a1,1,0,0,1,1.78,0l8.05,14A1,1,0,0,1,20.94,19.49ZM12,8a1,1,0,0,0-1,1v4a1,1,0,0,0,2,0V9A1,1,0,0,0,12,8Z"/></svg>
                                 <p v-if="errors.city" class="text-xs text-red-500 mt-0.5">{{ errors.city[0] }}</p>
                         </div>
@@ -96,7 +96,7 @@
                                 v-model="customer.province"
                                 type="text"
                                 :class="{ 'border-red-500' : errors.province }"
-                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2">
+                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 text-sm">
                                 <svg v-if="errors.province" class="text-red-500 w-5 h-5 absolute right-2 top-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16a1,1,0,1,0,1,1A1,1,0,0,0,12,16Zm10.67,1.47-8.05-14a3,3,0,0,0-5.24,0l-8,14A3,3,0,0,0,3.94,22H20.06a3,3,0,0,0,2.61-4.53Zm-1.73,2a1,1,0,0,1-.88.51H3.94a1,1,0,0,1-.88-.51,1,1,0,0,1,0-1l8-14a1,1,0,0,1,1.78,0l8.05,14A1,1,0,0,1,20.94,19.49ZM12,8a1,1,0,0,0-1,1v4a1,1,0,0,0,2,0V9A1,1,0,0,0,12,8Z"/></svg>
                                 <p v-if="errors.province" class="text-xs text-red-500 mt-0.5">{{ errors.province[0] }}</p>
                         </div>
@@ -108,7 +108,7 @@
                                 v-model="customer.address"
                                 type="text"
                                 :class="{ 'border-red-500' : errors.address }"
-                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2">
+                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 text-sm">
                                 <svg v-if="errors.address" class="text-red-500 w-5 h-5 absolute right-2 top-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16a1,1,0,1,0,1,1A1,1,0,0,0,12,16Zm10.67,1.47-8.05-14a3,3,0,0,0-5.24,0l-8,14A3,3,0,0,0,3.94,22H20.06a3,3,0,0,0,2.61-4.53Zm-1.73,2a1,1,0,0,1-.88.51H3.94a1,1,0,0,1-.88-.51,1,1,0,0,1,0-1l8-14a1,1,0,0,1,1.78,0l8.05,14A1,1,0,0,1,20.94,19.49ZM12,8a1,1,0,0,0-1,1v4a1,1,0,0,0,2,0V9A1,1,0,0,0,12,8Z"/></svg>
                                 <p v-if="errors.address" class="text-xs text-red-500 mt-0.5">{{ errors.address[0] }}</p>
                         </div>
@@ -120,7 +120,7 @@
                                 v-model="customer.zipcode"
                                 type="text"
                                 :class="{ 'border-red-500' : errors.zipcode }"
-                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2">
+                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 text-sm">
                                 <svg v-if="errors.zipcode" class="text-red-500 w-5 h-5 absolute right-2 top-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16a1,1,0,1,0,1,1A1,1,0,0,0,12,16Zm10.67,1.47-8.05-14a3,3,0,0,0-5.24,0l-8,14A3,3,0,0,0,3.94,22H20.06a3,3,0,0,0,2.61-4.53Zm-1.73,2a1,1,0,0,1-.88.51H3.94a1,1,0,0,1-.88-.51,1,1,0,0,1,0-1l8-14a1,1,0,0,1,1.78,0l8.05,14A1,1,0,0,1,20.94,19.49ZM12,8a1,1,0,0,0-1,1v4a1,1,0,0,0,2,0V9A1,1,0,0,0,12,8Z"/></svg>
                                 <p v-if="errors.zipcode" class="text-xs text-red-500 mt-0.5">{{ errors.zipcode[0] }}</p>
                         </div>
@@ -132,7 +132,7 @@
                                 v-model="customer.phone"
                                 type="text"
                                 :class="{ 'border-red-500' : errors.phone }"
-                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2">
+                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 text-sm">
                                 <svg v-if="errors.phone" class="text-red-500 w-5 h-5 absolute right-2 top-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12,16a1,1,0,1,0,1,1A1,1,0,0,0,12,16Zm10.67,1.47-8.05-14a3,3,0,0,0-5.24,0l-8,14A3,3,0,0,0,3.94,22H20.06a3,3,0,0,0,2.61-4.53Zm-1.73,2a1,1,0,0,1-.88.51H3.94a1,1,0,0,1-.88-.51,1,1,0,0,1,0-1l8-14a1,1,0,0,1,1.78,0l8.05,14A1,1,0,0,1,20.94,19.49ZM12,8a1,1,0,0,0-1,1v4a1,1,0,0,0,2,0V9A1,1,0,0,0,12,8Z"/></svg>
                                 <p v-if="errors.phone" class="text-xs text-red-500 mt-0.5">{{ errors.phone[0] }}</p>
                         </div>
@@ -143,7 +143,7 @@
                                 v-model="notes"
                                 rows="3"
                                 :class="{ 'border-red-500' : errors.notes }"
-                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2"></textarea>
+                                class="border border-gray-200 focus:outline-none w-full rounded-lg p-2 text-sm"></textarea>
                         </div>
                     </div>
                 </section>
@@ -234,7 +234,7 @@
                                     @click="couponErrors.coupon = ''"
                                     type="text"
                                     v-model="couponName"
-                                    class="border border-gray-200 rounded-lg p-2 focus:outline-none w-full">
+                                    class="border border-gray-200 rounded-lg p-2 focus:outline-none w-full text-sm">
                                 <button @click="verifyCoupon" class="px-3 py-2.5 bg-c-dark-gray text-white text-xs rounded-lg focus:outline-none">
                                     {{ $t('verify') }}
                                 </button>

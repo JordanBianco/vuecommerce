@@ -1,24 +1,17 @@
 <template>
     <div>
-        <header class="pb-6">
+        <header class="mb-6 flex items-baseline space-x-4">
             <h2 class="text-xl text-gray-600">Modifica coupon</h2>
+            <!-- Breadcrumb -->
+            <div v-if="coupon" class="text-sm flex items-center space-x-0.5 text-gray-400">
+                <router-link class="hover:underline" :to="{ name: 'Manage Coupons' }">Coupons</router-link>
+                <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M14.83,11.29,10.59,7.05a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41L12.71,12,9.17,15.54a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.29,1,1,0,0,0,.71-.29l4.24-4.24A1,1,0,0,0,14.83,11.29Z"/></svg>
+                <span class="text-blue-400">{{ coupon.code }}</span>
+            </div>
         </header>
 
-        <section v-if="coupon">
-            <!-- Breadcrumb -->
-            <div class="text-sm flex items-center space-x-0.5 text-gray-400 mb-10">
-                <router-link class="hover:underline" :to="{ name: 'Manage Coupons' }">Coupons</router-link>
-                    <span>
-                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M14.83,11.29,10.59,7.05a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41L12.71,12,9.17,15.54a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.29,1,1,0,0,0,.71-.29l4.24-4.24A1,1,0,0,0,14.83,11.29Z"/></svg>
-                    </span>
-                <span>{{ coupon.code }}</span>
-                    <span>
-                        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M14.83,11.29,10.59,7.05a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41L12.71,12,9.17,15.54a1,1,0,0,0,0,1.41,1,1,0,0,0,.71.29,1,1,0,0,0,.71-.29l4.24-4.24A1,1,0,0,0,14.83,11.29Z"/></svg>
-                    </span>
-                <span class="text-blue-400">{{ $t('edit') }}</span>
-            </div>
-
-            <section class="space-y-4 text-sm">
+        <section class="bg-white border border-gray-200 shadow-lg rounded-lg p-6">
+            <section v-if="coupon" class="space-y-4 text-sm">
                 <!-- CODE -->
                 <div class="w-full">
                     <label class="text-gray-400 text-xs" for="code">{{ $t('code') }}</label>
@@ -27,7 +20,7 @@
                         @focus="errors.code = ''"
                         v-model="coupon.code"
                         :class="{ 'border-red-500' : errors.code }"
-                        class="border border-gray-200 focus:outline-none focus:border-blue-400 w-full rounded-lg p-2 py-1.5">
+                        class="border border-gray-200 focus:ring-gray-300 w-full rounded-lg p-2 py-1.5 text-sm">
                         <p v-if="errors.code" class="text-xs text-red-500 mt-0.5">{{ errors.code[0] }}</p>
                 </div>
 
@@ -39,7 +32,7 @@
                         @focus="errors.description = ''"
                         v-model="coupon.description"
                         :class="{ 'border-red-500' : errors.description }"
-                        class="border border-gray-200 focus:outline-none focus:border-blue-400 w-full rounded-lg p-2 py-1.5"></textarea>                    
+                        class="resize-none border border-gray-200 focus:ring-gray-300 w-full rounded-lg p-2 py-1.5 text-sm"></textarea>                    
                         <p v-if="errors.description" class="text-xs text-red-500 mt-0.5">{{ errors.description[0] }}</p>
                 </div>
 
@@ -51,7 +44,7 @@
                         @focus="errors.discount = ''"
                         v-model="coupon.discount"
                         :class="{ 'border-red-500' : errors.discount }"
-                        class="border border-gray-200 focus:outline-none focus:border-blue-400 w-full rounded-lg p-2 py-1.5">
+                        class="border border-gray-200 focus:ring-gray-300 w-full rounded-lg p-2 py-1.5 text-sm">
                         <p v-if="errors.discount" class="text-xs text-red-500 mt-0.5">{{ errors.discount[0] }}</p>
                 </div>
 
@@ -61,6 +54,12 @@
                         {{ $t('update_coupon') }}    
                 </button>
             </section>
+            <!-- Loading -->
+            <div v-else class="flex justify-center items-center py-36 text-gray-400">
+                <img
+                    class="animate-spin w-8 h-8"
+                    src="https://img.icons8.com/ios/50/BBBBBB/spinning-circle--v1.png"/>
+            </div>
         </section>
     </div>
 </template>
@@ -68,7 +67,7 @@
 <script>
 export default {
     name: 'AdminDashboard.Coupon.edit',
-    props: ['id'],
+    props: ['slug'],
     mounted() {
         this.getCoupon();
     },
@@ -92,7 +91,7 @@ export default {
     methods: {
         getCoupon() {
             this.$store.dispatch('coupon/getCoupon', {
-                id: this.id
+                slug: this.slug
             })
         },
         updateCoupon() {

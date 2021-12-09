@@ -4,19 +4,19 @@
             <h2 class="text-xl text-gray-600">{{ $t('archived_orders') }}</h2>
         </header>
 
-        <div class="flex flex-col space-y-3 md:flex-row md:justify-between md:items-center md:space-y-0 mb-6 text-xs">
+        <div class="flex flex-col space-y-3 md:flex-row md:justify-between md:items-center md:space-y-0 mb-6">
             <div class="relative w-full md:w-1/3">
                 <input
                     v-model="search"
                     :placeholder="$t('search_placeholder')"
                     type="text"
-                    class="p-2 pr-10 border rounded-lg focus:outline-none focus:border-indigo-400 w-full">
+                    class="py-1.5 pr-10 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 w-full placeholder-gray-300 text-xs">
                 
-                    <svg class="w-5 h-5 text-gray-300 flex-none absolute right-3 top-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
+                    <svg class="w-4.5 h-4.5 text-gray-300 flex-none absolute right-3 top-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
             </div>
 
             <div class="flex flex-col space-y-3 md:flex-row md:items-center md:space-x-2 md:space-y-0">
-                <select v-model="fstatus" class="p-2 px-4 border rounded-lg focus:outline-none focus:border-indigo-400 text-gray-600">
+                <select v-model="fstatus" class="p-2 px-4 border border-gray-200 rounded-lg focus:outline-none text-gray-500 text-xs">
                     <option value="">{{ $t('status') }}</option>
                     <option value="pending">pending</option>
                     <option value="in transit">in transit</option>
@@ -24,7 +24,7 @@
                     <option value="canceled">canceled</option>
                 </select>
 
-                <select v-model="perPage" class="p-2 px-4 border rounded-lg focus:outline-none focus:border-indigo-400 text-gray-600">
+                <select v-model="perPage" class="p-2 px-4 pr-10 border border-gray-200 rounded-lg focus:outline-none text-gray-500 text-xs">
                     <option value="">{{ $t('results_per_page') }}</option>
                     <option value="5">5</option>
                     <option value="10">10</option>

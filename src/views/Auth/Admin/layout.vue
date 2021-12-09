@@ -17,7 +17,7 @@
             
             <transition name="fade">
                 <router-view
-                    class="lg:pl-24 pt-24 pb-12 lg:pr-14 p-6 min-h-screen"
+                    class="lg:pl-24 pt-24 pb-12 lg:pr-14 p-6 min-h-screen bg-gray-100"
                     :key="$route.path">
                 </router-view>
             </transition>

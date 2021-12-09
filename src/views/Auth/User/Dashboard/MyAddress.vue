@@ -13,7 +13,7 @@
                     @click="errors.country = ''"
                     v-model="user.country"
                     :class="{ 'border-red-500' : errors.country }"
-                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5">
+                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5 text-sm">
                     <p v-if="errors.country" class="text-xs text-red-500 mt-0.5">{{ errors.country[0] }}</p>
             </div>
 
@@ -25,7 +25,7 @@
                     @click="errors.city = ''"
                     v-model="user.city"
                     :class="{ 'border-red-500' : errors.city }"
-                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5">
+                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5 text-sm">
                     <p v-if="errors.city" class="text-xs text-red-500 mt-0.5">{{ errors.city[0] }}</p>
             </div>
 
@@ -37,7 +37,7 @@
                     @click="errors.province = ''"
                     v-model="user.province"
                     :class="{ 'border-red-500' : errors.province }"
-                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5">
+                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5 text-sm">
                     <p v-if="errors.province" class="text-xs text-red-500 mt-0.5">{{ errors.province[0] }}</p>
             </div>
 
@@ -49,7 +49,7 @@
                     @click="errors.address = ''"
                     v-model="user.address"
                     :class="{ 'border-red-500' : errors.address }"
-                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5">
+                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5 text-sm">
                     <p v-if="errors.address" class="text-xs text-red-500 mt-0.5">{{ errors.address[0] }}</p>
             </div>
 
@@ -61,7 +61,7 @@
                     @click="errors.zipcode = ''"
                     v-model="user.zipcode"
                     :class="{ 'border-red-500' : errors.zipcode }"
-                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5">
+                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5 text-sm">
                     <p v-if="errors.zipcode" class="text-xs text-red-500 mt-0.5">{{ errors.zipcode[0] }}</p>
             </div>
 
@@ -73,7 +73,7 @@
                     @click="errors.phone = ''"
                     v-model="user.phone"
                     :class="{ 'border-red-500' : errors.phone }"
-                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5">
+                    class="border border-gray-200 focus:outline-none focus:border-indigo-400 w-full rounded-lg p-2 py-1.5 text-sm">
                     <p v-if="errors.phone" class="text-xs text-red-500 mt-0.5">{{ errors.phone[0] }}</p>
             </div>
 

@@ -14,12 +14,12 @@
 					<!-- Categorie -->
 					<div class="mb-10">
 						<h3 class="xl:text-base font-thin text-c-dark-gray mb-4">{{ $t('categories') }}</h3>
-						<div v-for="category in allCategories.data" :key="category.id" class="flex items-start space-x-2 mb-1">
+						<div v-for="category in allCategories.data" :key="category.id" class="flex items-center space-x-2 mb-1">
 							<input
 								type="checkbox"
 								:value="category.id"
 								v-model="categories"
-								class="mt-1">
+								class="rounded text-c-green w-3.5 h-3.5">
 							<label class="text-gray-500">{{ category.name }}</label>
 						</div>
 					</div>
@@ -28,43 +28,43 @@
 						<h3 class="xl:text-base font-thin text-c-dark-gray mb-4">{{ $t('ratings') }}</h3>
 						<section class="space-y-1.5 xl:space-y-2">
 							<!-- 1 star -->
-							<div @click="setRatingsFilterValue('1')" class="flex items-center justify-between">
+							<div @click="setRatingsFilterValue('1')" class="flex items-center justify-between cursor-pointer">
 								<div class="flex">
 									<svg class="w-4 h-4 xl:w-5 xl:h-5 text-c-dark-gray" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
 									<svg v-for="i in 4" :key="i + '-1'" class="w-4 h-4 xl:w-5 xl:h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
 								</div>
-								<span :class="{ 'underline text-c-dark-gray' : ratings === '1' }" class="text-sm text-gray-400 cursor-pointer">{{ $t('1_star') }}</span>
+								<span :class="{ 'underline text-c-dark-gray' : ratings === '1' }" class="text-sm text-gray-400">{{ $t('1_star') }}</span>
 							</div>
 							<!-- 2 stars -->
-							<div @click="setRatingsFilterValue('2')" class="flex items-center justify-between">
+							<div @click="setRatingsFilterValue('2')" class="flex items-center justify-between cursor-pointer">
 								<div class="flex">
 									<svg v-for="i in 2" :key="i + '-2'" class="w-4 h-4 xl:w-5 xl:h-5 text-c-dark-gray" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
 									<svg v-for="i in 3" :key="i + '-3'" class="w-4 h-4 xl:w-5 xl:h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
 								</div>
-								<span :class="{ 'underline text-c-dark-gray' : ratings === '2' }" class="text-sm text-gray-400 cursor-pointer">{{ $t('2_stars') }}</span>
+								<span :class="{ 'underline text-c-dark-gray' : ratings === '2' }" class="text-sm text-gray-400">{{ $t('2_stars') }}</span>
 							</div>
 							<!-- 3 stars -->
-							<div @click="setRatingsFilterValue('3')" class="flex items-center justify-between">
+							<div @click="setRatingsFilterValue('3')" class="flex items-center justify-between cursor-pointer">
 								<div class="flex">
 									<svg v-for="i in 3" :key="i + '-4'" class="w-4 h-4 xl:w-5 xl:h-5 text-c-dark-gray" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
 									<svg v-for="i in 2" :key="i + '-5'" class="w-4 h-4 xl:w-5 xl:h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
 								</div>
-								<span :class="{ 'underline text-c-dark-gray' : ratings === '3' }" class="text-sm text-gray-400 cursor-pointer">{{ $t('3_stars') }}</span>
+								<span :class="{ 'underline text-c-dark-gray' : ratings === '3' }" class="text-sm text-gray-400">{{ $t('3_stars') }}</span>
 							</div>
 							<!-- 4 stars -->
-							<div @click="setRatingsFilterValue('4')" class="flex items-center justify-between">
+							<div @click="setRatingsFilterValue('4')" class="flex items-center justify-between cursor-pointer">
 								<div class="flex">
 									<svg v-for="i in 4" :key="i + '-6'" class="w-4 h-4 xl:w-5 xl:h-5 text-c-dark-gray" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
 									<svg class="w-4 h-4 xl:w-5 xl:h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
 								</div>
-								<span :class="{ 'underline text-c-dark-gray' : ratings === '4' }" class="text-sm text-gray-400 cursor-pointer">{{ $t('4_stars') }}</span>
+								<span :class="{ 'underline text-c-dark-gray' : ratings === '4' }" class="text-sm text-gray-400">{{ $t('4_stars') }}</span>
 							</div>
 							<!-- 5 stars -->
-							<div @click="setRatingsFilterValue('5')" class="flex items-center justify-between">
+							<div @click="setRatingsFilterValue('5')" class="flex items-center justify-between cursor-pointer">
 								<div class="flex">
 									<svg v-for="i in 5" :key="i + '-7'" class="w-4 h-4 xl:w-5 xl:h-5 text-c-dark-gray" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path fill="currentColor" d="M22,10.1c0.1-0.5-0.3-1.1-0.8-1.1l-5.7-0.8L12.9,3c-0.1-0.2-0.2-0.3-0.4-0.4C12,2.3,11.4,2.5,11.1,3L8.6,8.2L2.9,9C2.6,9,2.4,9.1,2.3,9.3c-0.4,0.4-0.4,1,0,1.4l4.1,4l-1,5.7c0,0.2,0,0.4,0.1,0.6c0.3,0.5,0.9,0.7,1.4,0.4l5.1-2.7l5.1,2.7c0.1,0.1,0.3,0.1,0.5,0.1v0c0.1,0,0.1,0,0.2,0c0.5-0.1,0.9-0.6,0.8-1.2l-1-5.7l4.1-4C21.9,10.5,22,10.3,22,10.1z"/></svg>
 								</div>
-								<span :class="{ 'underline text-c-dark-gray' : ratings === '5' }" class="text-sm text-gray-400 cursor-pointer">{{ $t('5_stars') }}</span>
+								<span :class="{ 'underline text-c-dark-gray' : ratings === '5' }" class="text-sm text-gray-400">{{ $t('5_stars') }}</span>
 							</div>
 						</section>
 					</div>
@@ -98,12 +98,12 @@
 					<div class="flex items-center justify-between space-x-4">
 						<!-- Search -->
 						<section class="w-full">
-							<div class="relative text-sm">
+							<div class="relative">
 								<input
 									v-model="search"
 									:placeholder="$t('what_are_you_looking_for')"
 									type="text"
-									class="w-full rounded-xl bg-gray-100 py-2 pl-10 placeholder-gray-400 focus:outline-none">
+									class="w-full border border-gray-100 rounded-xl bg-gray-100 py-2 pl-10 placeholder-gray-400 focus:outline-none text-sm">
 
 								<div class="absolute top-2 left-3">
 									<svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
@@ -172,13 +172,15 @@
 								</header>
 								<div
 									v-for="category in allCategories.data"
-									:key="category.id"
-									class="flex items-center justify-between px-5 py-2">
-										<label class="text-gray-500">{{ category.name }}</label>
-										<input
-											type="checkbox"
-											:value="category.id"
-											v-model="categories">
+									:key="category.id">
+										<div class="flex items-center justify-between w-full px-5 py-2">
+											<label class="text-gray-500">{{ category.name }}</label>
+											<input
+												type="checkbox"
+												:value="category.id"
+												v-model="categories"
+												class="rounded text-c-green w-4 h-4">
+										</div>
 								</div>
 							</section>
 							<!-- Ordina -->
@@ -195,7 +197,7 @@
 										<input
 											v-model="sort"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="name.asc"
 											id="name-asc">
 									</label>
@@ -206,7 +208,7 @@
 										<input
 											v-model="sort"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="name.desc"
 											id="name-desc">
 									</label>
@@ -217,7 +219,7 @@
 										<input
 											v-model="sort"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="price.asc"
 											id="price-asc">
 									</label>
@@ -228,7 +230,7 @@
 										<input
 											v-model="sort"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="price.desc"
 											id="price-desc">
 									</label>
@@ -239,7 +241,7 @@
 										<input
 											v-model="sort"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="review.desc"
 											id="review-desc">
 									</label>
@@ -259,7 +261,7 @@
 										<input
 											v-model="size"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="xs"
 											id="xs">
 									</label>
@@ -270,7 +272,7 @@
 										<input
 											v-model="size"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="s"
 											id="s">
 									</label>
@@ -281,7 +283,7 @@
 										<input
 											v-model="size"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="m"
 											id="m">
 									</label>
@@ -292,7 +294,7 @@
 										<input
 											v-model="size"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="l"
 											id="l">
 									</label>
@@ -303,7 +305,7 @@
 										<input
 											v-model="size"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="xl"
 											id="xl">
 									</label>
@@ -371,7 +373,7 @@
 										<input
 											v-model="perPage"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="10"
 											id="10">
 									</label>
@@ -382,7 +384,7 @@
 										<input
 											v-model="perPage"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="20"
 											id="20">
 									</label>
@@ -393,7 +395,7 @@
 										<input
 											v-model="perPage"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="40"
 											id="40">
 									</label>
@@ -404,7 +406,7 @@
 										<input
 											v-model="perPage"
 											type="radio"
-											class="w-4 h-4 cursor-pointer"
+											class="w-4 h-4 cursor-pointer text-c-green rounded"
 											value="60"
 											id="60">
 									</label>

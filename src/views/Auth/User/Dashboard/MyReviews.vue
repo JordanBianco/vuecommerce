@@ -10,15 +10,15 @@
                     v-model="search"
                     :placeholder="$t('review_placeholder')"
                     type="text"
-                    class="p-2 pr-10 border rounded-lg focus:outline-none focus:border-indigo-400 w-full">
+                    class="py-1.5 pr-10 border-gray-200 rounded-lg focus:outline-none focus:border-indigo-400 w-full placeholder-gray-300 text-xs">
                 
-                    <svg class="w-5 h-5 text-gray-300 flex-none absolute right-3 top-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
+                    <svg class="w-4.5 h-4.5 text-gray-300 flex-none absolute right-3 top-1.5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
             </div>
 
             <div>
                 <select
                     v-model="perPage"
-                    class="p-2 px-4 w-full md:max-w-max border rounded-lg focus:outline-none focus:border-indigo-400 text-gray-600">
+                    class="p-2 px-4 pr-10 border border-gray-200 rounded-lg focus:outline-none text-gray-500 text-xs">
                         <option value="">{{ $t('results_per_page') }}</option>
                         <option value="5">5</option>
                         <option value="10">10</option>

@@ -216,7 +216,10 @@
     "save" : "Save",
     "search_coupon_placeholder" : "Search amongst the coupons...",
     "calendar" : "Calendar",
-    "last_login_at" : "Last Login"
+    "last_login_at" : "Last Login",
+    "category" : "Category",
+    "update" : "Update"
+
 
 
 

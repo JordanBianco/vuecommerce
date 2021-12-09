@@ -171,7 +171,7 @@ const routes = [
 				meta: { admin: true, auth: true },
 			},
 			{
-				path: '/admin/coupons/:id/edit',
+				path: '/admin/coupons/:slug/edit',
 				name: 'coupon.edit',
 				component: () => import('../views/Auth/Admin/Dashboard/Coupon/edit.vue'),
 				props: true,
@@ -210,7 +210,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
 	if (to.params.slug) {
 		document.title =  to.params.slug + ' | ' + process.env.VUE_APP_TITLE
-	} if (to.params.id) {
+	} else if (to.params.id) {
 		document.title =  'User ' + to.params.id + ' | ' + process.env.VUE_APP_TITLE
 	} else {
 		document.title =  to.name + ' | ' + process.env.VUE_APP_TITLE

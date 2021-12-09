@@ -1,4 +1,5 @@
 import api from '@/apis/api'
+import router from '@/router'
 
 // ADMIN
 export const getCoupons = async ({commit}, {search, sort, dir, perPage, page}) => {
@@ -18,10 +19,10 @@ export const getCoupons = async ({commit}, {search, sort, dir, perPage, page}) =
     }
 }
 
-export const getCoupon = async ({commit}, {id}) => {
+export const getCoupon = async ({commit}, {slug}) => {
     commit('SET_COUPON', null)
     try {
-        const res = await api.get('/admin/coupons/' + id)
+        const res = await api.get('/admin/coupons/' + slug)
         if (res.status === 200) {
             commit('SET_COUPON', res.data.data)
         }
@@ -59,6 +60,8 @@ export const updateCoupon = async ({commit}, {coupon}) => {
             discount: coupon.discount,
         })
         if (res.status === 200) {
+            router.push({ name: 'coupon.edit', params: {slug: res.data.data.slug }}).catch(()=>{})
+        
             commit('notification/ADD_NOTIFICATION', {
                 message: 'Coupon aggiornato.'
             }, { root:true });

@@ -15,12 +15,6 @@
             class="fixed left-0 bottom-0 top-0 transition duration-200 transform ease-in-out shadow-xl bg-gray-700 text-gray-400 min-h-screen overflow-x-hidden text-xs z-30">
                 
                 <div>
-                    <header class="p-2.5 border-b border-gray-600 mb-8">
-                        <div class="flex items-center space-x-4">
-                            <div class="bg-gray-600 rounded-full w-9 h-9 flex-none"></div>
-                            <span v-if="isOpen" class="whitespace-nowrap">{{ user.first_name + ' ' + user.last_name }}</span>
-                        </div>
-                    </header>
 
                     <router-link
                         :class="{ 'bg-gray-600 text-white' : $route.name == 'Admin Dashboard'}"
@@ -51,7 +45,10 @@
                     </router-link>
 
                     <router-link
-                        :class="{ 'bg-gray-600 text-white' : $route.name == 'Manage Coupons'}"
+                        :class="{ 'bg-gray-600 text-white' : 
+                            $route.name == 'Manage Coupons' ||
+                            $route.name == 'coupon.edit'                            
+                        }"
                         :to="{ name: 'Manage Coupons' }"
                         class="flex items-center space-x-3 pl-4 py-2 hover:bg-gray-600 duration-150">
                             <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path fill="currentColor" d="M7.75781,10.75781a3,3,0,1,0-3-3A3.00328,3.00328,0,0,0,7.75781,10.75781Zm0-4a1,1,0,1,1-1,1A1.00067,1.00067,0,0,1,7.75781,6.75781Zm8.48438,6.48438a3,3,0,1,0,3,3A3.00328,3.00328,0,0,0,16.24219,13.24219Zm0,4a1,1,0,1,1,1-1A1.00067,1.00067,0,0,1,16.24219,17.24219ZM19.707,4.293a.99962.99962,0,0,0-1.41406,0l-14,14A.99989.99989,0,1,0,5.707,19.707l14-14A.99962.99962,0,0,0,19.707,4.293Z"/></svg>
