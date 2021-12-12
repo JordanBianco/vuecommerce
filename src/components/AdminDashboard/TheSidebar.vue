@@ -12,14 +12,13 @@
             @mouseover="isOpen = true"
             @mouseleave="isOpen = false"
             :class="[ isOpen ? 'w-64' : 'lg:w-14 w-0' ]"
-            class="fixed left-0 bottom-0 top-0 transition duration-200 transform ease-in-out shadow-xl bg-gray-700 text-gray-400 min-h-screen overflow-x-hidden text-xs z-30">
+            class="fixed left-0 bottom-0 top-0 transition duration-200 transform ease-in-out shadow-xl bg-c-sidebar-primary text-gray-400 min-h-screen overflow-x-hidden text-xs z-30">
                 
-                <div>
-
+                <div class="mt-14">
                     <router-link
-                        :class="{ 'bg-gray-600 text-white' : $route.name == 'Admin Dashboard'}"
+                        :class="{ 'bg-c-sidebar-secondary text-white' : $route.name == 'Admin Dashboard'}"
                         :to="{ name: 'Admin Dashboard' }"
-                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-gray-600 duration-150">
+                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-c-sidebar-secondary duration-150">
                             <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path fill="currentColor" d="M22.60107,2.062a1.00088,1.00088,0,0,0-.71289-.71289A11.25224,11.25224,0,0,0,10.46924,4.97217L9.35431,6.296l-2.6048-.62848A2.77733,2.77733,0,0,0,3.36279,7.0249L1.1626,10.9248A.99989.99989,0,0,0,1.82422,12.394l3.07275.65869a13.41952,13.41952,0,0,0-.55517,2.43409,1.00031,1.00031,0,0,0,.28466.83642l3.1001,3.1001a.99941.99941,0,0,0,.707.293c.02881,0,.05762-.00147.08692-.00391a12.16892,12.16892,0,0,0,2.49157-.49l.64368,3.00318a1.0003,1.0003,0,0,0,1.46924.66162l3.90527-2.20264a3.03526,3.03526,0,0,0,1.375-3.30371l-.6687-2.759,1.23706-1.13751A11.20387,11.20387,0,0,0,22.60107,2.062ZM3.57227,10.72314,5.12842,7.96338a.82552.82552,0,0,1,1.06982-.37549l1.71741.4162-.65.77179A13.09523,13.09523,0,0,0,5.67633,11.174Zm12.47021,8.22217L13.32666,20.477l-.4295-2.00464a11.33992,11.33992,0,0,0,2.41339-1.61987l.74353-.68366.40344,1.66462A1.041,1.041,0,0,1,16.04248,18.94531ZM17.65674,11.98l-3.68457,3.38623a9.77348,9.77348,0,0,1-5.17041,2.3042l-2.4043-2.4043a10.932,10.932,0,0,1,2.40088-5.206l1.67834-1.99268a.9635.9635,0,0,0,.07813-.09277L11.98975,6.271a9.27757,9.27757,0,0,1,8.80957-3.12012A9.21808,9.21808,0,0,1,17.65674,11.98Zm-.923-6.16376a1.5,1.5,0,1,0,1.5,1.5A1.49992,1.49992,0,0,0,16.7337,5.81622Z"/></svg>
                             <span class="whitespace-nowrap" v-if="isOpen">{{ $t('dashboard') }}</span>
                     </router-link>
@@ -33,24 +32,24 @@
                     </div>
 
                     <router-link
-                        :class="{ 'bg-gray-600 text-white' : 
+                        :class="{ 'bg-c-sidebar-secondary text-white' : 
                             $route.name == 'Manage Users' || 
                             $route.name == 'user.show' ||
-                            $route.name == 'user.edit'                            
+                            $route.name == 'user.edit'
                         }"
                         :to="{ name: 'Manage Users' }"
-                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-gray-600 duration-150">
+                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-c-sidebar-secondary duration-150">
                             <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M12.3,12.22A4.92,4.92,0,0,0,14,8.5a5,5,0,0,0-10,0,4.92,4.92,0,0,0,1.7,3.72A8,8,0,0,0,1,19.5a1,1,0,0,0,2,0,6,6,0,0,1,12,0,1,1,0,0,0,2,0A8,8,0,0,0,12.3,12.22ZM9,11.5a3,3,0,1,1,3-3A3,3,0,0,1,9,11.5Zm9.74.32A5,5,0,0,0,15,3.5a1,1,0,0,0,0,2,3,3,0,0,1,3,3,3,3,0,0,1-1.5,2.59,1,1,0,0,0-.5.84,1,1,0,0,0,.45.86l.39.26.13.07a7,7,0,0,1,4,6.38,1,1,0,0,0,2,0A9,9,0,0,0,18.74,11.82Z"/></svg>
                             <span class="whitespace-nowrap" v-if="isOpen">{{ $t('users') }}</span>
                     </router-link>
 
                     <router-link
-                        :class="{ 'bg-gray-600 text-white' : 
+                        :class="{ 'bg-c-sidebar-secondary text-white' : 
                             $route.name == 'Manage Coupons' ||
-                            $route.name == 'coupon.edit'                            
+                            $route.name == 'coupon.edit'
                         }"
                         :to="{ name: 'Manage Coupons' }"
-                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-gray-600 duration-150">
+                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-c-sidebar-secondary duration-150">
                             <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path fill="currentColor" d="M7.75781,10.75781a3,3,0,1,0-3-3A3.00328,3.00328,0,0,0,7.75781,10.75781Zm0-4a1,1,0,1,1-1,1A1.00067,1.00067,0,0,1,7.75781,6.75781Zm8.48438,6.48438a3,3,0,1,0,3,3A3.00328,3.00328,0,0,0,16.24219,13.24219Zm0,4a1,1,0,1,1,1-1A1.00067,1.00067,0,0,1,16.24219,17.24219ZM19.707,4.293a.99962.99962,0,0,0-1.41406,0l-14,14A.99989.99989,0,1,0,5.707,19.707l14-14A.99962.99962,0,0,0,19.707,4.293Z"/></svg>
                             <span class="whitespace-nowrap" v-if="isOpen">Coupon</span>
                     </router-link>
@@ -64,15 +63,19 @@
                     </div>
 
                     <router-link
-                        :class="{ 'bg-gray-600 text-white' : $route.name == 'Calendar'}"
+                        :class="{ 'bg-c-sidebar-secondary text-white' : 
+                            $route.name == 'Calendar' ||
+                            $route.name == 'Manage EventCategory' ||
+                            $route.name == 'eventCategory.edit'
+                        }"
                         :to="{ name: 'Calendar' }"
-                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-gray-600 duration-150">
+                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-c-sidebar-secondary duration-150">
                             <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path fill="currentColor" d="M12,19a1,1,0,1,0-1-1A1,1,0,0,0,12,19Zm5,0a1,1,0,1,0-1-1A1,1,0,0,0,17,19Zm0-4a1,1,0,1,0-1-1A1,1,0,0,0,17,15Zm-5,0a1,1,0,1,0-1-1A1,1,0,0,0,12,15ZM19,3H18V2a1,1,0,0,0-2,0V3H8V2A1,1,0,0,0,6,2V3H5A3,3,0,0,0,2,6V20a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V6A3,3,0,0,0,19,3Zm1,17a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V11H20ZM20,9H4V6A1,1,0,0,1,5,5H6V6A1,1,0,0,0,8,6V5h8V6a1,1,0,0,0,2,0V5h1a1,1,0,0,1,1,1ZM7,15a1,1,0,1,0-1-1A1,1,0,0,0,7,15Zm0,4a1,1,0,1,0-1-1A1,1,0,0,0,7,19Z"/></svg>
                             <span class="whitespace-nowrap" v-if="isOpen">{{ $t('calendar') }}</span>
                     </router-link>                    
 
                     <div class="absolute bottom-4 w-full ">
-                        <button @click="logout" class="flex items-center space-x-3 pl-4 py-2 hover:bg-gray-600 duration-150 w-full">
+                        <button @click="logout" class="flex items-center space-x-3 pl-4 py-2 hover:bg-c-sidebar-secondary duration-150 w-full">
                             <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"/></svg>
                             <span class="whitespace-nowrap" v-if="isOpen">Logout</span>
                         </button>

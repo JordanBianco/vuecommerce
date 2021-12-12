@@ -1,6 +1,6 @@
 <template>
     <div>
-        <header class="mb-6">
+        <header class="mb-6 text-gray-200">
             <h2 class="text-xl text-gray-600">{{ $t('calendar') }}</h2>
         </header>
 
@@ -9,11 +9,12 @@
             <aside class="w-1/4 space-y-8 p-6 border-r border-gray-100">
                 <button
                     @click="openCreateMenu()"
-                    class="bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg text-sm text-white py-2 shadow-sm w-full">
+                    class="bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg text-sm text-white py-2 w-full hover:shadow-md">
                         Add event
                 </button>
                 <section v-if="categories">
                     <h3 class="text-gray-400 text-sm mb-4">{{ $tc('categories', categories.length) }}</h3>
+
                     <div
                         v-for="category in categories"
                         :key="category.id"
@@ -27,6 +28,12 @@
 
                             <span class="text-gray-500 text-sm">{{ category.name }}</span>
                     </div>
+
+                    <router-link
+                        :to="{ name: 'Manage EventCategory' }"
+                        class="block text-xs text-gray-400 mt-4">
+                            gestisci categorie
+                    </router-link>
                 </section>
                     
                 <section class="mb-6">
@@ -37,7 +44,7 @@
                             type="radio"
                             value="auto"
                             name="displayEvent"
-                            class="w-4 h-4 rounded-lg border border-gray-300 text-blue-400 focus:ring-transparent">
+                            class="w-4 h-4 rounded-md border border-gray-300 text-blue-400 focus:ring-transparent">
                         <label for="displayEvent" class="text-gray-500 text-sm">Auto</label>
                     </div>
                     <div class="flex items-center space-x-2 mb-2">
@@ -46,7 +53,7 @@
                             type="radio"
                             value="block"
                             name="displayEvent"
-                            class="w-4 h-4 rounded-lg border border-gray-300 text-blue-400 focus:ring-transparent">
+                            class="w-4 h-4 rounded-md border border-gray-300 text-blue-400 focus:ring-transparent">
                         <label for="displayEvent" class="text-gray-500 text-sm">Blocco</label>
                     </div>
                 </section>
@@ -57,19 +64,19 @@
                         <input
                             v-model="displayTime"
                             type="radio"
-                            :value="false"
+                            :value="true"
                             name="displayEventTime"
-                            class="w-4 h-4 rounded-lg border border-gray-300 text-blue-400 focus:ring-transparent">
-                        <label for="displayEventTime" class="text-gray-500 text-sm">No</label>
+                            class="w-4 h-4 rounded-md border border-gray-300 text-blue-400 focus:ring-transparent">
+                        <label for="displayEventTime" class="text-gray-500 text-sm">Sì</label>
                     </div>
                     <div class="flex items-center space-x-2 mb-2">
                         <input
                             v-model="displayTime"
                             type="radio"
-                            :value="true"
+                            :value="false"
                             name="displayEventTime"
-                            class="w-4 h-4 rounded-lg border border-gray-300 text-blue-400 focus:ring-transparent">
-                        <label for="displayEventTime" class="text-gray-500 text-sm">Sì</label>
+                            class="w-4 h-4 rounded-md border border-gray-300 text-blue-400 focus:ring-transparent">
+                        <label for="displayEventTime" class="text-gray-500 text-sm">No</label>
                     </div>
                 </section>
             </aside>
@@ -110,6 +117,7 @@ import FullCalendar from '@fullcalendar/vue'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import timeGridPlugin from '@fullcalendar/timegrid'
+import listPlugin from '@fullcalendar/list';
 
 import EventCreate from '@/components/AdminDashboard/EventCreate'
 import EventUpdate from '@/components/AdminDashboard/EventUpdate'
@@ -142,7 +150,7 @@ export default {
             },
 
             display: 'auto',
-            displayTime: false,
+            displayTime: true,
             
         }
     },
@@ -163,7 +171,8 @@ export default {
                 plugins: [
                     dayGridPlugin,
                     interactionPlugin,
-                    timeGridPlugin
+                    timeGridPlugin,
+                    listPlugin
                 ],
                 editable: true,
                 dateClick: this.handleDateClick,
@@ -180,8 +189,7 @@ export default {
                 headerToolbar: {
                     start: 'prev next title',
                     center: '',
-                    end: ''
-                    // dayGridMonth dayGridDay dayGridWeek
+                    end: 'dayGridMonth listMonth'
                 },
             } 
         },
@@ -201,7 +209,6 @@ export default {
         handleEventClick: function(arg) {
             this.openUpdateMenu()
             this.selectedEvent = arg
-            console.log(arg)
         },
         handleEventDrop: function(info) {
             // Se utente droppa un elemento in un'altro giorno, cambio la data di inizio e fine evento

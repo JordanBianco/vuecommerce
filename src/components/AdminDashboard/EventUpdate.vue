@@ -92,7 +92,6 @@
                         <p v-if="errors.description" class="text-xs text-red-500 mt-0.5">{{ errors.description[0] }}</p>
                 </div>
 
-
                 <button
                     @click="updateEvent()"
                     class="bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg text-xs text-white px-3 py-2 shadow-sm">
@@ -141,13 +140,18 @@ export default {
         },
         selectedEvent() {
             if (this.selectedEvent.event) {
-                this.event.id = this.selectedEvent.event._def.id,                
-                this.event.event_category_id = this.selectedEvent.event._def.extendedProps.event_category_id,
-                this.event.title = this.selectedEvent.event._def.title,
-                this.event.description = this.selectedEvent.event._def.extendedProps.description,
+                this.event.id = this.selectedEvent.event._def.publicId,                
+                this.event.event_category_id = this.selectedEvent.event.extendedProps.event_category_id,
+                this.event.title = this.selectedEvent.event.title,
+                this.event.description = this.selectedEvent.event.extendedProps.description,
                 this.event.start = this.$moment(this.selectedEvent.event._instance.range.start).format('yyyy-MM-DDTHH:mm'),
-                this.event.end = this.$moment(this.selectedEvent.event._instance.range.end).format('yyyy-MM-DDTHH:mm'),
-                this.eventCategory = this.selectedEvent.event._def.extendedProps.category.name
+                this.event.end = this.$moment(this.selectedEvent.event._instance.range.end).format('yyyy-MM-DDTHH:mm')
+
+                if (this.selectedEvent.event.extendedProps.category != null) {
+                    this.eventCategory = this.selectedEvent.event._def.extendedProps.category.name
+                } else {
+                    this.eventCategory = 'Nessuna categoria'
+                }
             }
         }
     },

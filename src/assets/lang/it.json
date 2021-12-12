@@ -218,6 +218,13 @@
     "calendar" : "Calendario",
     "last_login_at" : "Ultimo accesso",
     "category" : "Categoria",
-    "update" : "Aggiorna"
+    "update" : "Aggiorna",
+
+    "manage_categories" : "Gestisci categorie",
+    "name" : "Nome",
+    "background_color" : "Colore sfondo",
+    "text_color" : "Colore testo",
+    "example" : "Esempio",
+    "update_category" : "Aggiorna categoria"
 
 }

@@ -218,8 +218,14 @@
     "calendar" : "Calendar",
     "last_login_at" : "Last Login",
     "category" : "Category",
-    "update" : "Update"
+    "update" : "Update",
 
+    "manage_categories" : "Manage categories",
+    "name" : "Name",
+    "background_color" : "Background color",
+    "text_color" : "Text color",
+    "example" : "Example",
+    "update_category" : "Update category"
 
 
 

@@ -26,14 +26,11 @@ module.exports = {
 			},
 			colors: {
 				'c-white' : '#fffffe',
-				'c-black' : '#16161a',
-				'c-light-gray' : '#94a1b2',
+				'c-sidebar-primary' : '#283046',
+				'c-sidebar-secondary' : '#161d31',
 				'c-dark-gray' : '#2a2a2a',
 				'c-blue' : '#232946',
-				'c-dark-blue' : '#272343',
 				'c-red' : '#d9376e',
-				'c-pink' : '#eebbc3',
-				'c-orange' : '#ff8e3c',
 				'c-green' : '#47a358',
 			},
 			spacing: {

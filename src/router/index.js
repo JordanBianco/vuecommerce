@@ -184,6 +184,19 @@ const routes = [
 				component: () => import('../views/Auth/Admin/Dashboard/Calendar/index.vue'),
 				meta: { admin: true, auth: true },
 			},
+			{
+				path: '/admin/calendar/manage-category',
+				name: 'Manage EventCategory',
+				component: () => import('../views/Auth/Admin/Dashboard/Calendar/manageCategory.vue'),
+				meta: { admin: true, auth: true },
+			},
+			{
+				path: '/admin/calendar/category/:slug/edit',
+				name: 'eventCategory.edit',
+				component: () => import('../views/Auth/Admin/Dashboard/Calendar/edit.vue'),
+				props: true,
+				meta: { admin: true, auth: true },
+			},
 		],	
 	},
 ]
