@@ -1,6 +1,5 @@
 export default {
-    categories: [],
     products: {},
+    product: {},
     errors: [],
-    success: false
 }

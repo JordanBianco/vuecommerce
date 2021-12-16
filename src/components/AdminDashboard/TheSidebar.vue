@@ -12,9 +12,14 @@
             @mouseover="isOpen = true"
             @mouseleave="isOpen = false"
             :class="[ isOpen ? 'w-64' : 'lg:w-14 w-0' ]"
-            class="fixed left-0 bottom-0 top-0 transition duration-200 transform ease-in-out shadow-xl bg-c-sidebar-primary text-gray-400 min-h-screen overflow-x-hidden text-xs z-30">
+            class="fixed left-0 bottom-0 top-0 transition duration-200 transform ease-in-out shadow-xl bg-c-sidebar-primary text-gray-400 min-h-screen overflow-x-hidden text-sm z-30">
                 
-                <div class="mt-14">
+                <div>
+                    <div class="p-3 mb-6 flex space-x-2 items-center border-b border-gray-700">
+                        <div class="w-8 h-8 rounded-full border-2 border-green-400 flex-none"></div>
+                        <span class="whitespace-nowrap text-base" v-if="isOpen">Vuepanel</span>
+                    </div>
+
                     <router-link
                         :class="{ 'bg-c-sidebar-secondary text-white' : $route.name == 'Admin Dashboard'}"
                         :to="{ name: 'Admin Dashboard' }"
@@ -27,12 +32,12 @@
                     <div v-if="!isOpen" class="flex justify-center py-4">
                         <svg class="w-5 h-5 text-gray-400 flex-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                     </div>
-                    <div v-else class="py-4.5 pl-5">
+                    <div v-else class="py-4.5 pl-5 text-xs">
                         <span class="block uppercase text-gray-400">{{ $t('management') }}</span>
                     </div>
 
                     <router-link
-                        :class="{ 'bg-c-sidebar-secondary text-white' : 
+                        :class="{ 'bg-c-sidebar-secondary text-green-400' : 
                             $route.name == 'Manage Users' || 
                             $route.name == 'user.show' ||
                             $route.name == 'user.edit'
@@ -44,7 +49,19 @@
                     </router-link>
 
                     <router-link
-                        :class="{ 'bg-c-sidebar-secondary text-white' : 
+                        :class="{ 'bg-c-sidebar-secondary text-green-400' : 
+                            $route.name == 'Manage Products' ||
+                            $route.name == 'Create Product' ||
+                            $route.name == 'admin.product.show'
+                        }"
+                        :to="{ name: 'Manage Products' }"
+                        class="flex items-center space-x-3 pl-4 py-2 hover:bg-c-sidebar-secondary duration-150">
+                            <svg class="w-5 h-5 flex-none" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"><path fill="currentColor" d="M20,10.35,14.22,2.94A3.06,3.06,0,0,0,9.75,3L4,10.35A3.05,3.05,0,0,0,3.51,12,3.09,3.09,0,0,0,4,13.58l.06.07,5.74,7.41A3,3,0,0,0,12,22a3.06,3.06,0,0,0,2.26-1L20,13.65a3,3,0,0,0-.06-3.3Zm-1.57,2.14-5.67,7.22a1.11,1.11,0,0,1-1.42.07L5.65,12.47A1,1,0,0,1,5.51,12a1.11,1.11,0,0,1,.1-.45l5.67-7.22a1.11,1.11,0,0,1,1.42-.07l5.63,7.28a1,1,0,0,1,.16.54A1.11,1.11,0,0,1,18.39,12.49Z"/></svg>
+                            <span class="whitespace-nowrap" v-if="isOpen">{{ $t('products') }}</span>
+                    </router-link>
+
+                    <router-link
+                        :class="{ 'bg-c-sidebar-secondary text-green-400' : 
                             $route.name == 'Manage Coupons' ||
                             $route.name == 'coupon.edit'
                         }"
@@ -58,12 +75,12 @@
                     <div v-if="!isOpen" class="flex justify-center py-4">
                         <svg class="w-5 h-5 text-gray-400 flex-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
                     </div>
-                    <div v-else class="py-4.5 pl-5">
+                    <div v-else class="py-4.5 pl-5 text-xs">
                         <span class="block uppercase text-gray-400">App</span>
                     </div>
 
                     <router-link
-                        :class="{ 'bg-c-sidebar-secondary text-white' : 
+                        :class="{ 'bg-c-sidebar-secondary text-green-400' : 
                             $route.name == 'Calendar' ||
                             $route.name == 'Manage EventCategory' ||
                             $route.name == 'eventCategory.edit'

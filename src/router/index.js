@@ -197,6 +197,26 @@ const routes = [
 				props: true,
 				meta: { admin: true, auth: true },
 			},
+			// Products
+			{
+				path: '/admin/products',
+				name: 'Manage Products',
+				component: () => import('../views/Auth/Admin/Dashboard/Product/index.vue'),
+				meta: { admin: true, auth: true },
+			},
+			{
+				path: '/admin/products/create',
+				name: 'Create Product',
+				component: () => import('../views/Auth/Admin/Dashboard/Product/create.vue'),
+				meta: { admin: true, auth: true },
+			},
+			{
+				path: '/admin/products/:slug',
+				name: 'admin.product.show',
+				component: () => import('../views/Auth/Admin/Dashboard/Product/show.vue'),
+				props: true,
+				meta: { admin: true, auth: true },
+			},
 		],	
 	},
 ]

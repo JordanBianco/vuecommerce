@@ -2,7 +2,6 @@
     <div>
         <header class="pb-6 flex items-center justify-between">
             <h2 class="text-xl text-gray-600">Coupon</h2>
-            
         </header>
 
         <section class="bg-white border border-gray-200 shadow-lg rounded-lg py-6">

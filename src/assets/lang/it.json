@@ -225,6 +225,10 @@
     "background_color" : "Colore sfondo",
     "text_color" : "Colore testo",
     "example" : "Esempio",
-    "update_category" : "Aggiorna categoria"
+    "update_category" : "Aggiorna categoria",
+    "products" : "Prodotti",
+    "search_products_placeholder" : "Cerca tra gli articoli...",
+    "image" : "Immagine",
+    "avg_reviews" : "Media recensioni"
 
 }

@@ -225,7 +225,13 @@
     "background_color" : "Background color",
     "text_color" : "Text color",
     "example" : "Example",
-    "update_category" : "Update category"
+    "update_category" : "Update category",
+    "products" : "Products",
+    "search_products_placeholder" : "Search amongst the products...",
+    "image" : "Image",
+    "avg_reviews" : "Average reviews"
+
+
 
 
 

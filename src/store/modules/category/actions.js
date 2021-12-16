@@ -28,6 +28,26 @@ export const getProducts = async ({commit}, {slug, page, min, max, ratings}) => 
     }
 }
 
-export const cleanErrors = async ({commit}) => {
+export const storeCategory = async ({commit}, {name}) => {
+    try {
+        const res = await api.post('/admin/categories', {
+            name: name
+        })
+        if (res.status === 201) {
+            commit('SET_SUCCESS_STATUS', true)
+            commit('PUSH_CATEGORY', res.data.data)
+        }
+    } catch (error) {
+        if (error.response.status === 422) {
+            commit('SET_ERRORS', error.response.data.errors);
+        }
+    }
+}
+
+export const cleanErrors = ({commit}) => {
     commit('CLEAN_ERRORS')
+}
+
+export const resetSuccessStatus = ({commit}) => {
+    commit('SET_SUCCESS_STATUS', false)
 }
